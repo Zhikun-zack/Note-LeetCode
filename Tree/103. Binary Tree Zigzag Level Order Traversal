@@ -1,0 +1,54 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> myResult = new ArrayList<List<Integer>>();
+        if( root == null )
+            return myResult;
+        
+        
+        Queue<TreeNode> myQ = new LinkedList<TreeNode>();
+        myQ.offer(root);
+        int level = 1;
+
+        while(!myQ.isEmpty()){
+            List<Integer> myLevel = new ArrayList<Integer>();
+            int levelSize = myQ.size();
+
+            for( int i = 0; i < levelSize; i++ ){
+                TreeNode node = myQ.poll();
+                myLevel.add(node.val);
+                if(node.left!= null)
+                    myQ.offer(node.left);
+                if(node.right!= null)
+                    myQ.offer(node.right);
+            }
+            if(level%2 == 1)
+                myResult.add(myLevel);
+            if(level%2 == 0)
+                myResult.add(reverseList(myLevel));
+            level+=1;
+        }
+        return myResult;
+    }
+
+    public List<Integer> reverseList (List<Integer> levels){
+        Stack<Integer> myStack = new Stack<>();
+        List<Integer> reLevels = new ArrayList<>();
+
+        for (int level: levels){
+            myStack.push(level);
+        }
+        while(!myStack.isEmpty()){
+            reLevels.add(myStack.pop());
+        }
+        return reLevels;
+    }
+}
