@@ -1,0 +1,37 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public void flatten(TreeNode root) {
+        //You just need to create a treenode without return it 
+        TreeNode linked = root;
+        List<TreeNode> myList = new ArrayList<>();
+        preorder(root, myList);
+        int size = myList.size();
+        for (int i = 1; i < size; i++){
+            linked.right = myList.get(i);
+            linked.left = null;
+            linked = linked.right;
+        }
+    }
+
+    public void preorder(TreeNode root, List<TreeNode> myList){
+        if(root != null){
+            myList.add(root);
+            preorder(root.left, myList);
+            preorder(root.right, myList);
+        }       
+    }
+}
