@@ -1,0 +1,22 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if (s.length() != t.length()){
+            return false;
+        }
+
+        int[] hashT1 = new int [26];
+
+        for(int i = 0; i < s.length(); i++){
+            hashT1[s.charAt(i) - 'a']++;
+        }
+        int[] hashT2 = new int [26];
+        for(int i = 0; i<t.length(); i++){
+            hashT2[t.charAt(i) - 'a']++;
+        }
+        if(Arrays.equals( hashT1, hashT2)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+}
