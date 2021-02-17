@@ -1,0 +1,20 @@
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashMap<Character, Integer> resHash = new HashMap<>();
+        int res = 0;
+        for(int start = 0, end = 0; end < s.length(); end++){
+            char endChar = s.charAt(end);
+            if(resHash.containsKey(endChar)){
+                //Make start always go forward, the number of a keep increacing
+                start = Math.max(resHash.get(endChar), start);
+            }
+            //Always take the longest length
+            res = Math.max(res, end-start+1);
+            //because when the char at end exist in Map, we didn't put that char into the Map
+            //But the start index need to be moved to that char's place, which is the end index + 1
+            //So we can just put end + 1 into the Map and don't need to +1 again
+            resHash.put(endChar, end+1);
+        }
+        return res;
+    }
+}
