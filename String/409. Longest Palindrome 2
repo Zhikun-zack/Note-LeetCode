@@ -1,0 +1,19 @@
+class Solution {
+    public int longestPalindrome(String s) {
+        HashMap <Character, Integer> resHash = new HashMap<>();
+        int len = 0;
+        if(s == ""){
+            return 0;
+        }
+        for(int i = 0; i < s.length(); i++){
+            resHash.put(s.charAt(i), resHash.getOrDefault(s.charAt(i),0)+1);
+        }
+        for(char temp: resHash.keySet()){
+            len += resHash.get(temp)/2*2;
+            if(resHash.get(temp)%2==1 && len%2 == 0){
+                len++;
+            }
+        }
+        return len;
+    }
+}
