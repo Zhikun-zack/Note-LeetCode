@@ -1,0 +1,21 @@
+class Solution {
+    public int countBinarySubstrings(String s) {
+        int res = 0;
+        int len = s.length();
+        for(int i = 0; i < len-1; i++){
+            int l = i;
+            int r = i+1;
+            int leftChar = s.charAt(l);
+            int rightChar = s.charAt(r);
+            if(leftChar == rightChar){
+                continue;
+            }
+            while(l>=0 && r<=len-1 && leftChar == s.charAt(l) && rightChar == s.charAt(r)){
+                res++;
+                l--;
+                r++;
+            }
+        }
+        return res;
+    }
+}
