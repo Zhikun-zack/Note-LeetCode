@@ -1,0 +1,29 @@
+//Brute Force
+class Solution {
+    public String longestPalindrome(String s) {
+        int len = s.length();
+        int maxSubLen = 0;
+        String res = new String();
+        for( int i = 0; i < len ; i++ ){
+            for( int j = 0; j < len-i; j++ ){
+                if(judgeP(j, j+i,s)&&i+1 > maxSubLen){
+                    //System.out.println("j is: "+j+" i is: "+i);
+                    String sub = s.substring(j, j+i+1);
+                    res = sub;
+                    //System.out.println(sub);
+                    maxSubLen = Math.max(i+1, maxSubLen);
+                }
+            }
+        }
+        return res;
+    }
+
+    public boolean judgeP(int start, int end, String s){
+        for(int i = 0; i < end-start; i++ ){
+            if(s.charAt(start+i) != s.charAt(end-i) ){
+                return false;
+            }
+        }
+        return true;
+    }
+}
