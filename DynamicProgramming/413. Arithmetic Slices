@@ -1,0 +1,22 @@
+//DP
+class Solution {
+    public int numberOfArithmeticSlices(int[] A) {
+        int len = A.length;
+        if (len < 3){
+            return 0;
+        }
+        //dp is used to store the number of slices in the array when it is range from A[0]-A[i];
+        int[] dp = new int[len];
+        //The default value in int[] is 0, so no need to give value to dp[0] and dp[1]
+        int res = 0;
+        //start from i==2, because Arithmetic Slices must consists of at least three elements
+        //dp[0] and [1] = 0 by default
+        for(int i = 2; i < len; i++){
+            if((A[i]-A[i-1]) == (A[i-1]-A[i-2])){
+                dp[i] = dp[i-1] + 1;
+            }
+            res += dp[i];
+        }
+        return res;
+    }
+}
