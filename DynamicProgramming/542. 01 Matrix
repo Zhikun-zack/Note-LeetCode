@@ -1,0 +1,39 @@
+class Solution {
+    public int[][] updateMatrix(int[][] matrix) {
+        int[][] dp = new int[matrix.length][matrix[0].length];
+        int rlen = matrix.length;
+        int clen = matrix[0].length;
+        //Intialization of dp array
+        for(int i = 0; i < rlen; i++){
+            for(int j = 0; j < clen; j++){
+                //give large value to the none 0 cell
+                dp[i][j] = (matrix[i][j] == 0) ? 0 : 9999;
+            }
+        }
+        //This is the first step from top to bottom from left to right
+        for(int i = 0; i < rlen; i++){
+            for(int j = 0; j < clen; j++){
+                //Compare the up and left and dp i j find the min value 
+                if( i - 1 >= 0 ){
+                    dp[i][j] = Math.min(dp[i-1][j]+1, dp[i][j]);
+                }
+                if( j-1 >= 0 ){
+                    dp[i][j] = Math.min(dp[i][j-1]+1, dp[i][j]);
+                }
+            }
+        }
+        //This is the second steo from bottom to top from right to left
+        for(int i = rlen-1; i >= 0; i-- ){
+            for(int j = clen-1; j >= 0; j--){
+                //Compare the down and right and dp i j (dp i j has already be the min value of up left and original initialized value)find the min value 
+                if(i+1 < rlen){
+                    dp[i][j] = Math.min(dp[i][j], dp[i+1][j]+1);
+                }
+                if(j+1 < clen){
+                    dp[i][j] = Math.min(dp[i][j], dp[i][j+1]+1);
+                }
+            }
+        }
+        return dp;
+    }
+}
