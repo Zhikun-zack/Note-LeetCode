@@ -1,0 +1,30 @@
+class Solution {
+    public int maximalSquare(char[][] matrix) {
+        int res = 0;
+        //If only have row or column or nothing in matrix return 0
+        if(matrix.length == 0 || matrix[0].length == 0 || matrix == null ){
+            return res;
+        }
+        //Save time 
+        int rlen = matrix.length, clen = matrix[0].length;
+        
+        int[][] dp = new int[rlen][clen];
+        for(int i = 0; i < rlen; i++ ){
+            for( int j = 0; j < clen; j++){
+                //if value is not 0, judge; if is 0, the default value in dp is 0 so no need assign 0 to it
+                if(matrix[i][j] == '1'){
+                    //On the top level or the most left level
+                    if(i==0 || j == 0){
+                        dp[i][j] = 1;
+                    }
+                    //find the min value in up left and upleft
+                    else{
+                        dp[i][j] = Math.min(Math.min(dp[i-1][j],dp[i][j-1]),dp[i-1][j-1])+1;
+                    }
+                    res = Math.max(res, dp[i][j]);
+                } 
+            }
+        }
+        return res*res;
+    }
+}
