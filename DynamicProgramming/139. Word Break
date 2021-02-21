@@ -1,0 +1,24 @@
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        int len = s.length();
+
+        //Len is len+1
+        boolean[] dp = new boolean[len+1];
+
+        //Give true to pass
+        dp[0] = true;
+        for( int i = 1; i < len+1 ; i++ ){
+            for(String j : wordDict){
+                int sublen = j.length();
+
+                //IMPORTANT we cannot use j == substring, 
+                if(i >= sublen && j.equals(s.substring(i-sublen, i))){
+                    //System.out.println(s.substring(i-sublen,i));
+                    //string: "dogs", wordDict: ["dog","s","gs"] this situation will need not change the dp[i] from true to false, This code means is dp[i] has been to true once then do not change it
+                    dp[i] = dp[i] || dp[i-sublen];
+                }
+            }
+        }
+        return dp[len];
+    }
+}
