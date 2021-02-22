@@ -1,0 +1,48 @@
+//0/1 knapsack with many boundry situations
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int len = nums.length;
+        //If nums contains less than two nums
+        if(len < 2 ){
+            return false;
+        }
+        int sum = 0, max = 0;
+        //Calculate the max value and sum
+        for(int i = 0; i<len; i++){
+            sum += nums[i];
+            max = Math.max(max, nums[i]);
+        }
+        //if sum is odd
+        if(sum%2 != 0){
+            return false;
+        }
+        //if max larger than sum
+        if(max > (sum/2)){
+            return false;
+        }
+        int halfsum = sum/2;
+        boolean[][] dp = new boolean[len][halfsum+1];
+        //Initialization, give first column all to true
+        //Bag weight is 0, so we just need to not select any item on both side
+        for(int i = 0; i < len; i++){
+            dp[i][0] = true;
+        }
+        //give second line value to true, when bag weight is 1, because we exclude the special situation before, and because there is only element to chose, so we can chose it.
+        dp[0][nums[0]] = true;
+        for(int i = 1; i < len; i++){
+            for(int j = 1; j <= halfsum; j++ ){
+                //bagweight lager than the element weight, we can select to put this item or not
+                if(j>= nums[i]){
+                    dp[i][j] = dp[i-1][j] | dp[i-1][j-nums[i]];
+                }
+                //bagweight less than this element weight, so we cannot put this element
+                else{
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+        return dp[len-1][halfsum];
+    }
+}
+//T com: O(nm)
+//S com: O(nm)
