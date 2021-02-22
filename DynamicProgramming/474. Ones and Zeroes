@@ -1,0 +1,29 @@
+//dimension compression
+class Solution {
+    public int findMaxForm(String[] strs, int m, int n) {
+        int[][] dp = new int[m+1][n+1];
+        //Go through all the items
+        for(String s : strs){
+            int numzero = coutValue(s, '0');
+            int numone = coutValue(s, '1');
+            //same as one dimentional array, start from back reverse-order
+            for(int i = m; i >= numzero; i--){
+                for(int j = n; j >= numone; j--){
+                    dp[i][j] = Math.max(dp[i][j], dp[i-numzero][j-numone]+1);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
+    //extra function to calculate the number of 0 or 1 in this string
+    public int coutValue(String s, Character num){
+        int res = 0;
+        for(int i = 0; i<s.length(); i++){
+            if(s.charAt(i) == num){
+                res++;
+            }
+        }
+        return res;
+    }
+}
