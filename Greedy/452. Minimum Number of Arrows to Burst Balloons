@@ -1,0 +1,20 @@
+class Solution {
+    public int findMinArrowShots(int[][] points) {
+        //Boundary situation
+        if(points.length == 0){
+            return 0;
+        }
+        //compare a and b in a loop, return int, if need to change return positive integer if not return negative integer
+        Arrays.sort(points, (a, b) -> a[1] > b[1] ? 1 : -1);
+        int right = points[0][1];
+        //first value must be equal to 1
+        int count = 1;
+        for(int i = 0; i<points.length; i++){
+            if(right < points[i][0]){
+                right = points[i][1];
+                count++;
+            }
+        }
+        return count;
+    }
+}
