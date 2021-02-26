@@ -1,0 +1,27 @@
+class Solution {
+    public int eraseOverlapIntervals(int[][] intervals) {
+        int len = intervals.length;
+        if(len == 0){
+            return 0;
+        }
+        //Sort intervals based on the right end point
+        Arrays.sort(intervals, new Comparator<int[]>(){
+            public int compare(int[] interval1, int[] interval2){
+                return interval1[1] - interval2[1];
+            }
+        });
+        //start one, equal to first interval's right end
+        int right = intervals[0][1];
+        //Number of non-overlapping intervals, at least larger than one, one interval will not overlap with itself
+        int num = 1;
+        for(int i = 1; i < len; ++i){
+            //If i-1's right is less than i's left, means no overlapping
+            if(intervals[i][0] >= right){
+                ++num;
+                right = intervals[i][1];
+            }
+        }
+        //change the question from find the min number of change to find the max left to keep non-overlapping
+        return len-num;
+    }
+}
