@@ -1,0 +1,31 @@
+class Solution {
+    public int candy(int[] ratings) {
+        int len = ratings.length;
+        int[] left = new int[len];
+        int[] right = new int[len];
+
+        //All children must have at least 1 candy
+        Arrays.fill(left, 1);
+        Arrays.fill(right, 1);
+
+        //left rule
+        //start from 1, means i-1 will not out of bound
+        for(int i = 1; i< len; i++){
+            if(ratings[i] > ratings[i-1]){
+                left[i] = left[i-1]+1;
+            }
+        }
+        //j start from len-2, so will not consider about len-1, so we need give count a init value
+        int count = left[len-1];
+
+        //right rule
+        for(int j = len-2; j >= 0; j--){
+            if(ratings[j+1] < ratings[j]){
+                right[j] = right[j+1]+1;
+            }
+            //max means satisfy both rule, otherwise, value will only satisfy the smaller one's rule
+            count += Math.max(right[j], left[j]);
+        }
+        return count;
+    }
+}
