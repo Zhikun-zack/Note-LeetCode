@@ -1,0 +1,22 @@
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        // 3 compare with 2, 1 is the place to store data
+        int pointer1 = m+n-1, pointer2 = n-1, pointer3 = m-1;
+        while(pointer1 >= 0 && pointer2 >= 0 && pointer3 >= 0){
+            if(nums1[pointer3] <= nums2[pointer2]){
+                nums1[pointer1] = nums2[pointer2];
+                pointer1--;
+                pointer2--;
+            }else{
+                nums1[pointer1] = nums1[pointer3];
+                pointer1--;
+                pointer3--;
+            }
+        }
+        //If pointer3 == 0 but pointer2 != 0, which means nums2 still have values that not copied into nums1
+        //nums1 several former elements are not correct
+        //so we need to copy the rest of elements
+        //start from nums2[0] and nums1[0] length is pointer2+1
+        System.arraycopy(nums2, 0, nums1, 0, pointer2 + 1);
+    }
+}
