@@ -1,0 +1,64 @@
+/*
+Using dichotomy method
+First: the output is a pair, so we need a range
+Second: binary search also need a ragne
+First: start is the first element >= target
+        end is the first element > target not equal
+
+Second: create a function for binary search
+        it is pretty normal binary search function
+        different is add a boolean to judge whether find the index of start or end
+        if true: find the first element >= target
+        if false: find the first element > target
+
+T Com: O(logN)
+S Com: O(1)
+*/
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int start = binarySearch(nums, target, true);
+        int end = binarySearch(nums,target, false)-1;
+        //Order of the judgement matters!!!!
+        //if nums[start] shows first, meet error when start < 0 or ==0 when length is 0
+        if(start <= end && end < nums.length && nums[start] == target && nums[end] == target){
+            return new int[]{start, end};
+        }
+        return new int[]{-1,-1};
+    }
+    //Add 
+    public int binarySearch(int[] nums, int target, boolean judge){
+        int l = 0, r = nums.length-1, res = nums.length;
+        while (l <= r){
+            int mid = (r+l)/2;
+        //find the first element > target
+            /*
+            if(nums[mid] > target){
+                //because it is sorted, so the last one that meet nums[mid] > target is the mid value that we want
+                r = mid-1;
+                res = mid;
+            }else{
+                l = mid+1;
+            }
+            */
+
+        //find the first element >= target
+            /*
+            if(nums[mid] >= target){
+                //Same as above
+                r = mid-1;
+                res = mid;
+            }else{
+                l = mid+1;
+            }
+            */
+        //if judge is flase, we just need consider nums[mid] > target, else we just need consider nums[mid] >= target (mid has wider range)
+            if(nums[mid] > target || (judge && nums[mid] >= target)){
+                r = mid-1;
+                res = mid;
+            }else{
+                l = mid+1;
+            }
+        }
+        return res;
+    }
+}
