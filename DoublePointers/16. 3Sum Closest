@@ -1,0 +1,34 @@
+/*
+Same as 15 3Sum
+three pointers k, i, j
+k fixed in one loop change i j based on sum value
+Critical condition is also the sum value, > then j--; < then i++
+create a integer to store the min sum value
+Update it in beginning of each loop
+
+T Com: O(NlogN + N^2);
+S Com: O(1);
+*/
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        //init minsums, just random sum value, but must be one of the situation that fit the limitation of this question
+        int minsums = nums[0]+nums[1]+nums[2];
+        for(int k = 0; k < nums.length-1; k++){
+            int i = k+1, j = nums.length-1;
+            while(i<j){
+                int sums = nums[k] + nums[i] + nums[j];
+                //Update minsums, but Math.abs(minsums-target) is not the critical condiation, we can not change i,j based on this value
+                if(Math.abs(sums - target) < Math.abs(minsums - target)){minsums = sums;}
+                if(sums > target){
+                    j--;
+                }else if( sums < target ){
+                    i++;
+                }else{
+                    return target;
+                }  
+            }
+        }
+        return minsums;
+    }
+}
