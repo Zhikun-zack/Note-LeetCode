@@ -1,0 +1,34 @@
+/*
+Same as double pointers, but the double pointers will only move one step, while this problem will move half of the range
+create two pointers, p1 is the start, p2 is the end
+calculate the mid value of p1,p2
+if mid^2 > x: decrease the range
+else increase the range and stroe the mid value
+
+res is the max value of the result of this function: res*res <= x
+so we will update mid to res until mid*mid larger than x
+and because the array has been sorted
+the former mid will definitily less than the latter one
+no need for Math.max()
+
+T Com: O(logn)
+S Com: O(1)
+*/
+class Solution {
+    public int mySqrt(int x) {
+        int p1 = 0, p2 = x, res = -1;
+        while(p1 <= p2){
+            int mid = p1 + (p2-p1)/2;
+            if((long)mid*mid <= x){
+                res = mid;
+                p1 = mid+1;
+            }else{
+                p2 = mid-1;
+            }
+        }
+        return res;
+    }
+}
+
+//We can also use this way(the third one)
+//https://leetcode-cn.com/problems/sqrtx/solution/x-de-ping-fang-gen-by-leetcode-solution/
