@@ -1,0 +1,55 @@
+/*
+Three pointers: k, i, j
+k is a fixed pointer, i j will move based on the value of sum
+k will not change in one loop, if sums>0 j--, if sums<0 i++
+if sums == 0, add this array to res, i++ j-- in the mean time
+    why in the mean time:
+    because value k do not change, so only value i increase and j decrease happened at the same time
+    the sums value may not change with some probability
+
+Notice that the solution set must not contain duplicate triplets.
+we need to consider about the duplicate char
+so we need to add another while loop to judge whether nums[i/j] are equal to nums[i-1/j+1](former value)
+
+T com: O(NlogN + N^2)
+S Com: O(1)
+
+Animated explaination
+https://leetcode-cn.com/problems/3sum/solution/3sumpai-xu-shuang-zhi-zhen-yi-dong-by-jyd/
+*/
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<>();
+        for(int k = 0; k < nums.length-1; k++){
+
+            //nums are sorted, if k >0 which means other left are larger than 0, so sums must > 0
+            if(nums[k] > 0) break;
+
+            //remove duplicate char
+            if(k > 0 && nums[k] == nums[k-1]){
+                continue;
+            }
+            //i start from head; j start from tail
+            int i = k+1, j = nums.length-1;
+            while(i < j){
+                int sum = nums[k] + nums[j] + nums[i];
+                if(sum > 0){
+                    j--;
+                    while(i < j && nums[j] == nums[j+1]){j--;}
+                }else if(sum < 0){
+                    i++;
+                    while(i < j && nums[i] == nums[i-1]){i++;}
+                }else{
+                    res.add(new ArrayList<Integer>(Arrays.asList(nums[k], nums[i], nums[j])));
+                    i++;
+                    j--;
+                    while(i < j && nums[i] == nums[i-1]){i++;}
+                    while(i < j && nums[j] == nums[j+1]){j--;}
+                }
+            }
+        }
+        return res;
+    }
+
+}
