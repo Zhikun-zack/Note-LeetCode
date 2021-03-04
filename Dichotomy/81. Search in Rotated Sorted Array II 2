@@ -1,0 +1,62 @@
+/*
+Using dichotomy to find a value, if value exist, return true else return false
+We can just use a for loop traverse all value but it is to simple
+
+So we just need to consider three situations:
+1. nums[start] == nums[mid]:
+    we are not sure which part is moved part
+    just jump it, start++
+2. nums[start] > nums[mid]
+    6 7 1 2 3 4
+    if target is larger than nums[mid] and less or equal to nums[len-1] 
+    find target in the right part
+    else 
+    find target in the left part
+3. nums[start] < nums[mid]:
+    6 7 8 9 1 2
+    if target larger equal to nums[start] and less nums[mid] 
+    find in left part
+    else
+    find in right part
+*/
+class Solution {
+    public boolean search(int[] nums, int target) {
+        //boundary situations
+        if (nums == null || nums.length == 0) {
+            return false;
+        }
+
+        int start = 0, end = nums.length-1;
+        int mid;
+        //notice we need to cosider about whether start should < end or <=
+        while(start <= end){
+            mid = start + (end - start)/2;
+
+            //only way to return true
+            if(nums[mid] == target) return true;
+
+            if(nums[start] == nums[mid]){
+                start++;
+                continue;
+            }
+            //front part is ordered
+            if(nums[mid] > nums[start]){
+                if(target >= nums[start] && target < nums[mid] ){
+                    end = mid-1;
+                }else{
+                    start = mid + 1;
+                }
+            }
+            //back part is ordered
+            else{
+                if(target <= nums[end] && target > nums[mid]){
+                    start = mid+1;
+                }else{
+                    end = mid - 1;
+                }
+            }
+        }
+        return false;
+    }
+}
+//https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/solution/zai-javazhong-ji-bai-liao-100de-yong-hu-by-reedfan/
