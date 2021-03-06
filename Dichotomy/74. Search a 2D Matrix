@@ -1,0 +1,29 @@
+/*
+make two dimentional table be one dimentional array
+
+create a function for connect two dimentional and one dimential
+
+T: O(logn)
+S: O(1)
+*/
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int rlen = matrix.length;
+        int clen = matrix[0].length;
+        int start = 0;
+        int end = rlen * clen-1;
+        while(start <= end){
+            //find the martix value based on mid 
+            int mid = start + (end - start)/2;
+            int midMatrix = matrix[mid/clen][mid%clen];
+            if(midMatrix == target){
+                return true;
+            }else if(midMatrix < target){
+                start = mid + 1; 
+            }else{
+                end = mid - 1;
+            }
+        }
+        return false;
+    }
+}
