@@ -1,0 +1,47 @@
+/*
+https://leetcode-cn.com/problems/find-right-interval/solution/er-fen-cha-zhao-hong-hei-shu-by-liweiwei1419/
+*/
+class Solution {
+    public int[] findRightInterval(int[][] intervals) {
+        int len = intervals.length;
+        int[] sorted = new int[len];
+        int[] res = new int[len];
+
+        Map<Integer, Integer> hash = new HashMap<>();
+
+        for(int i = 0; i < len; i++){
+            hash.put(intervals[i][0],i);
+            sorted[i] = intervals[i][0];
+        }
+
+        Arrays.sort(sorted);
+
+        for(int i = 0; i < len; i++){
+            int index = binarySearch(sorted, intervals[i][1]);
+            if( index == -1 ){
+                res[i] = -1;
+            }else{
+                res[i] = hash.get(sorted[index]);
+            }
+        }
+        return res;
+    }
+
+    public int binarySearch(int[] arr, int target){
+        int len = arr.length;
+        int l = 0, r = len-1;
+
+        if(arr[len-1] < target){
+            return -1;
+        }
+        while( l <= r ){
+            int mid = l + (r - l)/2;
+            if(arr[mid] < target){
+                l = mid+1;
+            }else{
+                r = mid -1;
+            }
+        }
+        return l;
+    }
+}
