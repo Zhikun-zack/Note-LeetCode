@@ -1,0 +1,38 @@
+/*
+Bubble sort
+different between the normal algorithm is I use new compare function
+not just compare whether a > b 
+I change the int to string and add two element with different order (a+b. b+a)
+compare this two string's value
+*/
+class Solution {
+    public String largestNumber(int[] nums) {
+        String res = new String();
+        int len = nums.length;
+        for(int i = 0; i < len; i++){
+            for(int j = 0; j < len-1-i; j++){
+                if(isLarger(nums[j], nums[j+1]) == false){
+                    int tmp = nums[j+1];
+                    nums[j+1] = nums[j];
+                    nums[j] = tmp;
+                }
+            }
+        }
+        //Important!!!!!! when the largest one is 0, return 0
+        //eg: [0,0,0] if do not add this code result will be 000
+        if(nums[0] == 0)return "0";
+        for(int t = 0; t < len; t++){
+            res+=String.valueOf(nums[t]);
+        }
+        return res;
+    }
+    public boolean isLarger(int a, int b){
+        String s1 = String.valueOf(a);
+        String s2 = String.valueOf(b);
+        //sum with different order
+        String ab = s1 +s2;
+        String ba = s2 + s1;
+        //compare the two sums
+        return (ab.compareTo(ba) > 0) ? true : false; 
+    }
+}
