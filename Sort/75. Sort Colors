@@ -1,0 +1,35 @@
+/*
+Merge Sort Method
+*/
+class Solution {
+    //Because merge sort will need recursive, so the main function must return value, so we have to create another function
+    public void sortColors(int[] nums) {
+        System.arraycopy(mergeSort(nums), 0, nums, 0, nums.length);
+    }
+    //Main function
+    public int[] mergeSort(int[] nums){
+        if(nums.length == 1) return nums;
+        int len = nums.length;
+        int mid = len/2;
+        int[] left = Arrays.copyOfRange(nums, 0, mid);
+        int[] right = Arrays.copyOfRange(nums, mid, len);
+        return merge(mergeSort(left), mergeSort(right));
+    }
+    //Sort function
+    public int[] merge(int[] left, int[] right){
+        int l = left.length, r = right.length;
+        int[] res = new int[l+r];
+        for(int i = 0, j = 0, index = 0; index < res.length; index++){
+            if(j >= r){
+                res[index] = left[i++];
+            }else if(i >= l){
+                res[index] = right[j++];
+            }else if(right[j] < left[i]){
+                res[index] = right[j++];
+            }else{
+                res[index] = left[i++];
+            }
+        }
+        return res;
+    }
+}
