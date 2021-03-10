@@ -1,0 +1,71 @@
+/*
+Linked list insertion sort
+
+Normal insertion sort is seperate part of the array as the sorted array
+    select one element from the non-sorted part and choose a place to insert
+    because the array is stored in order
+    so in order to find the location to insert, we need to start from end of sorted array(from back to front)
+But in Linked list, we can not go through from back to front, but the insertion action will be much easier(we just need to change the pointer)
+In order to do so, we need to create some pointers first:
+
+dumphead: the head of head, using to insert element before head(when element is less than head)
+lastSorted: the end of sorted array
+curr: the element we need to insert into the sorted array
+pre: dumphead.next, the head of sorted array, using to loop through the sorted array from start pointer
+
+Process:
+    pick the first element as curr
+    compare the curr value and lastSorted value
+        if curr >= lastSorted
+            which means curr need to place at the end of sorted array
+        else
+            we need to go through all the sorted array and find a place for curr
+            first create a pre, it is equal to dumphead.next
+            using a while loop to find the first element which next node is larger than curr
+            lastSorted.next = curr.next to keep the lastSOrted will always be the end of sorted array
+            insert curr into the sorted array
+        curr = lastSorted.next to change the curr to next
+    loop until curr is the last one in whole array
+    return dumphead.next which is the head
+
+T Com: O(n^2)
+S Com: O(1)
+ */
+
+ /**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        if(head.next == null)return head;
+        ListNode dumphead = new ListNode(0);
+        dumphead.next = head;
+        ListNode lastSorted = head, curr = head.next;
+        while(curr != null){
+            if(curr.val >= lastSorted.val){
+                lastSorted = curr;
+            }else{
+                ListNode pre = dumphead;
+                while(pre.next.val <= curr.val){
+                    //find the last element which is less than curr
+                    pre = pre.next;
+                }
+                //at this time, curr is still the beginning of unsorted array, curr.next is the next curr we want to compare, give curr.next to lastSorted.next is to keep lastSorted still at the end of sorted array
+                lastSorted.next = curr.next;
+                curr.next = pre.next;
+                pre.next = curr;
+            }
+            //lastSorted is the end of sorted array, so it next will be the next value we need to insert
+            curr = lastSorted.next;
+        }
+        //not return dumphead
+        return dumphead.next;
+    }
+}
