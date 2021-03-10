@@ -1,0 +1,115 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+/*
+Merge Sort start from bottom
+
+Normal merge sort will first split array to two, then divide it to four part then eight
+This time, we start from when subarray's len is 1, which is the bottom
+
+first get lenght of linked list
+
+set sublen == 1
+    get the first subarray and seperate it with the next list
+    get the second subarray and seperate it with the next list
+    create another node to store the next node of the end of second sub
+    merge two sorted subarray, store it
+    start from the "next" node, pick the next sub and the next next sub, repeat
+set sublen == 2
+    same as before
+until sublen == len;
+return head
+
+* the merge sorted arraies is same as LeetCode 21 Merge two Sorted Arraies
+*/
+class Solution {
+    public ListNode sortList(ListNode head) {
+        if( head == null) return head;
+
+    //Get the length
+        //Create a node and move this node to keep head node not move
+        ListNode node = head;
+        int len = 0;
+        while(node != null){
+            len++;
+            node = node.next;
+        }
+    
+    //Init return head
+        //dumphead is the node before head
+        ListNode dumphead = new ListNode(0);
+        dumphead.next = head;
+        for(int sublen = 1; sublen < len; sublen <<= 1){
+            //pre is used to link the merged results(because the result of mergeSortedList is the merge result of only two subarray, we need to link it with the others)
+            ListNode pre = dumphead;
+            //curr is the operation node, we will move it and give it to other new created nodes
+            ListNode curr = dumphead.next;
+
+            //Go through all the node when the length of sublist is equal to "sublen"
+            while(curr != null){
+                //This is the first sub list
+                ListNode head1 = curr;// the head of first sub
+                for(int i = 1; i < sublen && curr != null && curr.next != null; i++){
+                    curr = curr.next;//move curr so that we can find the next sublist's head
+                }
+
+                //This is the second sublist
+                ListNode head2 = curr.next;//the head of second sub
+                curr.next = null; //make the first and second list are not linked
+                curr = head2;
+                //because it is anothe loop, curr will change, so we also need to make sure that curr != null
+                for(int j = 1; j < sublen && curr != null && curr.next != null; j++){
+                    curr = curr.next;//move curr so that we can find the head of left list
+                }
+
+                //Make the second list are not linked with the left list
+                ListNode next = null; // create next node to store the start point of the next loop
+                //When curr == head2 and head2 == null, if we do not add this if function, we will meet error 
+                if(curr != null){
+                    next = curr.next;
+                    curr.next = null;
+                }else{
+                    System.out.println("Out");
+                }
+
+                //merge and give value to pre
+                ListNode merge = mergeSortedList(head1, head2);
+                pre.next = merge;//set the pre and give value to dumphead
+                while(pre.next != null){
+                    pre = pre.next;
+                }
+                //update the curr, start from the next node of the end node of second sublist
+                curr = next;
+            }
+        }
+        return dumphead.next;
+    }
+
+    public ListNode mergeSortedList(ListNode l1, ListNode l2){
+        ListNode head = new ListNode(0);
+        ListNode res = head;
+
+        while(l1 != null && l2 != null){
+            if(l1.val <= l2.val){
+                res.next = l1;
+                l1 = l1.next;
+            }else{
+                res.next = l2;
+                l2 = l2.next;
+            }
+            res = res.next;
+        }
+        //if l1 longer than l2, if l2 longer than l1
+        if(l1 != null) res.next = l1;
+        if(l2 != null) res.next = l2;
+
+        return head.next;
+    }
+}
