@@ -1,0 +1,50 @@
+/*
+First sort the array, then using two pointers go through all two arraies
+
+if(nums1[p1] == nums2[p2])
+    if(nums1[p1] != the value in res)
+        res[i++] = nums1[p1]
+else if(nums1[p1] > nums2[p2])
+    move p2 one element down(sorted array, make the nums2[p2] bigger)
+else if(nums1 < nums2){
+    move p1 one element down
+}
+
+Difficulty:
+    how to create a array without knowing the length
+    create a large enough array
+    return part of the array using copyOfRange
+T COm: O(mlogm + nlogn)
+S Com: O(logM + logn) decided by sort array
+*/
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+
+        int len1 = nums1.length, len2 = nums2.length;
+        //res's pointer; nums1's pointer and nums2's pointer
+        int pointer = 0, pointer1 = 0, pointer2 = 0;
+        //using to store the previous value avoid duplicate
+        int prev = Integer.MAX_VALUE;
+        int[] res = new int[len1 + len2];
+        int i = 0;
+
+        while(pointer1 < len1 && pointer2 < len2){
+            if(nums1[pointer1] == nums2[pointer2]){
+                if(nums2[pointer2] != prev){
+                    res[pointer++] = nums1[pointer1];
+                    prev = nums1[pointer1];
+                }     
+                pointer1++;
+                pointer2++;
+            }else if(nums1[pointer1] > nums2[pointer2]){
+                pointer2++;
+            }else if(nums1[pointer1] < nums2[pointer2]){
+                pointer1++;
+            }
+        }
+        return Arrays.copyOfRange(res, 0, pointer);
+    }
+}
