@@ -1,0 +1,52 @@
+/*
+Application of Bucket sort
+寻找拥有相近值的临近元素， 一个看值的差值，同时看index的差值
+
+Seperate the values into several bucket
+Buckets are range from [0,t], [t+1, 2t] .....
+Set each elements into certain bucket
+Create a HashMap to store the bucketID and elementValue pairs
+Always remove pairs when it index is out of range(i-k, i+k)
+    e.g. when i == 5, k == 2
+         remove the 1 and 2 pairs
+if(a bucket contains two elements) return true
+if(neighbor bucket contain one element each)judge whether the abs(nums[i] - nums[j]) <= t
+if no such situation meet, return false
+
+TCom: O(n)
+SCom: O(min(n,k))
+*/
+class Solution {
+    public int getID (int a, int b){
+        //Using element value / t+1 define the bucketID
+        //Because b may = 0, and ID is just for distinguish the element no need must equal to divide value
+        //so we can add +1 to b
+        return (a>0)?a/(b+1) : a/(b+1)-1;
+    }
+    public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        //Map is the (bucketid, elementvalue) pairs
+        //When nums[0] == -2^31 and nums[1] == 2^31-1, the int value will not satisfy, so we need long
+        Map<Integer, Long> myMap = new HashMap<>();
+        int len = nums.length;
+        for(int i = 0; i < len; i++){
+            int id = getID(nums[i], t);
+            //one bucket contain two values
+            if(myMap.containsKey(id)){
+                return true;
+            }
+            //neighbor contain values but not sure whether the value are suitable
+            if(myMap.containsKey(id+1) && Math.abs(nums[i]-myMap.get(id+1)) <= t){
+                return true;
+            }
+            if(myMap.containsKey(id-1) && Math.abs(nums[i]-myMap.get(id-1)) <= t){
+                return true;
+            }
+            myMap.put(id, (long)nums[i]);
+            //keep the index range from (i-k, i+k)
+            if(i >= k){
+                myMap.remove(getID(nums[i-k], t));
+            }
+        }
+        return false;
+    }
+}
