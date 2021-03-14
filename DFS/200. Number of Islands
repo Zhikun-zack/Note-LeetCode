@@ -1,0 +1,41 @@
+class Solution {
+    /*
+    deep-first search (same as 695) 
+
+    create two loops go through all the elements in table
+    create a dfs function, start from grid[i][j], search in four directions
+        change the searched elements from '1' to '0' to avoid serach this element twice
+    if grid[i][j] == '1' 
+        res++ and 
+        execute the dfs function to change all the elements in that island from '1' to '0'
+
+    T Com: o(nm)
+    S Com: O(nm)
+    */
+    public int numIslands(char[][] grid) {
+        int res = 0;
+        int clen = grid[0].length, rlen = grid.length;
+        for(int i = 0; i < rlen; i++){
+            for(int j = 0; j < clen; j++){
+                if(grid[i][j] == '1'){
+                    //we just need to make sure that we find the first '1'
+                    //in this problem we do not need to calculate the size of the island
+                    res++;
+                    //isLand will change all '1' in one island to '0', so that the next loop program will not regard it as island
+                    isLand(grid, i, j);
+                }
+            }
+        }
+        return res;
+    }
+    public void isLand(char[][] grid, int i, int j){
+        if(i < 0 || j <0 || i == grid.length || j == grid[0].length ||grid.length == 0 || grid[0].length == 0 || grid[i][j] == '0' )return;
+
+        grid[i][j] = '0';
+        //four directions
+        isLand(grid, i+1, j);
+        isLand(grid, i-1, j);
+        isLand(grid, i, j+1);
+        isLand(grid, i, j-1);
+    }
+}
