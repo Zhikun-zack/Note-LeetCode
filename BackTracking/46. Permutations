@@ -1,0 +1,25 @@
+class Solution {
+    /*
+    https://leetcode-cn.com/problems/permutations/solution/quan-pai-lie-by-leetcode-solution-2/
+    */
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> output = new ArrayList<>();
+        for(int num: nums){
+            output.add(num);
+        }
+        int len = nums.length;
+        backTrack(res, output, 0, len);
+        return res;
+    }
+    public void backTrack(List<List<Integer>> res, List<Integer> output, int first, int len){
+        if(first == len){
+            res.add(new ArrayList<Integer>(output));
+        }
+        for(int i = first; i < len; i++){
+            Collections.swap(output, first, i);
+            backTrack(res, output, first+1, len);
+            Collections.swap(output, first, i);
+        }
+    }
+}
