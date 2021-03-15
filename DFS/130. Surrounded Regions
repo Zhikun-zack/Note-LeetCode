@@ -1,0 +1,58 @@
+class Solution {
+    /*
+    DFS 
+
+    At this time the start point is not go through all the elements
+    We have to start from the four sides
+    Because only the 'O' which is not linked with the border 'O' can we change it to "X"
+    We need go throug all the elements on the borders
+    If any "O" is connected with the "O" on the borders
+    Change it to "V"
+    If the "O" is not connected 
+    Keep the original value
+    In the end 
+    using two loops go through all the elements
+    if "A": change back to "O"
+    if others change to "X"
+
+    Little trick:
+    Normally we need to write four for loop (top, down, left and right)
+    But the dfs need i and j
+    So we can fix i or j then call dfs twice in one loop
+    So that we just need two loops
+    */
+    public void solve(char[][] board) {
+        int m = board.length, n = board[0].length;
+        for(int i = 0; i < m; i++){
+            dfs(board, i, 0); //Top loop
+            dfs(board, i, n-1);//Bottom loop
+        }
+        for(int j = 1; j < n-1; j++){
+            dfs(board, 0, j); //left loop
+            dfs(board, m-1, j); //right loop
+        }
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(board[i][j] == 'O'){ 
+                    //if still "O" which means it is not linked with the border "O"
+                    board[i][j] = 'X';
+                }else if(board[i][j] == 'V'){
+                    //if is "V" which means it is linked 
+                    board[i][j] = 'O';
+                }
+            }
+        }
+    }
+    public void dfs(char[][] board, int i, int j){
+        int m = board.length, n = board[0].length;
+        if(i < 0 || j < 0 || i == m || j == n || board[i][j] != 'O'){ //(border[i][j] != "O") === (border[i][j] == "V" || border[i][j] == 'X')
+            return;
+        }
+        board[i][j] = 'V';
+        dfs(board, i+1, j);
+        dfs(board, i-1, j);
+        dfs(board, i, j+1);
+        dfs(board, i, j-1);
+    }
+
+}
