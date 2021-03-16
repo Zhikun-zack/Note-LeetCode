@@ -1,0 +1,35 @@
+class Solution {
+    /*
+    Back Tracking
+
+    create a tree, go through all the node, you will get one result at the root node
+
+    */
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> res = new ArrayList<>();
+        
+        //each possible result
+        List<Integer> state = new ArrayList<>();
+        //1 which is start: is define the number we pick(1 means we choose 1 this time, and in the former loop we will pick 2, 3, 4 in order)
+        backTracking(res, state, n, k, 1);
+        return res;
+    }
+    public void backTracking(List<List<Integer>> res, List<Integer> state, int n, int k, int start){
+        //Base case, when we have pick k numbers, return this as one of the possible situation
+        if(state.size() == k){
+            //Important, we need to create a new arraylist!!!!!!
+            res.add(new ArrayList(state));
+            return;
+        }
+
+        //choose from 1 to n 
+        for(int i = start; i <= n; i++){
+            //add the value we chose to the state
+            state.add(i);
+            //DFS
+            backTracking(res, state, n, k, i+1);
+            //restore the current state when track back
+            state.remove(state.size() - 1);
+        }
+    }
+}
