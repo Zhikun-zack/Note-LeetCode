@@ -1,0 +1,58 @@
+class Solution {
+    /*
+    Back tracking
+
+    difference between 200 island:
+    you will not visit a visited island again, so you can change the visited island to '1'
+    you will visit the visited char again in this problem, so after you change the visited char, you need to change it back after recursion
+
+    main function:
+        two for loop to find the start point
+    dfs function:
+        recurse four directions to find the result
+    */
+    private int rlen, clen;
+    public boolean exist(char[][] board, String word) {
+        //change type for easier analysis
+        char[] words = word.toCharArray();
+        rlen = board.length; 
+        clen = board[0].length;
+
+        if(words.length > rlen*clen) return false;
+
+        for(int i = 0; i < rlen; i++){
+            for(int j = 0; j < clen; j++){
+                //0 is starter in words, i j are the starters in board
+                if(dfs(board, i, j, 0, words)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean dfs(char[][] board, int i, int j, int index, char[] words){
+        rlen = board.length;
+        clen = board[0].length;
+        //if arrive at the border return false
+        //if the char in board is not equal to words[i] which means we find the wrong direction return false
+        if(i < 0|| j < 0 || i == rlen || j == clen || board[i][j] != words[index]) return false;
+        //we have avoid all the directions when board[i][j] != words[index], so if we can execute this line of code, which means board[i][j] == words[index], so we just compare the lenght of index and words
+        if(index == words.length - 1) return true;
+
+        //change the visited element to avoid visit visited element repeatedly
+        char tmp = board[i][j];
+        //just change a value which will not appear in board
+        board[i][j] = '$';
+
+        //any of the four directino is true will be true
+        boolean res = (dfs(board, i+1, j, index+1, words)||
+                        dfs(board, i-1, j, index+1, words)||
+                        dfs(board, i, j+1, index+1, words)||
+                        dfs(board, i, j-1, index+1, words));
+        //there are two loops in main function so we need to go through the board many times
+        //we may visit one element several times, so we must change it back
+        //while in 200 island, we will not visit the visited element twice, so we do not need to change 
+        board[i][j] = tmp;
+        return res;
+    }
+}
