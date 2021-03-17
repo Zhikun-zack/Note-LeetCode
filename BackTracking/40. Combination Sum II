@@ -1,0 +1,29 @@
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> comb = new ArrayList<>();
+
+        Arrays.sort(candidates);
+        //starter will be -1, because the for loop in dfs start from starter+1(without repeat), so if we want to visit candidates[0] we need to change the starter from 0 to -1
+        dfs(candidates, res, comb, -1, 0, target);
+        //remove the repeat elements
+        HashSet<List<Integer>> noRepeat = new HashSet<>(res);
+        res = new ArrayList<>(noRepeat);
+        return res;
+    }
+    public void dfs(int[] candidates, List<List<Integer>> res, List<Integer> comb, int starter, int sum, int target){
+        int len = candidates.length;
+        if(starter == len || sum > target) return;
+        if(sum == target){
+            res.add(new ArrayList<>(comb));
+        }
+
+        for(int j = starter+1 ; j < len; j++){
+            sum += candidates[j];
+            comb.add(candidates[j]);
+            dfs(candidates, res, comb, j, sum, target);
+            sum -= candidates[j];
+            comb.remove(comb.size() - 1);
+        }
+    }
+}
