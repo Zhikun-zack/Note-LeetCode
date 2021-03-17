@@ -1,0 +1,40 @@
+class Solution {
+    /*
+    Back tracking
+
+    Main difference between former 
+    we create a visited array to store whether the number has been visited
+    */
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        //This is suggested by java authority
+        Deque<Integer> state = new ArrayDeque<>(nums.length);
+        boolean[] visited = new boolean[nums.length];
+        //the nums may not be sorted so the repeat number may not be close to each other
+        Arrays.sort(nums);
+
+        dfs(nums, res, state, 0, visited);
+        return res;
+    }
+    public void dfs(int[] nums, List<List<Integer>> res, Deque<Integer> state, int starter, boolean[] visited){
+        if(starter == nums.length){
+            res.add(new ArrayList<>(state));
+            return;
+        }
+
+        for(int i = 0; i < nums.length; i++){
+            //if nums[i] has been visited, then you can not add it twice
+            if(visited[i])continue;
+            //if nums[i] == nums[i-1] means this two numbers are same in the array
+            //the former one has not been visited which means we have get all the possible comb of i-1, and value of visited[i-1] has been reset
+            //same value will have totally same combinations, so we just delete this branch
+            if(i> 0 && nums[i] == nums[i-1] && !visited[i-1]) continue;
+
+            state.addLast(nums[i]);
+            visited[i] = true;
+            dfs(nums, res, state, starter+1, visited);
+            visited[i] = false;
+            state.removeLast();
+        }
+    }
+}
