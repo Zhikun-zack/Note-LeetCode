@@ -1,0 +1,60 @@
+class Solution {
+    /*
+    Back tracking
+    0 --> 0 --> 0 ....0 --> 0 -->0 until sum == target or sum > target
+        sum == target: res add output
+        sum > target: 
+            return go to the next loop
+            0 --> 0 --> 0 .... 0 --> 0 --> 1
+            0 --> 0 --> 0 .... 0 --> 0 --> 2
+            0 --> 0 --> 0 .... 0 --> 0 --> 3
+            when 3 == len and sum != target
+            return roll back
+                0 --> 0 --> 0 .... 0 --> 1
+                0 --> 0 --> 0 .... 0 --> 2
+                0 --> 0 --> 0 .... 0 --> 3
+                when sum != target
+                return roll back
+                    0 --> 0 --> 0 .... 1
+                    0 --> 0 --> 0 .... 2
+                    0 --> 0 --> 0 .... 3
+                        .
+                        .
+                        .
+                    until 0
+    same as tree searching 
+    when meet some unfitted result roll back to the parent node
+    from that parent node search the other children node
+    if all the children node are not matching 
+    roll back to the parents node's parents node
+    to travel all the nodes which are at the same level of that parent node
+    */
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        //Each list in res
+        List<Integer> input = new ArrayList<>();
+        //first 0 is the starter, shows what index will you start from
+        //second 0 is the sum value, when sum is equal to target, res will add this combination(param: input)
+        dfs(candidates, input, res, 0, 0, target);
+
+        return res;
+    }
+    public void dfs(int[] candidates, List<Integer> input, List<List<Integer>> res, int starter, int sum, int target){
+        int len = candidates.length;
+        //when we go through all elements in candidates or sum values larger than target
+        if(starter == len || sum > target) return;
+        //we find one of the combination
+        if(sum == target){
+            res.add(new ArrayList(input));
+        }
+        //j from starter which means we accept repeat [1,1,1,1]
+        for(int j = starter; j< len; j++){
+            //we need to change two values this time and relatively change them back
+            sum += candidates[j];
+            input.add(candidates[j]);
+            dfs(candidates, input, res, j, sum, target);
+            sum -= candidates[j];
+            input.remove(input.size() -1);
+        }
+    }
+}
