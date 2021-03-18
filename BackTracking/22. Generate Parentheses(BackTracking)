@@ -1,0 +1,25 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> res = new ArrayList<>();
+
+        backTrack(res, n, 0, 0, new StringBuilder());
+        return res;
+    }
+
+    public void backTrack(List<String> res, int n, int left, int right, StringBuilder comb){
+        if(comb.length() == 2*n){
+            res.add(comb.toString());
+            return;
+        }
+        if(left < n){
+            comb.append("(");
+            backTrack(res, n, left+1, right, comb);
+            comb.deleteCharAt(comb.length() - 1);
+        } 
+        if(right < left){
+            comb.append(")");
+            backTrack(res, n, left, right+1,comb);
+            comb.deleteCharAt(comb.length() - 1);
+        }
+    }
+}
