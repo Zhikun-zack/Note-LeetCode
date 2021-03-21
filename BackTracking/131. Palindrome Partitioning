@@ -1,0 +1,36 @@
+class Solution {
+    /*
+    TCom: O(n2^n)
+    SCOm: O(n)
+    */
+    public List<List<String>> partition(String s) {
+        List<List<String>> res = new ArrayList<>();
+        List<String> state = new ArrayList<>();
+
+        backTracking(res, state, s, 0);
+        return res;
+    }
+    public void backTracking(List<List<String>> res, List<String> state, String s, int starter){
+        if(starter == s.length()){
+            res.add(new ArrayList(state));
+            return;
+        }
+        for(int i = starter+1; i <= s.length(); i++){
+            if(isPa(s.substring(starter, i))){
+                //System.out.println("subString is: "+ s.substring(starter, i)+ "isPa? " + isPa(s.substring(starter, i)));
+                state.add(s.substring(starter, i));
+                backTracking(res, state, s, i);
+                state.remove(state.size() - 1);
+            }
+        }
+    }
+    public boolean isPa(String s){
+        int p1 = 0;
+        for(int i = 0; i < s.length() / 2; i++){
+            if(s.charAt(i) != s.charAt(s.length() - 1 - i)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
