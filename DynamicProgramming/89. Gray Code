@@ -1,0 +1,51 @@
+class Solution {
+    /*
+    DP
+
+    grayCode n == (grayCode n-1 + 0) + (reverse(grayCode n-1) + 1)
+    So the first 2^N-1 numbers in N are totally equal to the same place numbers in N-1, the difference are just the left part 
+    grayCode 0: 
+        0
+    grayCode 1: The first one is equal to grayCode 0
+        0/0 -> 00
+        --------- reverse part add 10 in binary 2 in decimal
+        1/0 -> 10
+    grayCode 2: The first two are equal to grayCode 1
+        0/00 -> 000
+        0/10 -> 010
+        ----------- reverse add 100 in binary 4 in decimal
+        1/10 -> 110
+        1/00 -> 100
+    grayCode 3: The first four are equal to grayCode 2
+        //you all same bit on the front so it will not change the original rule
+        0000
+        0010
+        0110
+        0100
+        ---- add 1000 in binary 8 in decimal
+        //Because before this, we add 0 to the front bit, and this time, we add 1 at first
+        //so there already have 1 bit difference
+        //thus we cannot let the left part different in any bit
+        //so we just need reverse the order and let 100 and 100 adjacent
+        1100
+        1110
+        1010
+        1000
+    */
+    public List<Integer> grayCode(int n) {
+        List<Integer> res = new ArrayList<>();
+        res.add(0);
+        //Because the first 2^n-1 numbers are equals to the former one, we dont have to change the old values, we just need to add the reverse part with 1
+        for(int i = 0; i < n; i++){
+            //define how many bit we move, << operator will change left num first to binary numeral system and then move it
+            int add = 1 << i;
+            System.out.println(add);
+            //reverse the order
+            for(int j = res.size()-1; j >= 0; j--){
+                //the final values are decimal, so add and the res.get are all decimal numeral system
+                res.add(res.get(j) + add);
+            }
+        }
+    return res;
+    }
+}
