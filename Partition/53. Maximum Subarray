@@ -1,0 +1,72 @@
+class Solution {
+    /*
+    Partition:
+
+    Seperate the nums array into two part 
+    Until each part only contain one element
+    calculate the max in each range, bottom to up to get the final result
+
+    create a new class to store four sum in each range
+    iSum: total sum in this range
+    lSum: in range [l, r], max sum of all the sub range which start point is l
+            eg [l, m], [l, m+1] m < r
+    rSum: max sum of range which end is r
+    mSum: max sum in this range
+
+    how to calculate:
+    |------|-------|----------|----------|
+    l      m       M          n          r
+    iSum: left sub's iSum + right sub's iSum
+    lSum: left sub upper level can be devided to (l, m) and (m+1, M)
+            right sub can be seperate to (M+1, n) (n+1, r)
+            lSum will be max(sum(l,m) or sum(l, M)+sum(M+1, n))
+            |------|-------|----------|----------|
+            l      m       M          n          r
+            |------|
+            or
+            |-------------------------|
+    rSUm: 
+            |------|-------|----------|----------|
+            l      m       M          n          r
+                                      |----------|
+            or
+                    |----------------------------|
+    mSum: two situations:
+            the max sum is just in one part of the sub
+            the max sum is cover both part of the sub
+            lSum or rSum or 
+            |------|-------|----------|----------|
+            l      m       M          n          r
+                   |------------------|
+    */
+    public class Status {
+        public int iSum, rSum, lSum, mSum;
+        public Status(int iSum,int lSum,int rSum,int mSum){
+            this.iSum = iSum;
+            this.lSum = lSum;
+            this.rSum = rSum;
+            this.mSum = mSum;
+        }
+    }
+    public int maxSubArray(int[] nums) {
+        return findMax(nums, 0, nums.length-1).mSum;
+    }
+
+    public Status findMax(int[] nums, int l, int r){
+        if(l == r){
+            return new Status(nums[r],nums[r], nums[r], nums[r]);
+        }
+        //find the middle
+        int mid = (r+l) >> 1;
+        Status lSub = findMax(nums, l, mid);
+        Status rSub = findMax(nums, mid+1, r);
+        return pushUp(lSub, rSub);
+    }
+    public Status pushUp(Status lSub, Status rSub){
+        int iSum = lSub.iSum + rSub.iSum;
+        int lSum = Math.max(lSub.lSum, lSub.iSum+rSub.lSum);
+        int rSum = Math.max(rSub.rSum, rSub.iSum+lSub.rSum);
+        int mSum = Math.max(Math.max(lSub.mSum, rSub.mSum), lSub.rSum+ rSub.lSum);
+        return new Status(iSum, lSum, rSum, mSum);
+    }
+}
