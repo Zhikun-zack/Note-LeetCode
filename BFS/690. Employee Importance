@@ -1,0 +1,42 @@
+/*
+// Definition for Employee.
+class Employee {
+    public int id;
+    public int importance;
+    public List<Integer> subordinates;
+};
+*/
+
+class Solution {
+    /*
+    BFS
+
+    create a hashmap to store the id employee pairs
+    create a queue to store id
+    BFS
+    */
+    public int getImportance(List<Employee> employees, int id) {
+        Map<Integer, Employee> myMap = new HashMap<>();
+
+        //Visited all elements in employees
+        for(Employee e: employees){
+            myMap.put(e.id, e);
+        }
+
+        Deque<Integer> queue = new ArrayDeque<>();
+        int res = 0;
+        //Add the id that we want to search as first one
+        queue.addLast(id);
+        while(!queue.isEmpty()){
+            int cur = queue.pollFirst();
+            Employee curE = myMap.get(cur);
+            res += curE.importance;
+            //Add the subordinates into queue
+            for(int i: curE.subordinates){
+                queue.addLast(i);
+            }
+        }
+
+        return res;
+    }
+}
