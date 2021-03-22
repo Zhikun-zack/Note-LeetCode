@@ -1,0 +1,37 @@
+class Solution {
+    /*
+    Partition
+    */
+    public List<Integer> diffWaysToCompute(String expression) {
+        return partition(expression);
+    }
+    public List<Integer> partition(String expression){
+        List<Integer> res = new ArrayList<>();
+        //only number in string, just change the char to int and add to res
+        if( !expression.contains("+") && !expression.contains("-") && !expression.contains("*")){
+            res.add(Integer.valueOf(expression));
+            return res;
+        }
+        //partition, first for loop will go throug all possible seperation situation
+        //when i == 1, we seperate from the first '-'
+        //when i == 3 we seperate from the second '-'
+        for(int i = 0; i < expression.length() ; i++){
+            if(expression.charAt(i) == '+' || expression.charAt(i) == '-' || expression.charAt(i) == '*'){
+                //this partition will contain all the number in left part when i==1 or i == 3
+                for(int left: partition(expression.substring(0, i))){
+                    //contain all numbers in right part when i == 1 or 3
+                    for(int right: partition(expression.substring(i+1))){
+                        if(expression.charAt(i) == '+'){
+                            res.add(left+right);
+                        }else if(expression.charAt(i) == '-'){
+                            res.add(left - right);
+                        }else{
+                            res.add(left*right);
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
+}
