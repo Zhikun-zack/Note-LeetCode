@@ -1,0 +1,80 @@
+class Solution {
+    /*
+    BFS
+
+    Three situations:
+        1. click M:
+            stop and change that element to X
+        2. click E and neighbor contains mine:
+            for loop 8 directions and count the total number of mines and change this element to digit
+        3. click E and no mine
+            This situation we need recursion
+            using bfs go 8 dirs
+            find all blank elements and digit elements
+    The first and second situations just need one loop, we dont have to using bfs algorithm
+    */
+    int[] dirX = new int[]{-1,-1,0,1,1,1,0,-1};
+    int[] dirY = new int[]{0,1,1,1,0,-1,-1,-1};
+    public char[][] updateBoard(char[][] board, int[] click) {
+        int x = click[0], y = click[1];
+        //if you click M, then just change it to X
+        if(board[x][y] == 'M'){
+            board[x][y] = 'X';
+        }
+        //if the element you click is not M
+        else{
+            bfs(board, x, y);
+        }
+        return board;
+    }
+
+    public void bfs(char[][] board, int x, int y){
+        Queue<int[]> queue = new LinkedList<>();
+
+        //Queue will store all the x,y pairs
+        queue.offer(new int[]{x, y});
+
+        //bfs normal, create a visited array to avoid repeat visited
+        boolean[][] visited = new boolean[board.length][board[0].length];
+
+        while(!queue.isEmpty()){
+            //This part is not recursion, just a for loop to go through all 8 dirs
+            int[] cur = queue.poll();
+            //count is the number of mine in neghbor area
+            //cx and cy is the coordinate that you poll from queue
+            int count = 0, cx = cur[0], cy = cur[1];
+            for(int i = 0; i<8; i++){
+                //tx ty is the 8 dir coordinates
+                int tx = cx + dirX[i];
+                int ty = cy + dirY[i];
+                if(tx < 0 || ty < 0 || tx >= board.length || ty >= board[0].length){
+                    continue;
+                }
+                //if the neighbor area contains M, count +1
+                if(board[tx][ty] == 'M'){
+                    count++;
+                }
+            }
+            //if the neighbor contains mine, change it to number
+            if(count > 0){
+                board[cx][cy] = (char)(count+'0');
+            }
+            //no mine in neighbor and THIS PART is recursion because we add new elements into the queue
+            else{
+                //no mine in neighbor means this element must be B
+                board[cx][cy] = 'B';
+                visited[cx][cy] = true;
+                for(int i = 0; i<8; i++){
+                    int tx = cx + dirX[i];
+                    int ty = cy + dirY[i];
+                    //we have not visit this element and this element is E, then we can go to next step, otherwise stop
+                    if(tx < 0 || ty < 0 || tx >= board.length || ty >= board[0].length || visited[tx][ty] || board[tx][ty] != 'E'){
+                        continue;
+                    }
+                    queue.offer(new int[]{tx, ty});
+                    visited[tx][ty] = true;
+                }
+            }
+        } 
+    }
+}
