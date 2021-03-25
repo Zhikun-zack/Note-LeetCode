@@ -1,0 +1,53 @@
+class Solution {
+    /*
+    Partition
+
+    Seperate the array based on odd or even
+    We need to meet the judgement that: 
+        No A[k] * 2 = A[i] + A[j]
+        A[i] from left part
+        A[j] from right part
+    
+    Process:
+        findArray(N)
+            N*(1/2)+(1/2)(for odd) N*(1/2)(for even)
+        findArray((N+1)/2)(for odd) findArray(N/2)(for even)
+            N*(1/2)+(1/2)(for odd) N*(1/2)(for even)
+        findArray
+
+        we first find array in range (0,N)
+        Then map the range (1,3,5,....N) to (1, ... ,(N+1)/2)
+        And the range(0, 2, 4, 6 .... N-1) to (0, ... , N/2)
+        then we find the array in range(0,(N+1)/2) and (0, N/2)
+        then repeat
+    */
+    public int[] beautifulArray(int N) {
+        //Value and int array pairs(input number and result pairs)
+        Map<Integer, int[]> myMap = new HashMap<>();
+        return findArray(N, myMap);
+    }
+    public int[] findArray(int N, Map<Integer, int[]> myMap){
+        //if map contains pairs which has N the just return the related array
+        if(myMap.containsKey(N)) return myMap.get(N);
+
+        //To store the result array
+        int[] res = new int[N];
+
+        if(N == 1){
+            res[0] = 1;
+        }else{
+            int i = 0;
+            //reverse the process above, start from bottom
+            //We recourse to N == 1, return value 
+            //then multiply some val map it to upper level range
+            //delivery from bottom to up
+            for(int x: findArray((N+1)/2, myMap)){
+                res[i++] = 2*x-1;
+            }
+            for(int x: findArray(N/2, myMap)){
+                res[i++] = 2*x;
+            }
+        }
+        return res;
+    }
+}
