@@ -1,0 +1,47 @@
+class Solution {
+    public int longestSubstring(String s, int k) {
+    if(k==1){
+        return s.length();
+    }
+    char[] chars = s.toCharArray();
+    return longestSubstring(chars, k ,0 ,s.length());
+}
+
+public int longestSubstring(char[] chars, int k,int start, int end) {
+    if(end-start<k) return 0;
+    int[] count = new int[26];
+    int maxLen = 0;
+    int sentry = start;
+    // 统计各字符出现次数
+    while(start<end) count[chars[start++] - 'a']++;
+    start =sentry;
+    // start<end && (count[chars[start++]-'a'] 为什么有问题
+    // 用于判断是否存在不合法的字符
+    while (start<end && (count[chars[start]-'a'])>=k){
+        start++;
+    }
+    // 不存在不合法的字符，所有字符出现次数都大于等于k
+    if(start==end)
+        return end - sentry;
+    
+    start = sentry;
+    while (end - start >= k) {
+        // 取第一个有效字符
+        while (start < end && count[chars[start] - 'a'] < k) {
+            start++;
+        }
+        sentry = start;
+        // 之后的第一个无效字符
+        while (start < end && count[chars[start] - 'a'] >= k) {
+            start++;
+        }
+        // 长度小于k则不进行递归求解
+        if (start - sentry >= k) {
+            maxLen = Math.max(maxLen, longestSubstring(chars, k, sentry, start));
+        }
+
+    }
+    return maxLen;
+
+}
+}
