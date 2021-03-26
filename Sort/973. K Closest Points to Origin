@@ -1,0 +1,69 @@
+class Solution {
+    /*
+    Quick Sort
+
+    Difference:
+    because we do not need to sort the k closest points
+    we just need to find then in any order
+    so we do not have to sort them totally
+
+        compare the half length of the array
+        if len == k:
+            we can return k and the former part
+        if len < k:
+            we do not need to change the former part 
+            but we need to sort the right part
+            and also because we have find the len closest number
+            we need to k - len
+            find the k -len closest number in the right part
+        if len > k:
+            keep sorting, not change k
+            until len == k
+    */
+    public int[][] kClosest(int[][] points, int k) {
+        int len = points.length;
+        //sort in range(0, len-1) return sorted points array
+        quickSort(points, 0, len-1, k);
+        return Arrays.copyOfRange(points, 0, k);
+    }
+
+    public void quickSort(int[][] points, int low, int end, int k){
+        //if((end - low + 1) == k) return;
+        //chose first element as pivot
+        int pivot = low;
+        int[] pivotArr = points[pivot];
+        int i = low, j = end;
+        while(i < j){
+            while(dist(points, pivot) <= dist(points, j) && i < j ){
+                j--;
+            }
+            while(dist(points, pivot) >= dist(points, i) && i < j){
+                i++;
+            }
+            if(i<j){
+                swap(points, i, j);
+            }
+        }
+        swap(points, low, j);
+        //we compare the < and > situation and not consider the == 
+        //which means when ==, just stop the recurstion and points has already been changed 
+        //so we do not need to add == at the beginning of this function
+        if(k < i-low+1){
+            quickSort(points, low, i-1, k);
+        }else if(k > i-low+1){
+            quickSort(points, i+1, end, k-i+low-1);
+        }
+        
+    }
+    //function to calculate distance
+    public int dist(int[][] points, int var){
+        //System.out.println(points[var][0] * points[var][0] + points[var][1]*points[var][1]);
+        return points[var][0] * points[var][0] + points[var][1]*points[var][1];
+    }
+    //function to exchange
+    public void swap(int[][] points, int i, int j){
+        int[] temp = points[i];
+        points[i] = points[j];
+        points[j] = temp; 
+    }
+}
