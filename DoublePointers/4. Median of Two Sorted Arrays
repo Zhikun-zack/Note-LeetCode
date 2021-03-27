@@ -1,0 +1,45 @@
+class Solution {
+    /*
+    Double pointer
+
+    Using double pointer to sort two arrays
+    Find the medium
+
+    T Com: O(m+n)
+    S Com: O(m+n)
+    */
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        //p1 is pointer in nums1, p2 in nums2, i is for nums
+        int p1 = 0, p2 = 0, i = 0;
+        int n = nums1.length, m = nums2.length;
+        //array to store two sorted arraies
+        int[] nums = new int[n+m];
+
+        while(p1 < n && p2 < m){
+            //if equal, we can just set nums1 then set nums2 in the next loop
+            //so we do not need to add another if (nums1[] == nums2[])
+            if(nums1[p1] <= nums2[p2]){
+                nums[i++] = nums1[p1];
+                p1++;
+            }else{
+                nums[i++] = nums2[p2];
+                p2++;
+            }
+        }
+        //if all elements in nums1 has been set into the nums
+        //p1 will be == n, same as p2
+        if(p1 < n){
+            System.arraycopy(nums1, p1, nums, i, n-p1);
+        } 
+        if(p2 < m){
+            System.arraycopy(nums2, p2, nums, i,  m-p2);
+        }
+        double res = 0;
+        if((m+n)%2==0){
+            res = (nums[(m+n)/2] + nums[(m+n)/2 - 1])/2.0;
+        }else if((m+n) % 2 == 1){
+            res = nums[(m+n)/2];
+        }
+        return res;
+    }
+}
