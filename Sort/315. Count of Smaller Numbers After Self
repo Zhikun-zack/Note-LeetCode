@@ -1,0 +1,78 @@
+class Solution {
+    public List<Integer> countSmaller(int[] nums) {
+        int len = nums.length;
+        //store the sorted temporary array
+        int[] temp = new int[len];
+        //store the temporary array's elements' indexs
+        int[] tempIndex = new int[len];
+        //int[] type result
+        int[] res = new int[len];
+        //index array
+        int[] index = new int[len];
+
+        //init index array
+        for(int i = 0; i < len; i++){
+            index[i] = i;
+        }
+
+        int l = 0, r = len-1;
+        mergeSort(nums, temp, tempIndex, index, res, l, r);
+
+        //change the int[] type to list of integer
+        List<Integer> resList = new ArrayList<>();
+        for(int num: res){
+            resList.add(num);
+        }
+        return resList;
+    }
+
+    public void mergeSort(int[] nums, int[] temp, int[] tempIndex, int[] index, int[] res, int l, int r){
+        if( l >= r){
+            return;
+        }
+        int mid = (l+r) >> 1;
+        mergeSort(nums, temp, tempIndex, index, res, l, mid);
+        mergeSort(nums, temp, tempIndex, index, res, mid+1, r);
+        merge(nums, temp, tempIndex, index, res, l, mid, r);
+    }
+
+    public void merge(int[] nums, int[] temp, int[] tempIndex, int[] index, int[] res, int l, int mid, int r){
+        int i = l, j = mid+1, p = l;
+        while(i <= mid && j <= r){
+            if(nums[i] <= nums[j]){
+                //give value to temporary sorted array
+                temp[p] = nums[i];
+                //give the original index of each element to temporary index array so that we still store each element's index
+                tempIndex[p] = index[i];
+                res[index[i]] += j-mid-1;
+                ++i;
+                ++p;
+            }else{
+                temp[p] = nums[j];
+                tempIndex[p] = index[j];
+                ++j;
+                ++p;
+            }
+        }
+        //if left array has not all been visited
+        while(i <= mid){
+            temp[p] = nums[i];
+            tempIndex[p] = index[i];
+            res[index[i]] += j-mid-1;
+            ++i;
+            ++p;
+        }
+        //right not all been visited
+        while(j <= r){
+            temp[p] = nums[j];
+            tempIndex[p] = index[j];
+            ++j;
+            ++p;
+        }
+        //Give the sorted array vals to the original array
+        for(int k = l; k <= r; k++){
+            index[k] = tempIndex[k];
+            nums[k] = temp[k];
+        }
+    }
+}
