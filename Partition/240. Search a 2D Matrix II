@@ -1,0 +1,32 @@
+class Solution {
+    /*
+    Close to Partition
+
+    IMPORTANT!!!!
+    **Start from the right corner**
+    the left elements are less than the right corner
+    the down elements are larger than the right corner
+    if target > right corner
+        go down
+    if target < right corner
+        go left
+    
+    T Com: O(m+n) worse situation go from right up to left down
+    S Com: O(1)
+    */
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int m =matrix.length, n = matrix[0].length;
+        int curR = 0, curC = n-1;
+        while(curR < m && curC >= 0){
+            if(matrix[curR][curC] == target){
+                return true;
+            }
+            else if(matrix[curR][curC] < target){
+                curR++;
+            }else{
+                curC--;
+            }
+        }
+        return false;
+    }
+}
