@@ -1,0 +1,58 @@
+class Solution {
+    /*
+    Quick Sort
+
+    because this problem just let us find the kth smallest val, not sorted kth value
+    we just find a way to find the kth value in the process of sorting, not totally finish it
+
+    quick sort will seperate the whole array into left and right part
+    and iterate to sort each part
+    so we can just compare the k and pivot's index
+    if k > pivot index:
+        we do not need to care about the left part because left part has already less than value at k, and we do not need to care about their order
+    if k < pivot index
+        we do not need to care the right part
+
+    T Com: O(N)
+        each time we run the quickSearch function
+        the length of array will become half(in the normal quick sort we have to visit all the part but in here we just need to visit one part)
+        So the complexity will be N+ N/2 + N/4 +......+ 1 == 2N
+    S Com: O(1)
+    */
+    public int[] getLeastNumbers(int[] arr, int k) {
+        int len = arr.length;
+        if(k == 0 || len == 0){
+            return new int[0];
+        }
+        //k - 1 is the place that we want to search, 0 and len-1 define the range
+        return quickSort(arr, k-1, 0, len - 1);
+    }
+
+    public int[] quickSort(int[] arr, int index, int start, int end){
+        int findIndex = qs(arr, start, end);
+        if( findIndex == index ){
+            return Arrays.copyOfRange(arr,0, index+1);
+        }
+        return findIndex > index ? quickSort(arr, index, start, findIndex-1) : quickSort(arr, index, findIndex+1, end);
+    }
+
+    public int qs (int[] arr, int start, int end){
+        int pivot = arr[start];
+        int i = start, j = end+1;
+        while(true){
+            //find the first element which is larger than pivot start from left
+            while(++i <= end && arr[i] < pivot);
+            //find the first element which is less than pivot start from right
+            while(--j >= start && arr[j] > pivot);
+            if(i >= j) break;
+            int tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp; 
+        }
+        //i >= j
+        //because i will located a value larger than pivot (first value of sorted right part)
+        arr[start] = arr[j];
+        arr[j] = pivot;
+        return j;
+    }
+}
