@@ -1,0 +1,43 @@
+class Solution {
+    /*
+    Double pointers
+
+    we cannot just using type changing because no matter it is long or int the number will be out of range
+
+    we can create two pointers
+    both start from the end of the strings
+    create a add var to store the value that needed to add to the next bit
+    create a res var to store the sum of this bit
+    create a stringbuilder to store the created new string
+
+    after loop reverse stringbuilder
+    */
+    public String addStrings(String num1, String num2) {
+        //return String.valueOf(Long.valueOf(num1) + Long.valueOf(num2));
+
+        //reversed result, in order to get correct value we need to reverse it after loop
+        StringBuilder sb = new StringBuilder();
+        //start from the end
+        int i = num1.length()-1, j = num2.length()-1;
+        int add = 0;
+        //i >= 0 || j >= 0: we do not need to judge whether len i langer than j or j longer than i
+        //add > 0: when 1 + 9, i and j are all less than 0 but we still need to add a new bit
+        //without it 1 + 9 = 0 
+        while( i >= 0 || j >= 0 || add > 0){
+            int n1 = i >= 0? num1.charAt(i) - '0': 0;
+            //System.out.println(n1);
+            int n2 = j >= 0? num2.charAt(j) - '0': 0;
+            //System.out.println(n2);
+
+            int res = n1 + n2 + add;
+            sb.append(res%10);
+            add = res/10;
+            i--;
+            j--;
+        }
+        //reverse the result
+        sb.reverse();
+        
+        return String.valueOf(sb);
+    }
+}
