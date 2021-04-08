@@ -1,0 +1,30 @@
+class Solution {
+    /*
+    Stack
+
+    we need to consider when nums <0
+    */
+    public String convertToBase7(int num) {
+        Stack<Integer> resStack = new Stack<>();
+        String res = new String();
+        //IMPORTANT when num is minus!!!!!!!!!!
+        if( num < 0 ){
+            res = "-";
+            num = 0 - num;
+        }else if(num == 0){
+            return "0";
+        }
+        while(num > 0){
+            int mod = num % 7;
+            num = num / 7;
+            //System.out.println(r);
+            resStack.push(mod);
+        }
+        //reverse the results
+        while(!resStack.isEmpty()){
+            int tmp = resStack.pop();
+            res+= Integer.toString(tmp);
+        }
+        return res;
+    }
+}
