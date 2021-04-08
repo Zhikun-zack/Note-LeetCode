@@ -1,0 +1,41 @@
+class Solution {
+    /*
+    Division
+
+    same as 172
+    
+    define a range 
+    calculate the number of zeros of mid value
+    if number calculated == K
+        return 5 ( range from k-5 to k)
+    if <
+        find the right part
+    if > 
+        find the left part
+
+    we dont have to base on K to back calculate the number 
+    we can find the number calculate the number of zeros and compare with K
+    */
+    public int preimageSizeFZF(int K) {
+        //when K == 0, 7K will still 0, in order to make r larger, we have to add 1
+        int l = K, r = 7*K +1;
+        while(l<r){
+            int mid = l+(r-l)/2;
+            long calMid = calK(mid);
+            //System.out.println(calMid);
+            if(calMid == K){
+                return 5;
+            } else if(calMid < K){
+                l = mid+1;
+            }else{
+                r = mid;
+            }
+        }
+        return 0;
+    }
+    //same as 172
+    public long calK(long x){
+        if(x == 0) return 0;
+        return x/5+calK(x/5);
+    }
+}
