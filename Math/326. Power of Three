@@ -1,0 +1,12 @@
+class Solution {
+    /*
+    divide 3 each time and find whether n == 1( whole finished or breaked by unfit to the judgement)
+    */
+    public boolean isPowerOfThree(int n) {
+        if( n == 0 )return false;
+        while(n % 3 == 0){
+            n /= 3;
+        }
+        return n == 1;
+    }
+}
