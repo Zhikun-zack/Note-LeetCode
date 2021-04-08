@@ -1,0 +1,28 @@
+class Solution {
+    /*
+    Sieve of Eratosthenes
+
+    visit all elements less than n
+    if it has not been regarded as prime number
+    start from i^2 and find all its multiples and mark them as composite number
+    calculate the number of unmarked number
+    */
+    public int countPrimes(int n) {
+        int[] isP = new int[n];
+        int sum = 0;
+        for(int i = 2; i < n; i++){
+            if(isP[i] == 0){
+                sum++;
+                //consider the situation when i*i larger than the range of integer
+                //and you cannot just give a long j, because the index of arry must be int
+                if ((long)i * i < n) {
+                    //you need to start from i^2 because if you want to start from i + i which is i*2, it must be visited when you visit 2
+                    for(int j = i*i; j < n; j+=i){
+                        isP[j] = 1;
+                    }
+                }
+            }
+        }
+        return sum;
+    }
+}
