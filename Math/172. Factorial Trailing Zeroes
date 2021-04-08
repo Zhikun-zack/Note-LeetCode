@@ -1,0 +1,28 @@
+class Solution {
+    /*
+    Math same as 793
+
+    how many 0 means how many 10 can be extracted
+    means how many 2 * 5 pairs can we extract from the equation
+    every even value can extract 2 so the number of 2 will larger than 5
+    so we need to find how many 5 can we get from n
+    then the number of 5 will be the number of  2 * 5
+    will be the number of 10
+    will be the number of trailing zeros
+
+    and also 25 will extract two 5
+    125 will extract three 5
+    so we also need to sonsider those numbers
+    */
+    public int trailingZeroes(int n) {
+        int res = 0;
+        int div = 5;
+        while(div <= n){
+            //how many 5 do we have 
+            res += n/div;
+            //how many 25, 125, 625.... do we have
+            div *= 5;
+        }
+        return res;
+    }
+}
