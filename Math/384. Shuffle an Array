@@ -1,0 +1,57 @@
+class Solution {
+    /*
+    Fisher-Yates
+
+    randomly choose a number
+    use a for loop visit all elements in the array
+    each time exchange the element with the element at the random index position
+
+    T Com: O(n)
+    S Com: O(n) (reset function, you create a new original array)
+    */
+
+    //array is the array that will be changed 
+    private int[] array;
+    //original store an array for reset function
+    private int[] original;
+
+    Random rand = new Random();
+
+    //get random value in the range of (start , end)
+    private int randRange(int start, int end){
+        return rand.nextInt(end - start) + start;
+    }
+
+    //exchange the index i with the index random
+    private void swap(int i, int j){
+        int tmp = array[i];
+        array[i] = array[j];
+        array[j] = tmp;
+    }
+
+    //Initialization
+    public Solution(int[] nums) {
+        array = nums;
+        original = nums.clone();
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    public int[] reset() {
+        return original;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    public int[] shuffle() {
+        for(int i = 0; i < array.length; i++){
+            swap(i, randRange(0, array.length));
+        }
+        return array;
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(nums);
+ * int[] param_1 = obj.reset();
+ * int[] param_2 = obj.shuffle();
+ */
