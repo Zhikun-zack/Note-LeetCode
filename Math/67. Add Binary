@@ -1,0 +1,20 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        StringBuilder sb = new StringBuilder();
+        int nextBit = 0;
+        int currBit = 0;
+        int currSum = 0;
+        int i = a.length()-1, j = b.length()-1;
+        while(i >= 0 || j>=0 || nextBit > 0){
+            int aNum = i >= 0 ? a.charAt(i) - '0' : 0;
+            int bNum = j >= 0 ? b.charAt(j) - '0' : 0;
+            currSum = aNum + bNum + nextBit;
+            nextBit = currSum / 2;
+            currBit = currSum % 2;
+            sb.append(currBit);
+            i--;
+            j--;
+        }
+        return sb.reverse().toString();
+    }
+}
