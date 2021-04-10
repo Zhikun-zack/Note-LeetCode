@@ -1,0 +1,50 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    private Random rand = new Random();
+    private ListNode head;
+    /** @param head The linked list's head.
+        Note that the head is guaranteed to be not null, so it contains at least one node. */
+    public Solution(ListNode head) {
+        this.head = head;
+    }
+    
+    /** Returns a random node's value. */
+    public int getRandom() {
+        int len = getLen(head);
+        int randVal = rand.nextInt(len);
+        ListNode node = head;
+        int val = 0;
+        for(int i = randVal; i >= 0; i--){
+            val = node.val;
+            node = node.next;
+        }
+        //you need to return the value at the current location, but if you use node.val after the loop, the pointer will go to the next, so the val will be the next node's val, so you need to store the val each time
+        //System.out.println(node.val);
+        return val;
+    }
+
+    public int getLen(ListNode head){
+        ListNode node = head;
+        int res = 0;
+        while( node != null ){
+            node = node.next;
+            res++;
+        }
+        return res;
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(head);
+ * int param_1 = obj.getRandom();
+ */
