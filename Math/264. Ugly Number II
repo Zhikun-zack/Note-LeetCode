@@ -1,0 +1,35 @@
+class Solution {
+    /*
+    Dynamic Programming(Three pointers)
+
+    ugly number is either *2, *3 or *5
+    so we can use the dynamic programming from top to bottom
+    first we give three pointers p2, p3 and p5 they both equal to 0
+    the compare dp[p2] * 2 dp[p3] * 3 and dp[p5] * 5
+    which is 1 * 2, 1 * 3 and 1 *5
+    then chose 2 to put into the array 
+    and p2 ++
+    so the next time we will compare 2 *2, 1*3 and 1*5
+    put the smallest one into the array 
+    until we find the nth number
+
+    T Com: On
+    S Com: On 
+    */
+    public int nthUglyNumber(int n) {
+        int p2 = 0, p3 = 0, p5 = 0;
+        int[] dp = new int[n];
+        dp[0] = 1;
+
+        for(int i = 1; i < n; i++){
+            int num1 = dp[p2] * 2, num2 = dp[p3] * 3, num3 = dp[p5] * 5;
+            dp[i] = Math.min(Math.min(num1, num2), num3);
+            System.out.println(dp[i]);
+            if(dp[i] == num1) p2++;
+            if(dp[i] == num2) p3++;
+            if(dp[i] == num3) p5++; 
+        }
+
+        return dp[n-1];
+    }
+}
