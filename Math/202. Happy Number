@@ -1,0 +1,40 @@
+class Solution {
+    /*
+    if it is happy number
+    faster pointer will arrive at 1 faster than slower point
+
+    if it is not happy number
+    you will find a loop in a cycle
+    eg: 116-->38 --> 73 --> 58 --> 89 --> 145 --> 42 --> 20 --> 4 --> 16 --> 37 --> 58 repeat
+    so faster and slower will meet at some point
+
+    if they are meet but value not equal to 1
+        not a happy number
+    if they are meet value equal to 1
+        they are happy number
+
+    T Com: On
+    时间复杂度：O(\log n)O(logn)。该分析建立在对前一种方法的分析的基础上，但是这次我们需要跟踪两个指针而不是一个指针来分析，以及在它们相遇前需要绕着这个循环走多少次。
+如果没有循环，那么快跑者将先到达 1，慢跑者将到达链表中的一半。我们知道最坏的情况下，成本是 O(2log n) O(logn)。
+一旦两个指针都在循环中，在每个循环中，快跑者将离慢跑者更近一步。一旦快跑者落后慢跑者一步，他们就会在下一步相遇。假设循环中有 kk 个数字。如果他们的起点是相隔 k-1k−1 的位置（这是他们可以开始的最远的距离），那么快跑者需要 k-1k−1 步才能到达慢跑者，这对于我们的目的来说也是不变的。因此，主操作仍然在计算起始 n 的下一个值，即O(logn)。
+    S Com: O1
+    */
+    public boolean isHappy(int n) {
+        int slowP = n;
+        int fastP = getNext(n);
+        while( fastP != 1 && slowP != fastP){
+            slowP = getNext(slowP);
+            fastP = getNext(getNext(fastP));
+        }
+        return fastP == 1;
+    }
+    public int getNext(int n){
+        int sum = 0;
+        while(n > 0){
+            int d = n % 10;
+            sum += d * d;
+            n /= 10;
+        }
+        return sum;
+    }
+}
