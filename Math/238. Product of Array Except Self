@@ -1,0 +1,35 @@
+class Solution {
+    /*
+    T Com: On
+    S Com: On
+
+    create two arrays l and r
+    each store the multiple result of the left/ right part except that element
+    l[0] will be 1 because the left part of nums[0] is nothing
+    r[len-1] will be 1 same
+    l[1] == 1 * nums[0](left part of nums[1])
+    r[len-2] == 1 * nums[len-1](right part of nums[len-2])
+    l from left to right
+    r from right to left
+    the result array will be the multiply of two arrays
+    */
+    public int[] productExceptSelf(int[] nums) {
+        int len = nums.length;
+        int[] l = new int[len], r = new int[len];
+        l[0] = 1;
+        r[len-1] = 1;
+        int[] res = new int[len];
+
+        for(int i = 1; i < len; i++){
+            l[i] = nums[i-1] * l[i-1];
+        }
+        for(int j = len-2; j >= 0; j--){
+            r[j] = nums[j+1] * r[j+1];
+        }
+        for(int t = 0; t < len; t++){
+            res[t] = l[t] * r[t];
+        }
+        return res;
+
+    }
+}
