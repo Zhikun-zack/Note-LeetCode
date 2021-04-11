@@ -1,0 +1,30 @@
+class Solution {
+    private Random rand;
+    private int[] nums;
+    public Solution(int[] nums) {
+        this.rand = new Random();
+        this.nums = nums;
+    }
+    
+    public int pick(int target) {
+        int n = 0;
+        int index = 0;
+        for(int i = 0; i < nums.length; i++){
+            //execute the reservior sampling when value equal to target
+            if(nums[i] == target){
+                n++;
+                if(rand.nextInt(n) == 0){
+                    index = i;
+                }
+            }
+        }
+        return index;
+
+    }
+}
+
+/**
+ * Your Solution object will be instantiated and called as such:
+ * Solution obj = new Solution(nums);
+ * int param_1 = obj.pick(target);
+ */
