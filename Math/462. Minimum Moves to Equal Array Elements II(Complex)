@@ -1,0 +1,31 @@
+class Solution {
+    /*
+    Median
+
+    find the median and calculate the distance
+    if number of elements is odd
+        only one median
+    if even
+        two median but any value in range [midfirst, midsecond] will get the same result value
+    */
+    public int minMoves2(int[] nums) {
+        Arrays.sort(nums);
+        int len = nums.length;
+        int mid = nums[len/2];
+        int sum1 = 0, sum2 = 0;
+        if(len % 2 == 0){
+            int mid2 = nums[len/2 -1];
+            for(int num: nums){
+                sum1 += Math.abs(mid - num);
+                sum2 += Math.abs(mid2 - num);
+            }
+            return sum1 > sum2 ? sum2 : sum1;
+        }else{
+            for(int num: nums){
+                sum1 += Math.abs(mid - num);
+            }
+            return sum1;
+        }
+
+    }
+}
