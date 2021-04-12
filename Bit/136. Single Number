@@ -1,0 +1,16 @@
+class Solution {
+    /*
+    x^x == 0;
+    x^0 == x
+    if some number has appear even times
+    then the value of ^ will be 0
+    only appear once will leave the result
+    */
+    public int singleNumber(int[] nums) {
+        int res = 0;
+        for(int num: nums){
+            res ^= num;
+        }
+        return res;
+    }
+}
