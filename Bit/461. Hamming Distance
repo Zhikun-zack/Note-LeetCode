@@ -1,0 +1,17 @@
+class Solution {
+    /*
+    T Com: O1
+    S Com: O1
+    */
+    public int hammingDistance(int x, int y) {
+        int res = 0;
+        int xor = x ^ y;
+        for(int i = 0; i<31; i++){
+            if((xor & 1) == 1){
+                res++;
+            }
+            xor >>= 1;
+        }
+        return res;
+    }
+}
