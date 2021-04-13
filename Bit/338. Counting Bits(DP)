@@ -1,0 +1,20 @@
+class Solution {
+    /*
+    Dynamic Programming + Bit calculation
+
+    when last bit is 1
+        dp[i] = dp[i-1] + 1
+    when last bit is 0
+        dp[i] = dp[i>>1]
+    
+    S Com: On
+    T Com: O1 (The space that took by result will not be calculated, so we do not need to calculate the space that took by the int array)
+    */
+    public int[] countBits(int num) {
+        int[] dp = new int[num+1];
+        for(int i = 1; i<=num; i++){
+            dp[i] = ( i % 2 == 0 ? dp[i>>1]: dp[i-1] + 1);
+        }
+        return dp;
+    }
+}
