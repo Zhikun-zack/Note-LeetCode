@@ -1,0 +1,21 @@
+class Solution {
+    /*
+    Bit calculation
+
+    first compare whether the number is the power of 2
+    using n & (n-1) == 0
+    Then 4 == 100
+         16 == 10000
+         64 == 1000000
+    number of 0 in the power of 4 are even
+    we can bitwise and it with 101010101010101010(32 bits)
+    if it still equal to it self then ok
+    otherwise false
+
+    T com: O1
+    S com: O1   
+    */
+    public boolean isPowerOfFour(int n) {
+        return (n>0) && ((n & (n-1)) == 0 ) && ((n & 0xAAAAAAAA) == 0);
+    }
+}
