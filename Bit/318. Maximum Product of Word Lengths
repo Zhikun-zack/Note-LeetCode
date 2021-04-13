@@ -1,0 +1,40 @@
+class Solution {
+    /*
+    Bit calculation
+
+    first change the string array to int array
+    then two for loops to see whether k & l is equal to 0
+    */
+    public int maxProduct(String[] words) {
+        int res = 0;
+        int[] wordsInt = new int[words.length];
+
+        for(int i = 0 ; i < words.length; i++){
+            String word = words[i];
+            int wordInt = 0;
+            for(int j = 0; j < word.length(); j++){
+                int bit = word.charAt(j) - 'a';
+                //wordInt is a int to store the position of letters exist in word
+                //eg if char at 0 is a, then 1<<bit is 1<<0 which is 1
+                wordInt = wordInt | (1<<bit) ;
+            }
+            //System.out.println(Integer.toBinaryString(wordInt));
+                // 10000000000000000000111
+                // 10000000000000000000000011
+                // 100000000100000
+                // 100000000000000011
+                // 100010000010000000100000
+                // 111111
+            wordsInt[i] = wordInt;
+        }
+
+        for(int k = 0; k < words.length; k++){
+            for(int l = 0; l < words.length; l++){
+                if((wordsInt[k] & wordsInt[l]) != 0) continue;
+                res = Math.max(res, words[k].length() * words[l].length());
+            }
+        }
+
+        return res;
+    }
+}
