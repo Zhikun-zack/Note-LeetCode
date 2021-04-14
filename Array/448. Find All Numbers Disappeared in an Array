@@ -1,0 +1,32 @@
+class Solution {
+    /*
+    Number and index
+
+    index from [0, n]
+    num also from [0, n]
+    get all num in nums,
+    regard it as index
+    change relative position's num
+    after all that 
+    create another for loop to see which one has not been changed 
+    its index will be the loss number
+    */
+
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> res = new ArrayList<>();
+        int n = nums.length;
+        for(int j = 0; j < n; j++){
+            int num = Math.abs(nums[j]); 
+            if(nums[num - 1] > 0){
+                nums[num - 1] *= -1;
+            }
+        }
+        
+        for(int i = 0; i < n; i++){
+            if(nums[i] > 0){
+                res.add(i+1);
+            }
+        }
+        return res;
+    }
+}
