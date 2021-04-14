@@ -1,0 +1,37 @@
+class Solution {
+    /*
+    Bit Calculation:
+
+    Seperate these two nums into two arrays
+    Extract them in each array seperately
+
+    first calculate all the XOR results which will be a^b
+    at some bit, a and b will be different so at that position result will be 1
+        eg: 3 ^ 5 = 110 two bits different
+    we just consider only one bit which is the first 1 from right to left
+    one will be 1 at that position, another will be 0 
+    based on that seperate the whole array into two arrays
+    each array only contains one single number
+    then create a int[] to store the two results
+    */
+    public int[] singleNumber(int[] nums) {
+        //mask will be equal to a^b(a and b are the single numbers that we need)
+        int mask = 0;
+        for(int num: nums){
+            mask ^= num; 
+        }
+        //find the first 1 from right to left
+        mask &= -mask;
+
+        System.out.println(Integer.toBinaryString(mask));
+        int[] res = {0, 0};
+        for(int num: nums){
+            if((mask & num) != 0){
+                res[0] ^= num;
+            }else{
+                res[1] ^= num;
+            }
+        }
+        return res;
+    }
+}
