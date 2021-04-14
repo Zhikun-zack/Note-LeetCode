@@ -1,0 +1,42 @@
+class Solution {
+    /*
+    Find the law
+
+    seperate the whole matrix into small matrix
+    exchange four(four sides) values each loop
+
+    eg: in example1
+        1 2 only loop twice
+        in loop 1:
+            we will change 1 3 9 7
+        in loop 2 
+            we will change 2 6 8 4
+        and 5 will not be changed
+    eg in example 2
+        5 1 2 4 these four 
+        in loop 5:
+            change 5 11 16 15
+        in loop 1:
+            change 1 10 12 13
+        in loop 2
+            change 2 9 7 14
+        in loop 4
+            change 4 8 6 3
+    
+    in each loop
+        t <- m[n-j-1][i] <- m[n-i-1][n-j-1] <- m[j][n-i-1] <- m[i][j] <- t
+
+    */
+    public void rotate(int[][] matrix) {
+        int len = matrix.length;
+        for(int i = 0; i < len/2; i++){
+            for(int j = 0; j < (len+1)/2; j++){
+                int t = matrix[len - j - 1][i];
+                matrix[len - j - 1][i] = matrix[len - i - 1][len - j - 1];
+                matrix[len - i - 1][len - j - 1] = matrix[j][len- i - 1];
+                matrix[j][len- i - 1] = matrix[i][j];
+                matrix[i][j] = t;
+            }
+        }
+    }
+}
