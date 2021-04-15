@@ -1,0 +1,25 @@
+class Solution {
+    /*
+    Array
+
+    store the max value from beginning to i position
+    compare max with i value
+    if max == i 
+        we can split
+    if max < i
+        cannot happen: max must >= i
+    if max > i
+        which means there are smaller value behind this position
+        so we have to include it only after that can we split the array
+    */
+    public int maxChunksToSorted(int[] arr) {
+        int res = 0, max = 0;
+        for(int i = 0; i<arr.length; i++){
+            max = Math.max(max, arr[i]);
+            if(max == i){
+                res++;
+            }
+        }
+        return res;
+    }
+}
