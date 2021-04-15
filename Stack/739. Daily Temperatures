@@ -1,0 +1,64 @@
+class Solution {
+    /*
+    Monotonous Stack
+
+    create a stack and a int array
+    stack for storing index
+
+    if temperature > T[stack.peek()]
+        pop that element
+        give res array i - pop() at the pop() position
+    if temperature < T[stack.peek]
+        do not change res array
+        push that day's index into the stack
+    
+    Process:
+        i == 0
+            push 0 (73's index)
+        i == 1
+            T(1) > T(peek())
+            pop 0(73)
+            give res 1 - pop() which is 1 - 0
+            push 1(74)
+        i == 2
+            T(2) > T(peek) which is T(1)
+            pop 1(74)
+            give res 2 - pop which is 2 - 1
+            push 2(75)
+        i == 3
+            T(3) < T(peek) which is T(2)
+            no change 
+            push 3(71)
+        i == 4
+            T(4) < T(peek) which is T(3)
+            no change 
+            push 4(69)
+        i == 5
+            T(5) > T(peek) which is T(4)
+            pop 4(69)
+            give to res
+
+            T(5) > T(peek) which is T(3)
+            pop 3(71)
+            give new to res
+
+            T(5) < T(peek) which is T(2)75
+            no change 
+            push 5(72)
+    T Com: On
+    S Com: On
+    */
+    public int[] dailyTemperatures(int[] T) {
+        Deque<Integer> stack = new LinkedList<>();
+        int len = T.length;
+        int[] res = new int[len];
+        for (int i = 0; i < len; i++){
+            while(!stack.isEmpty() && T[i] > T[stack.peek()]){
+                int pIndex = stack.pop();
+                res[pIndex] = i - pIndex;
+            }
+            stack.push(i);
+        }
+        return res;
+    }
+}
