@@ -1,0 +1,145 @@
+class Solution {
+    /*
+    Priority Queue
+
+    Core thought:
+        store all the [x/y coordinate, height] pairs
+        create a priority queue to store height
+        if it is left point:
+            give new height to queue
+            store the heighest value in this queue
+            if the value is changed compare to the former one
+            store this point
+        if it is right point
+            remove this height
+            same 
+            if value changed 
+            store this point
+
+    Process:
+        buildings  [2 9 10], [3 7 15], [5 12 12], [15 20 10], [19 24 8]
+        根据 buildings 求出每个 building 的左上角和右上角坐标
+        将所有坐标按照 x 排序, 并标记当前坐标是左上角坐标还是右上角坐标
+        l(2,10) l(3,15) l(5,12) r(7,15) r(9,10) r(12,12) 
+        l(15,10) l(19,8) r(20,10) r(24,8)
+        PriorityQueue = {0}, preMax = 0
+
+        l(2,10) 将 10 加入优先队列
+        preMax = 0, PriorityQueue  = {0 10}
+        当前 PriorityQueue 的 max = 10, 相对于 preMax 更新了
+        将 (2,10) 加入到 res, res = {(2,10)}
+        更新 preMax = 10
+            
+        l(3,15) 将 15 加入优先队列
+        preMax = 10, PriorityQueue  = {0 10 15}
+        当前 PriorityQueue 的 max = 15, 相对于 preMax 更新了
+        将 (3,15) 加入到 res, res = {(2,10) (3,15)}
+        更新 preMax = 15    
+            
+        l(5,12) 将 12 加入优先队列
+        preMax = 15, PriorityQueue  = {0 10 15 12}
+        当前 PriorityQueue 的 max = 15, 相对于 preMax 没有更新
+        res 不变
+
+        r(7,15) , 遇到右上角坐标, 将 15 从优先队列删除
+        preMax = 15, PriorityQueue  = {0 10 12}
+        当前 PriorityQueue 的 max = 12, 相对于 preMax 更新了
+        将 (7,max) 即 (7,12) 加入到 res, res = {(2,10) (3,15) (7,12)}
+        更新 preMax = 12
+            
+        r(9,10) , 遇到右上角坐标, 将 10 从优先队列删除
+        preMax = 12, PriorityQueue  = {0 12}
+        当前 PriorityQueue 的 max = 12, 相对于 preMax 没有更新
+        res 不变
+
+        r(12,12) , 遇到右上角坐标, 将 12 从优先队列删除
+        preMax = 12, PriorityQueue  = {0}
+        当前 PriorityQueue 的 max = 0, 相对于 preMax 更新了
+        将 (12,max) 即 (7,0) 加入到 res, res = {(2,10) (3,15) (7,12) (12,0)}
+        更新 preMax = 0
+            
+        后边的同理，就不进行下去了。
+    Tips:
+        1. when left points change the height to -height
+            easy to seperate which one is left point which is right, because all points are stored in one array
+            easy to sort, the left point will always less than right
+        2. give 0 to priority queue first
+    */
+    public List<List<Integer>> getSkyline(int[][] buildings) {
+        List<List<Integer>> points = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        
+        //set [x/y coordinate, height] value pairs into the points list
+        for (int[] b : buildings) {
+            List<Integer> p1 = new ArrayList<>();
+            p1.add(b[0]);
+            p1.add(-b[2]);
+            points.add(p1);
+
+            List<Integer> p2 = new ArrayList<>();
+            p2.add(b[1]);
+            p2.add(b[2]);
+            points.add(p2);
+        }
+
+        //Sort the pairs in array
+        Collections.sort(points, new Comparator<List<Integer>>(){
+            @Override
+            public int compare(List<Integer>a, List<Integer> b){
+                /*
+                NOT WORKING
+                if(a.get(0) != b.get(0)){
+                    return a.get(0) - b.get(0);
+                }else{
+                    return a.get(1) - b.get(1);
+                }
+                */
+                int x1 = a.get(0);
+                int y1 = a.get(1);
+                int x2 = b.get(0);
+                int y2 = b.get(1);
+                //if x-coord is same, compare the height
+                if(x1 != x2){
+                    return x1 - x2;
+                }
+                //if not same, return based on x-coordinate
+                else{
+                    return y1 - y2;
+                }
+            }
+        });
+
+        //a priority queue store the height of each elements
+        //the default comparator of pQ is from small to large, we need to reverse it
+        Queue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>(){
+            @Override
+            public int compare(Integer a, Integer b){
+                return b - a;
+            }
+        });
+        queue.offer(0);
+        int preMax = 0;
+
+        for(List<Integer> point: points){
+            int x = point.get(0);
+            int y = point.get(1);
+
+            if(y < 0){
+                queue.offer(-y);
+            }
+            else{
+                queue.remove(y);
+            }
+
+            int curMax = queue.peek();
+            if(curMax != preMax){
+                List<Integer> tmp = new ArrayList<>();
+                tmp.add(x);
+                tmp.add(curMax);
+                res.add(tmp);
+                preMax = curMax;
+            }
+        }
+        return res;
+    }
+}
