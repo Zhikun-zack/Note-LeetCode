@@ -1,0 +1,24 @@
+class NumArray {
+    /*
+    Sum of prefix
+
+    sum[left, right] = sum[0, right+1] - sum[0, left];
+    */
+    int[] A;
+    public NumArray(int[] nums) {
+        A = new int[nums.length + 1];
+        for(int i = 0; i< nums.length; i++){
+            A[i+1] = A[i] + nums[i];
+        }
+    }
+    
+    public int sumRange(int left, int right) {
+        return A[right+1] - A[left];
+    }
+}
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = new NumArray(nums);
+ * int param_1 = obj.sumRange(left,right);
+ */
