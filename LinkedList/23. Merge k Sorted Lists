@@ -1,0 +1,52 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    /*
+    Priority queue
+
+    visit all elements in linked list array
+    push them all into the priority queue
+    loop through all elements in queue
+    poll them and set these value to a new linked list
+    */
+    public ListNode mergeKLists(ListNode[] lists) {
+        if(lists.length == 0 || lists == null){
+            return null;
+        }
+        //create a priority queue to store all the data, order the elements based on the value
+        PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(new Comparator<ListNode>(){
+            public int compare (ListNode l1, ListNode l2){
+                return (l1.val - l2.val);
+            }
+        });
+
+        //visit all lists add all elements into the priority queue
+        for(int i = 0; i<lists.length; i++){
+            //visit all nodes in list
+            while(lists[i] != null){
+                queue.add(lists[i]);
+                lists[i] = lists[i].next;
+            }
+        }
+
+        //visit all elements in queue and output them into a Linkedlist
+        ListNode dummy = new ListNode();
+        ListNode res = dummy;
+
+        while( !queue.isEmpty() ){
+            dummy.next = queue.poll(); 
+            dummy = dummy.next;
+        }
+        //avoid cycle in linked list
+        dummy.next = null;
+        return res.next;
+    }
+}
