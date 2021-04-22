@@ -1,0 +1,28 @@
+class Solution {
+    /*
+    Prefix
+
+    https://leetcode-cn.com/problems/subarray-sum-equals-k/solution/de-liao-yi-wen-jiang-qian-zhui-he-an-pai-yhyf/
+    */
+    public int subarraySum(int[] nums, int k) {
+        int n = nums.length;
+        int res = 0;
+        int[] pre = new int[n+1];
+        for(int i = 1; i <= n; i++){
+            pre[i] = pre[i-1]+nums[i-1];
+        }
+        for(int j = 1; j <= n; j++){
+            if(pre[j] == k){
+                res++;
+            }
+                for(int t = 1; t < j; t++){
+                    if((pre[j] - pre[j-t]) == k){
+                        res++;
+                    }else{
+                        continue;
+                    }
+                }
+            }
+        return res;
+    }
+}
