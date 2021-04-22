@@ -1,0 +1,21 @@
+class Solution {
+    /*
+    Prefix + hashMap
+
+    https://leetcode-cn.com/problems/subarray-sum-equals-k/solution/de-liao-yi-wen-jiang-qian-zhui-he-an-pai-yhyf/
+    */
+    public int subarraySum(int[] nums, int k) {
+        int res = 0;
+        int preCount = 0;
+        HashMap<Integer, Integer> hMap = new HashMap<>();
+        for(int num: nums){
+            preCount += num;
+            if(hMap.containsKey(preCount - k)){
+                res += hMap.get(preCount-k);
+            }
+
+            hMap.put(preCount, hMap.getOrDefault(preCount, 0) + 1);
+        }
+        return res;
+    }
+}
