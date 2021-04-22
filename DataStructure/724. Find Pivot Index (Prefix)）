@@ -1,0 +1,22 @@
+class Solution {
+    /*
+    Prefix
+    you dont have to create an array to store all the value
+    you just need the prex value
+    so you can only create a int val
+    then using one loop to both calculate this val and the pivot index calculation
+    */
+    public int pivotIndex(int[] nums) {
+        int n = nums.length;
+        int[] prex = new int[n+1];
+        for(int i = 1; i <= n; i++){
+            prex[i] = prex[i-1] + nums[i-1];
+        }
+        for(int j = 1; j <= n; j++){
+            if (prex[j-1] == prex[n] - prex[j]){
+                return j - 1;
+            }
+        }
+        return -1;
+    }
+}
