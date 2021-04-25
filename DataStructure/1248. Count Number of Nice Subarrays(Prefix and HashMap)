@@ -1,0 +1,33 @@
+class Solution {
+    /*
+    Prefix and HashMap
+
+    create a hashmap to store all values that has been visited
+    then you can re-visit them again to save time
+    so that you do not need to use two for loop
+    Using space exchange time
+
+    hashmap contains: (number of odd in this subarray, the number of subarray)
+    using one for loop
+        if the value is odd, oddNum ++;
+        if odd-k exist
+            res ++
+        input the oddNum, old value of this number + 1;
+    */
+    public int numberOfSubarrays(int[] nums, int k) {
+        int res = 0;
+        int oddNum = 0;
+        HashMap<Integer, Integer> hMap = new HashMap<>();
+        hMap.put(0,1);
+        for(int num: nums){
+            if(num % 2 == 1){
+                ++oddNum;
+            }
+            if(hMap.containsKey(oddNum - k)){
+                res += hMap.get(oddNum-k);
+            }
+            hMap.put(oddNum, hMap.getOrDefault(oddNum, 0) + 1);
+        }
+        return res;
+    }
+}
