@@ -1,0 +1,19 @@
+class Solution {
+    public int subarraysDivByK(int[] A, int K) {
+        int res = 0;
+        HashMap<Integer, Integer> hMap = new HashMap<>();
+        int sum = 0;
+        hMap.put(0,1);
+        for(int num: A){
+            sum += num;
+            //This time you can not use sum as the key, you have to create a new var
+            //regad the mod/ remainder as the key
+            int key = (sum%K + K) % K;
+            if(hMap.containsKey(key)){
+                res += hMap.get(key);
+            }
+            hMap.put(key, hMap.getOrDefault(key, 0)+1);
+        }
+        return res;
+    }
+}
