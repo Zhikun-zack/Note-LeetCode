@@ -1,0 +1,35 @@
+class Solution {
+    /*
+    Prefix and HashMap same as 1248 974
+
+    hashMap pairs(sum % k, index)
+    sum % k: judge whether this can be exact divided by k
+    index: judge whether this is larger than 2
+
+
+    */
+    public boolean checkSubarraySum(int[] nums, int k) {
+        int sum = 0;
+        int index = 0;
+        HashMap<Integer, Integer> hMap = new HashMap<>();
+        hMap.put(0, -1);
+        for(int i = 0; i < nums.length; i++){
+            sum += nums[i];
+            //avoid when k == 0
+            int key = k == 0? sum : sum%k;
+            if(hMap.containsKey(key)){
+                if((i - hMap.get(key)) > 1){
+                    return true;
+                }
+                //if key exist and you do not add this line, the index will update
+                //then the i - hMap.get may always less than 1
+                //eg: [5, 0, 0, 0]
+                //pair will be (5, 0) then update to (5, 1) then (5, 2)
+                //so the i - get will always less than 2
+                continue;
+            }
+            hMap.put(key, i);
+        }
+        return false;
+    }
+}
