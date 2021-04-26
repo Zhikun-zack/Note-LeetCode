@@ -1,0 +1,43 @@
+class Solution {
+    /*
+    Monotonous Stack
+
+    Store the elements' value that we visited
+    Compare them with new element value
+    If meet some situation, give the visited value to the res array
+    Because the value we can compare directly in each loop, so we dont have to store the value
+    We just need to store the index
+
+    How to solve find next greater 
+    Create a stack to store index
+    if the element at the stack.peek index is less than the element that we visit
+        that element will be the next greater value of the stack.peek position
+    push the index of this element that we visited 
+    ** why it is monotonous
+        if we find any larger value
+        we will poll the smaller one until no one less than that value we find
+        then push that value into the array
+        so that the elements in stack will always be in orderd
+
+    How to solve cycle
+    In this problem, we just need to visit the element till the next itself
+        [1,2,1] when we visit 2 which is nums[1]
+        we just need to visit from 2 -> 1 -> next 1 -> next 2
+        from it to itself
+    so we can just extend the array from n length to 2n length
+    */
+    public int[] nextGreaterElements(int[] nums) {
+        int len = nums.length;
+        int[] res = new int[len];
+        Deque<Integer> dq = new LinkedList<>();
+        // the element with out the greater value will be given -1 as value
+        Arrays.fill(res, -1);
+        for(int i = 0; i < len*2 - 1; i++){
+            while( (!dq.isEmpty()) && (nums[dq.peek()] < nums[i%len])){
+                res[dq.poll()] = nums[i%len];
+            }
+            dq.push(i%len);
+        }
+        return res;
+    }
+}
