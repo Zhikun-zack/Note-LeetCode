@@ -1,0 +1,40 @@
+class Solution {
+    /*
+    HashMap
+
+    Create a hashmap
+    Integer and int array pair
+    Integer is the key element
+    int array has three numbers: number of this key, start position, end position
+
+    find the len
+        which key has the largest appearing time
+        and has the smallest length(arr[2] - arr[1] + 1)
+    */
+    public int findShortestSubArray(int[] nums) {
+        HashMap<Integer, int[]> map = new HashMap<>();
+        int n = nums.length;
+        for(int i = 0; i < n; i++){
+            if(map.containsKey(nums[i])){
+                map.get(nums[i])[0]++;
+                map.get(nums[i])[2] = i;
+            }else{
+                map.put(nums[i], new int[]{1, i, i});
+            }
+        }
+        int maxD = 0, minL = 0;
+        for(Map.Entry<Integer, int[]> entry: map.entrySet()){
+            int[] arr = entry.getValue();
+            if(maxD < arr[0]){
+                maxD = arr[0];
+                minL = arr[2] - arr[1] + 1;
+            }else if(maxD == arr[0]){
+                //+1, because arr[2] is the last position of key, arr[2] - arr[1] + 1 is the number of elements between these two value
+                if(minL > arr[2] - arr[1] + 1){
+                    minL = arr[2] - arr[1] +1 ;
+                }
+            }
+        }
+        return minL;
+    }
+}
