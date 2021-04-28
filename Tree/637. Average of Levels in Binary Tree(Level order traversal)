@@ -14,30 +14,36 @@
  * }
  */
 class Solution {
-    HashMap<Integer, Integer> map;
-    int target;
-    public int pathSum(TreeNode root, int targetSum) {
-        map = new HashMap<>();
-        map.put(0, 1);
-        target = targetSum;
-        return rec(root, 0);
-    }   
-
-    public int rec(TreeNode root, int key){
-        if(root == null){
-            return 0;
+    /*
+    Level order traversal
+    */
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> res = new ArrayList<>();
+        Deque<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        int size = 0;
+        while(!q.isEmpty()){
+            size = q.size();
+            double sum = 0;
+            double count = 0;
+            for(int i = 0; i < size; i++){
+                TreeNode node = q.poll();
+                
+                sum += node.val;
+                count++;
+                if(node.left != null){
+                    q.offer(node.left);
+                    //System.out.println("value is"+ node.left.val);
+                }
+                if(node.right != null){
+                    q.offer(node.right);
+                    //System.out.println("value is"+ node.right.val);
+                }
+            }
+            //System.out.println("sum is" + sum);
+            //System.out.println("count is" + count);
+            res.add(sum/count);
         }
-        int res = 0;
-        key += root.val;
-
-        res += map.getOrDefault(key - target, 0);
-        map.put(key, map.getOrDefault(key, 0) + 1);
-        
-        int l = rec(root.left, key);
-        int r = rec(root.right, key);
-
-        map.put(key, map.get(key) - 1);
-        res = res + l + r;
         return res;
     }
 }
