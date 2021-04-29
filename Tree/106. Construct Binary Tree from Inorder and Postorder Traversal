@@ -1,0 +1,56 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    /*
+    Inorder and postorder traversal
+
+    Inorder: left tree + root node + right tree
+    Postorder: left tree + right tree + root node
+
+    we can seperate each the whole array into three part: left right and root 
+    Inorder: [0 , root index-1], [root index], [root index + 1 , len-1] 
+    Postorder: [0, 0 + root index - 0 -1(root index -0 is the length of left tree)], [0 + root index - 0, len - 2], [len -1]
+    */
+    //Store the inorder value index pairs
+    HashMap<Integer, Integer>map = new HashMap<>();
+    //store postorder array in public
+    int[] publicPost;
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        for(int i = 0; i < inorder.length; i++){
+            map.put(inorder[i], i);
+        }
+        publicPost = postorder;
+        TreeNode root = build(0, inorder.length-1, 0, postorder.length-1);
+        return root;
+    }
+
+    public TreeNode build(int inorderStart, int inorderEnd, int postStart, int postEnd){
+        if(inorderEnd < inorderStart || postEnd < postStart) {
+            return null; 
+        }
+        //the end of post is the root node
+        int rootVal = publicPost[postEnd];
+        //get the index of root from hashmap
+        int rootIndex = map.get(rootVal);
+
+        TreeNode node = new TreeNode(rootVal);
+        //iterate, seperate whole array into two part
+        node.left = build(inorderStart, rootIndex-1, postStart, postStart + rootIndex - inorderStart-1);
+        node.right = build(rootIndex+1, inorderEnd, postStart + rootIndex - inorderStart, postEnd-1);
+
+        return node;
+    }
+}
