@@ -1,0 +1,45 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    /*
+    Recurstion
+
+    The most important things of this problem is to find the situation
+    when left tree contains one element and right tree contains another
+    when left or right tree contain one element and root is another
+    Only in these two situations, we can return the root as result
+
+    T Com On
+    S Com On (recursion will take some space)
+    */
+    private TreeNode res; 
+
+    public Solution(){
+        this.res = null;
+    }
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        this.dfs(root, p, q);
+        return res;
+    }
+    public boolean dfs(TreeNode root, TreeNode p, TreeNode q){
+        if(root == null){
+            return false;
+        }
+        boolean r = dfs(root.right, p, q);
+        boolean l = dfs(root.left, p, q);
+
+        //Main judgement only when these two situations meeted, the res node should be set to root
+        if((r == true && l == true) ||((root.val == p.val || root.val == q.val)&&(r == true || l == true))) {
+            res = root;
+        }
+        //when the subtree contains one element return true
+        return root.val == p.val || root.val == q.val || r || l;
+    }
+}
