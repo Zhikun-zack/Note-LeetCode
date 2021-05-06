@@ -1,0 +1,72 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    /*
+    BST
+
+    Use the features of BST in the searching process
+
+    Three situations:
+        when root.val < key
+            Search right sub tree
+        when root.val > key
+            Search left sub tree
+        When ==
+            separate three situations:
+                when left sub tree == null
+                    return the right
+                when right sub tree == null
+                    return the left
+                when none == null
+                    find the most left node in right sub tree
+                    e.g.
+                        in the first example
+                        if we delete 5
+                        we will put 3 as the left node of 6
+                        then return 6
+                    give the root.left to the node.left
+                    return the root.right;
+                    (you can also find the most right node of root.left)
+    */
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if(root == null) return null;
+        
+        //when root is not the node that we want to selected
+        if(root.val < key){
+            root.right = deleteNode(root.right, key);
+        }else if(root.val > key){
+            root.left = deleteNode(root.left, key);
+        }
+        //when root is the node
+        else{
+            if(root.left == null){
+                return root.right;
+            }else if (root.right == null){
+                return root.left;
+            }else{
+                //node is a pointer
+                TreeNode node = root.right;
+                while( node.left != null ){
+                    node = node.left;
+                }
+                node.left = root.left;
+                return root.right;
+            }
+        }
+        //return the final root node after all the recursion and if 
+        return root;
+    }
+}
