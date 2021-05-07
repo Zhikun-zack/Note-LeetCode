@@ -1,0 +1,44 @@
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        HashSet<Integer>[] graphcCourse = new HashSet[numCourses];
+
+        for(int i = 0; i < numCourses; i++){
+            graphcCourse[i] = new HashSet<>();
+        }
+
+        int[] inDegree = new int [numCourses];
+        for(int[] course: prerequisites){
+            graphcCourse[course[1]].add(course[0]);
+            inDegree[course[0]]++;
+        }
+
+        Deque<Integer> zeroInDegree = new LinkedList<>();
+        for(int i = 0; i < numCourses; i++){
+            if(inDegree[i] == 0){
+                zeroInDegree.offer(i);
+            }
+        }
+
+        int count = 0;
+        int[] res = new int[numCourses];
+        while(!zeroInDegree.isEmpty()){
+            Integer head = zeroInDegree.poll();
+            res[count++] = head;
+
+            HashSet<Integer>sequences = graphcCourse[head];
+            for(Integer sequence: sequences){
+                inDegree[sequence]--;
+                if(inDegree[sequence] == 0){
+                    zeroInDegree.offer(sequence);
+                }
+            }
+        }
+
+        if(count == numCourses){
+            return res;
+        }
+        return new int[0];
+
+
+    }
+}
