@@ -1,0 +1,31 @@
+class Solution {
+    /*
+    DFS
+
+    visit all the keys in certain room, if the key's room hasn't been visited, do the dfs again
+    until the first key in that room has been visited
+    go to the next key.
+
+    T Com: On+m
+    S Com: On (recursion will take space)
+    */
+    boolean[] visited;
+    int n;
+    public boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        int num = rooms.size();
+        visited = new boolean[num];
+        n = 0;
+        dfs(rooms, 0);
+        return n == num;
+    }
+
+    public void dfs(List<List<Integer>> rooms, int numRoom){
+        visited[numRoom] = true;
+        n++;
+        for(int key: rooms.get(numRoom)){
+            if(!visited[key]){
+                dfs(rooms, key);
+            }
+        }
+    }
+}
