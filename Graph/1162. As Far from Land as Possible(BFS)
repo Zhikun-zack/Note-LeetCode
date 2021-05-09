@@ -1,0 +1,60 @@
+class Solution {
+    /*
+    BFS in graph
+
+    Tree: creata a deque --> input the root --> poll the root and input its children nodes --> loop
+    Graph: create a deque --> input the land grid --> poll the land grid and input its four direction next grid --> loop
+
+    difference:
+    you need to loop through all the table to find the land grid first
+        tree has the root node, do not need to find the first element
+    you also need to define the direction for each loop
+        tree has the child relationship, no need to define direction
+    you also need to define a visited array to store wether this element has been visited
+        tree only has one direction
+    
+    In this problem
+        we just change the value of the input array directly
+            so we dont have to create a visited array, just using the value in input array
+
+    */
+    public int maxDistance(int[][] grid) {
+        int rlen = grid.length, clen = grid[0].length;
+        //store a array, [x-coord, y-coord]
+        Deque<int[]> dq = new LinkedList<>();
+        int[] dirX = {-1, 1, 0, 0};
+        int[] dirY = {0, 0, -1, 1};
+
+        //find the land grid and offer them into the queue
+        for(int i = 0; i < rlen; i++){
+            for(int j = 0; j < clen; j++){
+                if(grid[i][j] == 1){
+                    dq.offer(new int[]{i, j});
+                }
+            }
+        }
+        int res = 0;
+        //helping to find whether there exist the water grid
+        boolean hasOcean = false;
+        //to store the coordnates in the queue
+        int[] gridInt = null;
+        while(!dq.isEmpty()){
+            gridInt = dq.poll();
+            for(int i = 0; i < 4 ; i++){
+                int newx = gridInt[0] + dirX[i];
+                int newy = gridInt[1] + dirY[i];
+                //x, y must belong to [0, len), and grid[x][y] must not been visited
+                if(newx < 0 ||  newy < 0 ||  newx >= rlen || newy >= clen || grid[newx][newy] != 0){
+                    continue;
+                }
+                grid[newx][newy] = grid[gridInt[0]][gridInt[1]] + 1;
+                dq.offer(new int[]{ newx, newy});
+                hasOcean = true;
+            }             
+        }
+        //no land or no water 
+        if(gridInt == null || hasOcean == false) return -1;
+        //return distance, so -1 
+        return grid[gridInt[0]][gridInt[1]] - 1;
+    }
+}
