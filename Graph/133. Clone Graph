@@ -1,0 +1,66 @@
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> neighbors;
+    public Node() {
+        val = 0;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val) {
+        val = _val;
+        neighbors = new ArrayList<Node>();
+    }
+    public Node(int _val, ArrayList<Node> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+}
+*/
+class Solution {
+    /*
+    BFS
+
+    How to clone
+        create a HashMap
+        That HashMap is (oldNode, clonedNoe) pairs
+        We use the node in the input map as the key and our created new node as the value
+        Using BFS to visit all the node in certain order
+        if the node pair has already exist(that node has been visited)
+            add the neighbor into the clonedNode's neighbor
+        if has not been visited
+            add new pair
+        in the end return the first node
+    */
+    public Node cloneGraph(Node node) {
+        if(node == null) return null;
+        //oldnode newnode pairs
+        HashMap<Node, Node> myMap = new HashMap<>();
+        //put the first node into this map as key and a new node as value, that new node has the same value of old one but doesnt have the neighbor nodes 
+        myMap.put(node, new Node(node.val, new ArrayList<Node>()));
+        //BFS needed
+        Deque<Node> queue = new LinkedList<>();
+        queue.add(node);
+
+        while(!queue.isEmpty()){
+            Node tmpNode = queue.poll();
+            for(Node neighbor: tmpNode.neighbors){
+                //if the neighbor node has not been visited, and no pair of this node have been created in HashMap
+                if(!myMap.containsKey(neighbor)){
+                    //create a new pair for this neighbor node
+                    myMap.put(neighbor, new Node(neighbor.val, new ArrayList<Node>()));
+                    queue.add(neighbor);
+                }
+                //if myMap contains the neighbor, which means we have already visited this node, so we don't have to create a new pair and add that node into the queue
+                //.get(tmpNode) will get the new cloned node
+                //.neighbors will get the neighbors of that cloned node which is an arraylist
+                //.add is the arraylist method
+                //myMap.get is getting the cloned neighbor in hashmap and give it to the tmp node
+                //this function is for adding cloned neighbor node into the tmp node's neighbors array
+                myMap.get(tmpNode).neighbors.add(myMap.get(neighbor));
+            }
+        }
+        //just return the first one
+        return myMap.get(node);
+    }
+}
