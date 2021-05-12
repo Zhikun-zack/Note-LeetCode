@@ -1,0 +1,72 @@
+class Solution {
+    /*
+    Improvement of three (16 3Sum)
+
+    Four pointers
+    Two fixed two move
+    Add some special situation judgement in each for loop to make the time faster
+    T: O(n^3)
+    S: O(n^2)
+    */
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        
+        int len = nums.length;
+        List<List<Integer>> res = new ArrayList<>();
+        if(len < 4){return res;}
+        Arrays.sort(nums);
+
+        for(int p1 = 0; p1 < len - 3; p1++){
+            //Array is sorted, so same value will be neighbor
+            //if it is equal to the former value, the result no matter whether find or not will be the same 
+            if(p1 > 0 && nums[p1] == nums[p1-1]){
+                continue;
+            }
+            //min sum that we can get in this loop, if it is larger than target, the latter sum will always larger than target
+            int minSum = nums[p1] + nums[p1+1] + nums[p1+ 2] + nums[p1+3];
+            if(minSum > target){break;}
+
+            //max sum in this loop, difference between the min sum is that, the max sum of this loop is not the max sum in the whole loop, so the max sum of next loop will larger than this value, so we cannot break. But the min sum of this loop should be the min sum of the left all loops.
+            int maxSum = nums[p1] + nums[len-3] + nums[len-2] + nums[len-1];
+            //Only can use continue not break
+            if(maxSum < target){continue;}
+
+            for(int p2 = p1+1; p2 < len-2; p2++){
+                if(p2 > p1+1 && nums[p2] == nums[p2-1]){
+                    continue;
+                }
+                
+                int p3 = p2+1, p4 = len-1;
+
+                int minSum2 = nums[p1] + nums[p2] + nums[p3] + nums[p3+1];
+                if(minSum2 > target){
+                    break;
+                }
+                //same as before
+                int maxSum2 = nums[p1] + nums[p2] + nums[p4-1] + nums[p4];
+                if(maxSum2 < target){
+                    continue;
+                }
+
+                while(p3 < p4){
+                    int currSum = nums[p1] + nums[p2] + nums[p3] + nums[p4];
+                    if( currSum == target ){
+                        res.add(Arrays.asList(nums[p1], nums[p2], nums[p3], nums[p4]));
+                        p3++;
+                        while(p3 < p4 && nums[p3] == nums[p3-1]){
+                            p3++;
+                        }
+                        p4--;
+                        while(p3 < p4 && nums[p4] == nums[p4+1]){
+                            p4--;
+                        }
+                    }else if(currSum < target){
+                        p3++;
+                    }else{
+                        p4--;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+}
