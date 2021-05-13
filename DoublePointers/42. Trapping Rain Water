@@ -1,0 +1,40 @@
+class Solution {
+    /*
+    Double Pointers
+
+    Start from two sides
+    The size of trapping water is defined by the less height
+    So if left height is less than right height
+        calculate in left
+    if right is less than left
+        calculate in right
+    predefine two max value: left max and right max
+        if left height of that pointer is less than left max, 
+            trap water, update the size of water
+        if left height of that pointer is larger than left max
+            not trap water, update max left
+        same as right
+
+    T Com On
+    S Com O1
+    */
+    public int trap(int[] height) {
+        int res = 0;
+        int len = height.length;
+        int l = 0, r = len - 1;
+        int maxL = 0, maxR = 0;
+        while(l < r){
+            if(height[l] < height[r]){
+                if(height[l] > maxL) maxL = height[l];
+                res += maxL - height[l];
+                l++;
+            }
+            else{
+                if(height[r] > maxR) maxR = height[r];
+                res += maxR-height[r];
+                r--;
+            }
+        }  
+        return res;
+    }
+}
