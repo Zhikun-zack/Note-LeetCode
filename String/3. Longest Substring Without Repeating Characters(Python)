@@ -1,0 +1,13 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        resString = "";
+        tempString = "";
+        for i in s:
+            if i not in tempString:
+                tempString+=i;
+            else:
+                tempString = tempString[tempString.index(i) + 1:];
+                tempString += i;
+            if(len(tempString) > len(resString)):
+                resString = tempString;
+        return len(resString);
