@@ -1,0 +1,25 @@
+class Solution:
+    #Expand function
+    def expand(self, s, starter, end):
+        n = len(s)
+        while end < n and starter >= 0 and s[starter] == s[end]:
+            starter -= 1
+            end +=1
+        #the last loop will stop at the judgement situation,which means we should not take these value when start and end are equal to those value, but the start and end value have been changed, so we have to change them back to the one loop ahead and those values are the last suitable value pair.
+        return starter + 1, end - 1
+
+    def longestPalindrome(self, s: str) -> str:
+        #final result's pointers
+        l, r = 0,0
+        for i in range(len(s)):
+            #When len is even
+            leven, reven = self.expand(s, i, i+1)
+            #When len is odd
+            lodd, rodd = self.expand(s, i, i)
+            if reven - leven > r - l:
+                l = leven
+                r = reven
+            if rodd - lodd > r - l:
+                l = lodd
+                r = rodd
+        return s[l: r+1]
