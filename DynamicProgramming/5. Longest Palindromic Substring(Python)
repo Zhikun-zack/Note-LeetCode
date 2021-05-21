@@ -1,0 +1,40 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        #string only have one character
+        if n < 2:
+            return s
+        #dp array fill with false
+        dp = [[False]*n for i in range(n)]
+        #dp[i][i] is when the substring's len is one, always true
+        for i in range(n):
+            dp[i][i] = True
+        
+    #!!!dp[i][i] is true so the min of this var is 1
+        maxLen = 1
+        begin = 0
+
+        #We have already consider the len == 1 situation so len should start from 2 in range [2,n+1)
+        for l in range(2, n+1):
+            #left pointer in range[0, n), cannot be n because len is larger than 1
+            for i in range(n):
+                #len = right - left + 1
+                j = l+i-1
+
+                #right out of range
+                if(j >= n):
+                    break
+
+                if s[i] != s[j]:
+                    dp[i][j] = False
+                else:
+                    ###!!!!when len is less than 3, i+1 will larger than j-1, so we need to pick this situation out from all situations
+                    if l < 3:
+                        dp[i][j] = True
+                    else:
+                        dp[i][j] = dp[i+1][j-1]
+                #store the max value
+                if maxLen < l and dp[i][j]:
+                    maxLen = l
+                    begin = i
+        return s[begin: begin+maxLen]
