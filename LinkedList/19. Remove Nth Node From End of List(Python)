@@ -1,0 +1,21 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        fast = head
+        dummy = ListNode(0, head)
+        slow = dummy
+        #Traverse the fast pointer to certain position make it nth step ahead of slow pointer
+        for i in range(n):
+            fast = fast.next
+        #Loop until fast is None
+        while fast:
+            fast = fast.next
+            slow = slow.next
+        #fast is at the end and slow is one step ahead of the nth node
+        slow.next = slow.next.next
+
+        return dummy.next
