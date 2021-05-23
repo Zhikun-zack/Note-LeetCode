@@ -1,0 +1,16 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        def dfs(S, left, right):
+            if len(S) == 2*n:
+                res.append(S)
+            if left < n:
+
+                dfs(S+"(", left+1, right)
+
+            if right < left:
+
+                dfs(S+")", left, right+1)
+        
+        dfs("", 0, 0)
+        return res
