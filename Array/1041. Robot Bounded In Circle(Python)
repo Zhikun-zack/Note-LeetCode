@@ -1,0 +1,13 @@
+class Solution:
+    def isRobotBounded(self, instructions: str) -> bool:
+        dirs = [[0, 1], [-1, 0], [0, -1], [1, 0]]
+        x, y = 0, 0
+        dirsIndex = 0
+        for i in instructions:
+            if i == 'G':
+                x, y = x + dirs[dirsIndex%4][0], y + dirs[dirsIndex%4][1]
+            if i == "L":
+                dirsIndex += 1
+            if i == "R":
+                dirsIndex -= 1
+        return (x == 0 and y == 0) or dirsIndex%4 != 0
