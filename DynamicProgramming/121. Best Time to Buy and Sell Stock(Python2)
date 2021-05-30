@@ -1,0 +1,13 @@
+#find the smallest one not using DP
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        prifit = 0
+        byPrice = prices[0]
+        n = len(prices)
+        
+        for i in range(n):
+            if prices[i] < byPrice:
+                byPrice = prices[i]
+            else:
+                prifit = max(prifit, prices[i] - byPrice)
+        return prifit
