@@ -1,0 +1,27 @@
+class Solution:
+    #Compare adjacent words
+    def isAlienSorted(self, words: List[str], order: str) -> bool:
+        n = len(words)
+        #only one element, must true
+        if n == 1: return True
+        
+        for i in range(0, n-1):
+            #former word's len
+            len1 = len(words[i])
+            #Latter word's len
+            len2 = len(words[i+1])
+            #Visit letter in two words
+            for j in range(len1):
+                #If j >= len2 and the former letters are all the same e.g.: apple app
+                if j >= len2: return False
+                #letters are same, jump to next loop
+                if words[i][j] == words[i+1][j]:
+                    continue
+                #if not same
+                else:
+                    if order.index(words[i][j]) > order.index(words[i+1][j]):
+                        return False
+                    break
+
+        return True
+             
