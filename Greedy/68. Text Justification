@@ -1,0 +1,53 @@
+class Solution:
+    #tell us how to seperate the problem, seperate the problem to two part: 1. split the words list to several lines 2. add blanks to each interval
+    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
+        res = []
+        line = ""
+        currLen, currWords = 0, []
+        
+        for word in words:
+            wordLen = len(word)
+            #if len of blanks + len of new added word + sum len of all added words < maxLen, add this word
+            if len(currWords) + wordLen + currLen <= maxWidth:
+                currLen += wordLen
+                currWords.append(word)
+            #len out of range, add blank and append to res list
+            else:
+                res.append(self.addBlank( currWords, maxWidth, currLen ))
+                #not add the new word, give it to second line
+                currLen = wordLen
+                currWords = [word]
+        #Last line
+        if currLen > 0:
+            #last line string
+            currLine = ""
+            m = len(currWords)
+            #visit all the left words and add a blank for each one except the last one
+            for i in range(m-1):
+                currLine += currWords[i]
+                currLine += " "
+            #add the last word
+            currLine += currWords[-1]
+            #fill the empty with blank
+            currLine += " " * (maxWidth - len(currLine))
+            res.append(currLine)
+        return res
+
+    #for adding blanks to each words, take list return string
+    def addBlank(self, currWords: List[str], maxWidth: int, currLen: int):
+        #string to return
+        addedStr = ""
+        n = len(currWords)
+        #how many blanks to add
+        totalNumBlank = maxWidth - currLen
+        
+        if n == 1: return currWords[0] + " " * totalNumBlank
+        #how many blanks to add to each inverval
+        eachNumBlank = totalNumBlank // (n - 1)
+        #the extra blank: e.g. there are three intervals and can add 11 blanks, then each inverval will add 3 blanks and the first two will add one extra blank each
+        extraNumBlank = totalNumBlank % (n - 1)
+        
+        for i in range(n-1):
+            addedStr += currWords[i] + (" " *( eachNumBlank+1) if i<extraNumBlank else " " * eachNumBlank)
+        addedStr += currWords[-1]
+        return addedStr
