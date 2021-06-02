@@ -1,0 +1,19 @@
+class Solution:
+    def isValid(self, s: str) -> bool: 
+        myStack = []
+        for i in s:
+            if i == "(":
+                myStack.append(")")
+            elif i == "{":
+                myStack.append("}")
+            elif i == "[":
+                myStack.append("]")
+            elif (len(myStack) == 0 or i != myStack.pop()):
+                
+                return False
+        return len(myStack) == 0
+                
+            
+            
+         
+        
