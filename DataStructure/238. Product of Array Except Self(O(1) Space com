@@ -1,0 +1,20 @@
+class Solution:
+    # Save up space
+    # Not create left and right lists
+    # just create one list to store left production
+    # then create a var to store the right production
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        #first store left production then multiply by R get the result
+        res = [0]*n
+        res[0] = 1
+        #store the right production
+        R = 1
+        #fill left
+        for i in range(1,n):
+           res[i] = res[i-1] * nums[i-1]
+        #calculate right and fill the final result
+        for i in reversed(range(n-1)):
+            R *= nums[i+1]
+            res[i] *= R
+        return res
