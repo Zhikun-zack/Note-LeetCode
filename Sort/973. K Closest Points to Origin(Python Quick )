@@ -1,0 +1,34 @@
+class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        self.quickSort(points, 0, len(points) - 1, k)
+        return points[: k]
+    
+    def calDist(self, points, pIndex):
+        return points[pIndex][0]**2 + points[pIndex][1]**2
+    
+    def quickSort(self, points, low, end, k):
+
+        l = low
+        r = end
+        #print ( r)
+        while l < r :
+            while self.calDist(points, r) >= self.calDist(points, low) and l < r:
+                r -= 1
+            while self.calDist(points, l) <= self.calDist(points, low) and l < r:
+                #print (l)
+                l += 1
+            
+            if l < r:
+                self.swap(points, l, r)
+            
+        self.swap(points, low, r)
+        
+        if k < (l - low + 1):
+            self.quickSort(points, low, l -1, k)
+        elif k > (l - low + 1):
+            self.quickSort(points, l +1 , end, k - (l - low + 1))
+            
+    def swap (self,points,  l, r):
+        tmp = points[l]
+        points[l] = points[r]
+        points[r] = tmp
