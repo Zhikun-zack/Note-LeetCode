@@ -1,0 +1,19 @@
+class Solution:
+    # seperate the production into two part
+    # left and  right
+    # calculate the left and right seperately 
+    # then multiply
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        r, l, res = [0]*n , [0]*n, [0]*n
+        l[0] = 1
+        r[-1] = 1
+        
+        for i in range(1, n):
+            l[i] = l[i-1] * nums[i-1]
+        for j in reversed(range(n-1)):
+            r[j] = r[j+1] * nums[j+1]
+        for k in range(n):
+            res[k] = l[k] * r[k]
+        
+        return res
