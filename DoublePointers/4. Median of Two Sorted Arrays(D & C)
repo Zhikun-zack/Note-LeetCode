@@ -1,0 +1,29 @@
+class Solution:
+    #Divide and conquer
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        n, m = len(nums1), len(nums2)
+        #calculate the order of median not index
+        k1 = (n+m) // 2 + 1
+        #in case the len of list is even
+        k2 = (n+m-1) // 2 + 1
+        return (self.dc(nums1, nums2, k1) + self.dc(nums1,nums2, k2)) / 2
+    #find the kth number which is the k-1 index number   
+    def dc (self, nums1, nums2, k):
+        #make sure nums2 shorter than nums1
+        if len(nums2) > len(nums1):
+            nums1, nums2 = nums2, nums1
+        #when shorter one is empty, return the larger one 
+        if len(nums2) == 0:
+            return nums1[k-1]
+        #k == 1 means find the first one, find the 0 index one
+        if k == 1:
+            return min(nums1[0], nums2[0])
+        #update k and make sure k will not larger than length of list
+        t = min(len(nums2), k//2) #each time we will subtract half of the list's selected part which is half of the k
+        
+        if nums1[t-1] > nums2[t-1]:
+            #numbers before and include the nums2[t-1] will not include median
+            return self.dc(nums1, nums2[t:] , k - t)
+        else:
+            #number before and include the num1[t-1] will not
+            return self.dc(nums1[t:], nums2, k-t)
