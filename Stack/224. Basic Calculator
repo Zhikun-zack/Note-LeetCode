@@ -1,0 +1,36 @@
+class Solution:
+    def calculate(self, s: str) -> int:
+        n = len(s)
+        if n == 1: return s[0]
+        myStack = []
+        res = 0
+        sign = 1
+        i=0
+        while i < n:
+            if s[i] == "(":
+                myStack.append(res)
+                myStack.append(sign)
+                res = 0
+                sign = 1
+                i += 1
+            elif s[i] == ")":
+                res *= myStack.pop()
+                res += myStack.pop()
+                i+=1
+            elif s[i] == "-":
+                sign = -1
+                i+=1
+            elif s[i] == "+":
+                sign = 1
+                i+=1
+            elif s[i] == " ":
+                i+=1
+                continue
+            else:
+                nums = 0
+                #two while is ok, but for loop contains one while loop, wrong
+                while i< n and s[i].isdigit():
+                    nums = nums*10 + ord(s[i]) - ord('0')
+                    i+=1
+                res += nums*sign
+        return res
