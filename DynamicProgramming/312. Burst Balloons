@@ -1,0 +1,24 @@
+class Solution:
+    #DP
+    def maxCoins(self, nums: List[int]) -> int:
+        
+        nums.insert(0, 1)
+        nums.insert(len(nums), 1)
+        n = len(nums) #n >= 3 (added two values)
+        dp = [[0] * (n) for i in range(n)]
+        
+        #length of range
+        for i in range(2, n):
+            #left bound
+            for j in range(0, n - i):
+                maxDp = 0
+                for k in range(j+1, j+i):
+                    currDp = dp[j][k] + dp[k][j+i] + nums[j+i]*nums[j]*nums[k]
+                    if currDp > maxDp:
+                        maxDp = currDp
+                dp[j][j+i] = maxDp
+        
+        return dp[0][n-1]
+        
+
+                
