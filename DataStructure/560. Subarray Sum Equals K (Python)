@@ -1,0 +1,15 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        nums_dict = {}
+        nums_sum = count = 0
+        for num in nums:
+            nums_sum += num
+            if nums_sum == k:
+                count += 1
+            if nums_sum - k in nums_dict:
+                count += nums_dict[nums_sum-k]
+            if nums_sum in nums_dict:
+                nums_dict[nums_sum] += 1
+            else:
+                nums_dict[nums_sum] = 1
+        return count
