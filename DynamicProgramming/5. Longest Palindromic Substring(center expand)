@@ -1,0 +1,33 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        start, end = 0, 0
+        #center point
+        for i in range(len(s)):
+            #odd length
+            s1, e1 = self.expandCenter(s, i, i)
+            #even length
+            s2, e2 = self.expandCenter(s, i, i+1)
+            if e1 -s1 > end - start:
+                start = s1
+                end = e1
+            if e2 - s2 > end -start:
+                start = s2
+                end = e2
+        return s[start: end+1]
+        
+    def expandCenter(self,s, start, end) -> int:
+        #expand from center, must using this judgement!!!
+        '''
+         while start-1 >= 0 and end+1 < len(s) and s[start] == s[end]:
+            start -= 1
+            end += 1
+        
+        return start, end
+        '''
+        #codes above will not get correct answer, because when s[start] = s[end] but start-1 not larger than 0, end + 1 not < len, this situation will not be consider but actually we should calculate it.
+        #e.g. bab, center is a. when after first loop, s[start] == s[end] but start - 1 < 0, even though this situation is correct, it will not be considered
+        while start >= 0 and end < len(s) and s[start] == s[end]:
+            start -= 1
+            end += 1
+        
+        return start+1, end-1
