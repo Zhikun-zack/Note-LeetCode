@@ -1,0 +1,21 @@
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        dp = [[False] * n for i in range(n)]
+        res = ""
+        maxLen = 0
+        #length
+        for i in range(n):
+            dp[i][i] = True
+            res = s[i: i+1]
+        for j in range(1,n):
+            for i in range(n-j):
+                if j == 1:
+                    dp[i][i+j] = s[i] == s[i+j]
+                else:
+                    dp[i][i+j] = dp[i+1][i+j-1] and s[i] == s[i+j]
+                
+                if dp[i][i+j] == True and maxLen < j:
+                    maxLen = j
+                    res = s[i: i+j+1]
+        return res
