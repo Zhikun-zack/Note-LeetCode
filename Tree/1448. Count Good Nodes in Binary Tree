@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+#Good nodes mean that it is larger than all the nodes in this path ==> it is larger than the max value before it
+class Solution:
+    def __init__(self):
+        self.count = 0
+    def goodNodes(self, root: TreeNode) -> int:
+        def dfs(node: TreeNode, maxValue: int):
+            if not node: return 
+            else:
+                if node.val >= maxValue:
+                    self.count += 1
+                    maxValue = node.val
+                dfs(node.left, maxValue)
+                dfs(node.right, maxValue)
+        dfs(root, float("-inf")) 
+        return self.count
+                    
