@@ -1,0 +1,16 @@
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        n = len(s)
+        resList = ["" for i in range(n)]
+        res = ""
+        line = 0
+        flag = -1
+        
+        for i in range(n):
+            resList[line] += s[i]
+            if line == 0 or line == numRows - 1:
+                flag = -flag
+            line += flag
+        return "".join(resList)
+                
+                
