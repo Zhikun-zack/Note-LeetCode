@@ -1,0 +1,16 @@
+#Pick up the first element and compare with the elements left,each time update the common prefix
+#Example 1: pick up "flower", first compare with "flow", common changed to "flow", then compare with "flight", common changed to "fl"
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        minLen = float("inf")
+        res = strs[0]
+       
+        for i in range(1, len(strs)):
+            index = 0
+            for j in range(min(len(res), len(strs[i]))):
+                if res[j] == strs[i][j]:
+                    index += 1
+                else:
+                    break
+            res = res[0: index]
+        return res
