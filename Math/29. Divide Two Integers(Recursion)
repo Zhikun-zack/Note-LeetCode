@@ -1,0 +1,21 @@
+#Cannot using recursion, if dividend is -2147483648 and divisor is -1, running too much time
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        if dividend == 0:
+            return 0
+        if dividend * divisor < 0:
+            flag = -1
+        else:
+            flag = 1
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+        res = self.calculate(dividend, divisor, 0)
+        return res * flag
+    def calculate(self, dividend, divisor, result):
+        if dividend < divisor:
+            return result
+        else:
+            dividend -= divisor
+            result += 1
+            return self.calculate(dividend, divisor, result)
+        
