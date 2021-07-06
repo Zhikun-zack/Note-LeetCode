@@ -1,0 +1,39 @@
+#T: O(m*n)
+#S O(1)
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        n, m = len(needle), len(haystack)
+        i, j = 0, 0
+
+        nxt = self.get_Next(needle)
+        while i < m and j < n:
+            if haystack[i] == needle[j]:
+                i += 1
+                j += 1
+            elif j != 0:
+                j = nxt[j-1]
+            else:
+                i += 1
+        if j == n:
+            return i-j
+        else:
+            return -1
+                
+        
+    def get_Next(self, needle):
+        i = 1
+        j = 0
+        n = len(needle)
+        nextList = [0] * n
+         
+        while i < n:
+            if needle[j] == needle[i]:
+                nextList[i] = j+1
+                j += 1
+                i += 1
+            elif j != 0:
+                j = nextList[j-1]
+            else:
+                nextList[i] = 0
+                i += 1
+        return nextList
