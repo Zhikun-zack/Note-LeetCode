@@ -1,0 +1,17 @@
+#T: O(m*n)
+#S O(1)
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        n, m = len(haystack), len(needle)
+        if m == 0:
+            return 0
+        if n < m:
+            return -1
+        for i in range(n-m+1):
+            a, b = i, 0
+            while( b < m and haystack[a] == needle[b]):
+                a += 1
+                b += 1
+            if b == m:
+                return i
+        return -1
