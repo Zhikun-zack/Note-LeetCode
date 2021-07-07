@@ -1,0 +1,39 @@
+"""
+in example [1, 2, 3]
+create a tree
+first pick up any three values
+then pick up any two left values
+then pick up the last one
+then roll back to the second step
+then roll back to the first step and return all results
+
+O(n*n!)
+O(n!)
+"""
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        #res not only is the final result, but also the result for the internal loop
+        # if len is 1, return [nums[:]], if len is not 1, return res
+        res = []
+        if (len(nums) == 1):
+            return [nums[:]]
+        
+        for i in range(len(nums)):
+            #pop first element
+            p = nums.pop(0)
+            
+            perms = self.permute(nums)
+            
+            for perm in perms:
+                perm.append(p)
+            res.extend(perms)
+            #print(res)
+            #insert the poped element back to list, so that the size of that level's list will not change but the next time will pop different value
+            '''
+            e.g. [1, 2, 3] pop 1 ==> [2, 3]
+                 append 1 back   ==> [2, 3, 1]
+                 next loop, pop(0) will pop 2
+            '''      
+            nums.append(p)
+        
+        return res
