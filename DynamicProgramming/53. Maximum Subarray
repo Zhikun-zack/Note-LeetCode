@@ -1,0 +1,10 @@
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        cSub = maxSub = nums[0]
+        
+        for num in nums[1:]:
+            #because the problem need contigious substring ,so either subString + num or num itself(remove all the substring above it)
+            cSub = max(cSub+num, num)
+            maxSub = max(maxSub, cSub)
+        return maxSub
+            
