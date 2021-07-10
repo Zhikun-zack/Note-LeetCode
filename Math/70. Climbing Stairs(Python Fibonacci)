@@ -1,0 +1,6 @@
+#Fibonacci array
+#https://leetcode-cn.com/problems/climbing-stairs/solution/hua-jie-suan-fa-70-pa-lou-ti-by-guanpengchn/
+class Solution:
+    def climbStairs(self, n: int) -> int:
+        return (int)((((1+math.sqrt(5)) / 2)**(n+1) - ((1-math.sqrt(5) )/ 2)**(n+1))/math.sqrt(5))
+   
