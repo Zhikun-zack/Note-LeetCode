@@ -1,0 +1,11 @@
+#时间复杂度：O(1)，由于内置的 exp 函数与 log 函数一般都很快，我们在这里将其复杂度视为 O(1)O(1)。
+#空间复杂度：O(1)
+
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        if x < 2:
+            return x
+        
+        left = int(math.exp(0.5*math.log(x)))
+        right = left + 1
+        return right if right*right <= x else left
