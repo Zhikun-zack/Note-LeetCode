@@ -1,0 +1,33 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+#First make a loop last.next = head, Then k%len, Then len - k, this is the time that head need to move
+class Solution:
+    def rotateRight(self, head: ListNode, k: int) -> ListNode:
+        if k == 0 or not head or not head.next:
+            return head
+        
+        p = head
+        lenCount = 1
+        while p.next != None:
+            p = p.next
+            lenCount += 1
+        
+        k %= lenCount
+        if k == 0: return head
+        
+        p.next = head
+        
+        #range is important
+        for i in range(lenCount - k):
+            p = p.next
+        res = p.next
+        p.next = None
+        
+        return res
+            
+            
+            
