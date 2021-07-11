@@ -1,0 +1,24 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        return self.findValid(root, float("-inf"), float("inf"))
+    #input params: root node: TreeNode, lower bound: Integer, Upperbound: Integer
+    def findValid(self, root, lower, upper):
+        if not root:
+            return True
+        
+        #if node's value less than lower bound or larger than upper bound, return False
+        if root.val <= lower or root.val >= upper:
+            return False
+        #verify node.left, left should less than the node, so upper bound change to root.val
+        if not self.findValid(root.left, lower, root.val):
+            return False
+        #Verify node.right, right should larger than the node, so lower bound changed
+        if not self.findValid(root.right, root.val, upper):
+            return False
+        return True
