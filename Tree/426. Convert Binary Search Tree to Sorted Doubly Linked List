@@ -1,0 +1,34 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+"""
+#O(n)
+#O(n) We have to keep a recursion stack of the size of the tree height, which is \mathcal{O}(\log N)O(logN) for the best case of completely balanced tree and \mathcal{O}(N)O(N) for the worst case of completely unbalanced tree.
+class Solution:
+    def treeToDoublyList(self, root: 'Node') -> 'Node':
+        if not root:
+            return None
+        
+        self.first = None
+        self.last = None
+        self.inorderT(root)
+        self.last.right = self.first
+        self.first.left = self.last
+        return self.first
+        
+    def inorderT(self, node):
+        if not node: return
+        
+        self.inorderT(node.left)
+        if self.last:
+            self.last.right = node
+            node.left = self.last
+        #self.last is None, which is the first time to run these code, so the node at that time is the first node in Linkedlist, store that node, and then in the latter recursion will not run this part of code
+        else:
+            self.first = node
+        self.last = node
+        self.inorderT(node.right)
