@@ -1,0 +1,13 @@
+#Statistic the appearing time of each letter, the center letter can have odd appearing time but the other must be even
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        chr_freq = collections.Counter(s)
+
+        flag = 0        #最多允许一个出现频率freq为奇数的字母，置于中间
+        odd_freq_cnt = 0    #出现频率freq为奇数的字母个数
+        for chr, freq in chr_freq.items():
+            if freq % 2 == 1:
+                flag = 1
+                odd_freq_cnt += 1
+        
+        return len(s) - odd_freq_cnt + flag #only keep even and one odd
