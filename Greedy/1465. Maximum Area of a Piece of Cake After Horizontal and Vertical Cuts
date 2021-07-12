@@ -1,0 +1,22 @@
+#largest size decided by the largest h interval * largest v interval
+#So we just need to sorted the lists first and find the largest intervals of both direction
+#O(N⋅log(N)+M⋅log(M))
+#O(1)
+class Solution:
+    def maxArea(self, h: int, w: int, horizontalCuts: List[int], verticalCuts: List[int]) -> int:
+        #Sorted first!!!
+        horizontalCuts.sort()
+        verticalCuts.sort()
+        hMax = max(horizontalCuts[0], h-horizontalCuts[-1])
+        vMax = max(verticalCuts[0], w-verticalCuts[-1])
+        hLen = len(horizontalCuts)
+        vLen = len(verticalCuts)
+
+        for i in range(hLen-1):
+            hMax = max(hMax, horizontalCuts[i+1] - horizontalCuts[i])
+        for j in range(vLen-1):
+
+            vMax = max(vMax, verticalCuts[j+1] - verticalCuts[j])
+
+        #return this modulo 109 + 7
+        return (hMax * vMax) % (10**9 + 7)
