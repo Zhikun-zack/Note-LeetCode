@@ -1,0 +1,35 @@
+'''
+Fist static all characters and appearing frequency
+Then if the largest frequency larger than half of len (rounded up) return ""
+Then add all elements into a list
+    if frequency == len//2+1, add it to even positions
+    other letters will be added to odd positions
+'''
+class Solution:
+    def reorganizeString(self, s: str) -> str:
+        n = len(s)
+        if n < 2:
+            return s
+        
+        counter = collections.Counter(s)
+        print(counter)
+        print(counter.items())
+        maxCount = max(counter.items(), key = lambda x: x[1])[1]
+        if maxCount > (n+1)//2:
+            return ""
+        res = [""] * n
+        #start from 0, then first, third position will be even
+        even, odd = 0, 1
+        halfLen = n // 2
+        for c, count in counter.items():
+            while count > 0 and count <= halfLen and odd < n:
+                res[odd] = c
+                count -= 1
+                odd += 2
+            #count can only equal to halfLen + 1, because if it is larger than halfLen +1, no res will be found
+            while count > 0:
+                res[even] = c
+                count -= 1
+                even += 2
+                
+        return "".join(res)
