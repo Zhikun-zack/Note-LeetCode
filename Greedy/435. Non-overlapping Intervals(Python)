@@ -1,0 +1,12 @@
+#Greedy
+class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        res = 0
+        
+        intervals.sort(key = lambda x: x[0])
+        for i in range(len(intervals)):
+            if i > 0 and intervals[i][0] < intervals[i-1][1]:
+                res += 1
+                #delete one interval, choose the interval which right edge is most left.
+                intervals[i][1] = min(intervals[i][1], intervals[i-1][1])
+        return res
