@@ -1,0 +1,24 @@
+#Double Pointer
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        n = len(s)
+        low, high = 0, n-1
+        while low < high:
+            if s[low] == s[high]:
+                low += 1
+                high -= 1
+            else:
+                #This is a return, so we will return T or F here and stop the whole program, will not execute this code twice
+                return self.findPalindrome(s, low, high-1) or self.findPalindrome(s, low+1, high)
+        return True
+        
+    def findPalindrome(self, s, low, high):
+        i, j = low, high
+        while i<j:
+            if s[i] != s[j]:
+                return False
+            i += 1
+            j -= 1
+        return True
+    
+        
