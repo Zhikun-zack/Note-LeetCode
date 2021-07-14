@@ -1,0 +1,21 @@
+#Calculate the smallest idle time unit
+#https://leetcode.com/problems/task-scheduler/solution/
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        #calculate the frequency of each letter in the tasks string
+        frequency = [0] * 26
+        for t in tasks:
+            frequency[ord(t) - ord('A')] += 1
+        #Find the most frequent letter
+        frequency.sort()
+        
+        f_mx = frequency.pop()
+        #max idle time length
+        idle_time = (f_mx - 1) * n
+        
+        while frequency and idle_time > 0:
+            #if frequency.pop() == f_mx, then we have to set the last frequnecy.pop() to the position right behind the last f_mx, which is not the idle time,
+            idle_time -= min(f_mx-1, frequency.pop())
+        if idle_time < 0:
+            idle_time = 0
+        return idle_time + len(tasks)
