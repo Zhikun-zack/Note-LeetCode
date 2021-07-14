@@ -1,0 +1,25 @@
+
+#using one pointer and two loops
+#O(n)
+#O(1)
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        #saving header of the loop
+        p = 0
+        #for loop through all elements
+        #first loop for 0
+        for i in range(n):
+            #if value is 0, exchange the value of header and i
+            if nums[i] == 0:
+                nums[i], nums[p] = nums[p], nums[i]
+                p += 1
+        #second for 1, then 2 is fixed
+        for j in range(p, n):
+            if nums[j] == 1:
+                nums[j], nums[p] = nums[p], nums[j]
+                p+=1
+         
