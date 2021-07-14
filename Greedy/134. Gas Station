@@ -1,0 +1,21 @@
+#Solve in one loop
+class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        n = len(gas)
+        #total tank used to find out whether there exists a solution
+        totalTank = 0
+        #current tank used to find out whether the car can move from station i to next station
+        currTank = 0
+        #store the starter index
+        startStation = 0
+        
+        #one loop
+        for i in range(n):
+            totalTank += gas[i] - cost[i]
+            currTank += gas[i] - cost[i]
+            #if curr < 0, car cannot go to the next station, so change the starter and reverse all value in currentTank, regard the next station as the starter
+            if currTank < 0:
+                startStation = i+1
+                currTank = 0
+            
+        return startStation if totalTank >= 0 else -1
