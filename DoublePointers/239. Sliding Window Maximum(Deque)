@@ -1,0 +1,49 @@
+#https://leetcode-cn.com/problems/sliding-window-maximum/solution/hua-dong-chuang-kou-zui-da-zhi-by-leetco-ki6m/
+#O(n)
+#O(k)
+"""
+Deque
+
+We need to find the second large value behind the largest value.
+Because if the largest value in the sliding window, no matter how to change, the former value will always less than the max value, so the result of that sliding window will always be that largest value, if the largest value is not in the sliding window, then the former value will definitly not in the sliding window.
+So we do not need to care about the second large value ahead of the largest value, just care about the value behind it.
+
+Create a deque
+if the deque is empty, push that value
+then loop 
+if the next value less than the smallest value in deque, push it, to maintain a decreasing order
+if the next value larger than the smallest value, pop value until the smallest value in deque is larger than that value
+after this loop, we still keep a decreasing deque
+new loop
+if the largest value is outside of the sliding window, popleft it
+
+we just create a deque and push and pop, we don't need to create a heapq so this way will be faster
+and also because the heapq will keep insert new value but may not pop old value so the size of it can be larger than k
+but this deque is always less than k
+"""
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        #q is a deque storing the index of value
+        q = collections.deque()
+        #first situation
+        for i in range(k):
+            while q and nums[i] >= nums[q[-1]]:
+                q.pop()
+            q.append(i)
+        
+        res = [nums[q[0]]]
+        #i is the end of the sliding window
+        for i in range(k, n):
+            #if the smallest value in deque is larger than the input value, pop it until smallest is larger than nums[i]
+            while q and nums[i] >= nums[q[-1]]:
+                q.pop()
+            q.append(i)
+            #if the largest value out of sliding window, pop it, res will append the second large value
+            while q[0] <= i-k:
+                q.popleft()
+            res.append(nums[q[0]])
+            
+        return res
+        
+        
