@@ -1,0 +1,39 @@
+"""
+create a var to store the wordsDict
+In shortest:
+    using one loop to get the index of word1 and word2
+    update minDist when word1 or word2's location changed
+    
+Incorrect:
+    When the wordsDict is large
+    And we need to do several times of query
+    In each query operation: we need to visit all values in wordsDict
+    So using A to represent the query time
+    The t complexity of this solution is O(A*N)
+    If A is extremely large, then this solution will cost many times.
+"""
+class WordDistance:
+
+    def __init__(self, wordsDict: List[str]):
+        self.wordsOriginal = wordsDict
+
+    def shortest(self, word1: str, word2: str) -> int:
+        i1, i2 = -1, -1
+        minDist = float("inf")
+        n = len(self.wordsOriginal)
+        
+        for i in range(n):
+            if self.wordsOriginal[i] == word1:
+                i1 = i
+                if i2 != -1:
+                    minDist = min(abs(i1-i2), minDist)
+            elif self.wordsOriginal[i] == word2:
+                i2 = i
+                if i1 != -1:
+                    minDist = min(abs(i1-i2), minDist)
+            
+        return minDist
+
+# Your WordDistance object will be instantiated and called as such:
+# obj = WordDistance(wordsDict)
+# param_1 = obj.shortest(word1,word2)
