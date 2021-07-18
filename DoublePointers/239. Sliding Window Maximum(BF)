@@ -1,0 +1,30 @@
+#BF incorrect
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        #if n == k, which means only one value 
+        if n == k:
+            return [self.findMax(nums, 0, n - 1)]
+        #first situation
+        maxVal = self.findMax(nums, 0, k-1)
+        res = [maxVal]
+        
+        for i in range(1, n-k+1):
+            #if the popped value less than max and new added value is also less than max, append max
+            if nums[i-1] < maxVal and nums[i+k-1] < maxVal:
+                res.append(maxVal)
+            #if the popped value less than max but the new added value is larger, then the max is new added value
+            elif nums[i-1] < maxVal and nums[i+k-1] >= maxVal:
+                maxVal = nums[i+k-1]
+                res.append(maxVal)
+            #if the popped value is the max, we need to find the max again
+            else:
+                maxVal = self.findMax(nums, i, i + k - 1)
+                res.append(maxVal)
+        return res      
+        
+    def findMax(self, nums, start, end):
+        resMax = float("-inf")
+        for i in range(start, end+1):
+            resMax = max(resMax, nums[i])
+        return resMax
