@@ -1,0 +1,28 @@
+#https://leetcode-cn.com/problems/sliding-window-maximum/solution/hua-dong-chuang-kou-zui-da-zhi-by-leetco-ki6m/
+#O(nlogn)
+#O(n)
+"""
+Create a heapq
+once move the window, update the heapq, append the first element in heapq
+"""
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        
+        #python's prior queue start from the smallest value, so we have to add minus 
+        q = [(-nums[i], i) for i in range(k)]
+        heapq.heapify(q)
+        
+        res = [-q[0][0]]
+        #i represent the end of the sliding window
+        for i in range(k, n):
+            #adding new value into the heapq
+            heapq.heappush(q, (-nums[i], i))
+            #make sure that the max is in the range of (i-k, i) in the sliding window
+            while q[0][1] <= i - k:
+                heapq.heappop(q)
+            #after while loop, largest value is in the range
+            res.append(-q[0][0])
+        return res
+            
+        
