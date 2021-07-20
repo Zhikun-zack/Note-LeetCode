@@ -1,0 +1,38 @@
+"""
+Mainly using DP, with the help of Binary search in the middle process
+1.combine all list together
+2.sorted this list by the end time
+3.create a dp list(dp list based on the number of jobs instead of the number of time intervals; e.g. len of dp in example 2 is 5 instead of 10)
+4.while loop
+    1.give the former dp value to the current dp
+    2.Using the binary search for finding the first job which end time is less than the start time of the current
+        Binary search range from 0 to i-1, which is the index of jobs,
+    3.if no such job, move to the dp[0]
+    4.update dp
+5.return final value
+"""
+class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        n = len(startTime)
+        res = list(zip(startTime, endTime, profit))
+        res.sort(key = lambda x: x[1])
+        #represent when we can chose i(i<n+1) jobs, what is the max value that we can get
+        dp = [0] * (n+1)
+        
+        for i in range(n):
+            #current job index is i, while it is related to dp[i+1]
+            dp[i+1] = dp[i]
+            l , r = 0, i-1
+            #using Binary search to find the first jobs which end time is less than the start time of the current job(interval between two jobs is min)
+            while l <= r:
+                mid = l + (r-l+1)//2
+                if res[i][0] >= res[mid][1]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+            #no such jobs exist, the first job's end time still larger than the start time, go to 0
+            #dp i+1 will be equal to original value or only the current job's profit
+            if r==0 and res[r][1]>res[i][0]:
+                r-=1 #r == 0, then r -1 will be -1, so when running the code below, dp[r+1] will be dp[0] which is 0            #because dp is n + 1, so dp[r] is related with res[r-1], inorder to make it match, we need to r ++
+            dp[i+1] = max(dp[i+1], dp[r+1] + res[i][2])
+        return dp[-1]
