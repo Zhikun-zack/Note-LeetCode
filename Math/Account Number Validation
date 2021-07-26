@@ -1,0 +1,16 @@
+  def process(line: str) -> str:
+    try:
+        check = int(line[2:8], 16)
+    except:
+        return "INVALID"
+    sumVal = 0
+    for i in str(check):
+        sumVal += int(i)
+    try:
+        if(int(line[0:2], 16) == sumVal):
+            return "VALID"
+        return "INVALID"
+    except:
+        return "INVALID"
+if __name__ == '__main__':
+    print(process('1CC0FfEE'))
