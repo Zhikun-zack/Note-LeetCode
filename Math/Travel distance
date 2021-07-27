@@ -1,0 +1,25 @@
+from math import acos, sin, cos, radians, floor
+RADIUS_MILES = 3963
+#regular expression
+import re
+#for storing all cities's location
+global city_loc
+city_loc = {}
+
+class DestinationCalculator:
+    def __init__(self):
+        pass
+    def process(self, line:str) -> str:
+        s = re.search(r'(.*):(.*):(.*):(.*)', line).groups() 
+        #if input is location
+        if s[0] == 'LOC':
+            cityName = s[1]
+            city_loc[cityName] = (float(s[2]), float(s[3]))
+            return s[1]
+        #if input is trip
+        else:
+            city1 = s[2]
+            city2 = s[3]
+            lat1, long1 = city_loc[city1]
+            lat2, long2 = city_loc[city2]
+    
