@@ -1,0 +1,23 @@
+'''
+Split to two parts: digits and letters,
+Sort letter part and plus digit part is the final result
+
+The sorted() in Python is implemented with the Timsort algorithm whose time complexity is O(N⋅logN).
+O(N)
+'''
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        lets, digs = [], []
+        #find whether it is digs or lets
+        dg = set('0123456789')
+        
+        for log in logs:
+            #split
+            iden, cont = log.split(' ')[0], log.split(' ')[1:]
+            if cont[0][0] in dg:
+                digs.append(log)
+            else:
+                lets.append(log)
+        #sort the letter part based on content and indentify
+        sorted_lets = sorted(lets, key = lambda x : (x.split()[1:], x.split()[0]))
+        return sorted_lets + digs
