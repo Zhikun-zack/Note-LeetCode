@@ -1,0 +1,45 @@
+'''
+find a user and get all possible 3 elements combinations of the web site that they visit
+'''
+class Solution:
+    def mostVisitedPattern(self, username: List[str], timestamp: List[int], website: List[str]) -> List[str]:
+        #combine all three lists together
+        info = defaultdict(lambda: [])
+        for i in range(len(username)):
+            info[username[i]].append((timestamp[i], website[i]))
+        #return the sorted list based on timestamp
+        for u in info:
+            info[u] = sorted(info[u])
+        #for storing the number of frequency of each patterns
+        patterns = defaultdict(lambda: 0)
+        for u in info:
+            #list of sites visited by one user
+            sites_comb = [t[1] for t in info[u]]
+            #return a dictionary key is the pattern and value is frequency
+            p = self.getPatterns(sites_comb)
+            for pattern in p:
+                patterns[pattern] += p[pattern]
+        
+        #return the max pattern, if pattern frequency is the same, then return based on the lexicographically order
+        max_pattern = None
+        for pattern in patterns:
+            if max_pattern is None:
+                max_pattern = pattern
+            else:
+                if patterns[pattern] == patterns[max_pattern]:
+                    #if the pattern's letter is former than max pattern
+                    if pattern < max_pattern:
+                        max_pattern = pattern
+                elif patterns[pattern] > patterns[max_pattern]:
+                    max_pattern = pattern
+
+        return max_pattern.split(';')
+        
+    def getPatterns(self, sites_comb):
+        n = len(sites_comb)
+        result = defaultdict(lambda: 0)
+        for i in range(n-2):
+            for j in range(i+1, n-1):
+                for k in range(j+1, n):
+                    result[sites_comb[i]+';'+sites_comb[j]+';'+sites_comb[k]] = 1
+        return result
