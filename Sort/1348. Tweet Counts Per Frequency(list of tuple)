@@ -1,0 +1,30 @@
+class TweetCounts:
+
+    def __init__(self):
+        self.tweet_container = []
+
+    def recordTweet(self, tweetName: str, time: int) -> None:
+        self.tweet_container.append((tweetName, time))
+
+
+    def getTweetCountsPerFrequency(self, freq: str, tweetName: str, startTime: int, endTime: int) -> List[int]:
+        if freq == "minute":
+            chunk_len = 60
+            size = (endTime-startTime) / 60 + 1
+        elif freq == "hour":
+            chunk_len = 3600
+            size = (endTime-startTime) / 3600 + 1
+        else:
+            chunk_len = 86400
+            size = (endTime-startTime) / 86400 + 1
+        res = [0] * int(size)
+        
+        #generate the res based on the time stamp, we can use divide operation to identify which chunk they should belong to
+        for i in self.tweet_container:
+            if i[0] == tweetName:
+                
+                if i[1] in range(startTime, endTime+1):
+                    index = int((i[1] - startTime)/chunk_len)
+                    res[index] += 1
+                
+        return res
