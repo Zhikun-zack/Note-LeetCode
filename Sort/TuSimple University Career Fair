@@ -1,0 +1,15 @@
+def maxExtend (n, arrival, duration):
+    comb = []
+    for i in range(len(arrival)):
+        comb.append((arrival[i], duration[i]))
+    sorted(comb, key = lambda x: (sum(x), x[1]))
+    prev_end = float("-inf")
+    res = 0
+    for arr, dur in comb:
+        if arr >= prev_end:
+            res += 1
+            prev_end = arr + dur
+    return res
+if __name__ == '__main__':
+    print(maxExtend(5, [1,3,3,5,7], [2,2,1,2,1]))
+    
