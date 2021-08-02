@@ -1,0 +1,23 @@
+def uniquePairString (stringList):
+    if len(stringList) == 0: return [True]
+    res = []
+    
+    for i in range(len(stringList)):
+        res_bool = True
+        print(stringList[i])
+        for d in range(1, len(stringList[i])):
+            print(d)
+            pair_comb = []
+            for j in range(len(stringList[i]) - d):
+                pair = stringList[i][j] + stringList[i][j+d]
+                print(pair)
+                if pair in pair_comb:
+                    res_bool = False
+                    continue
+                else:
+                    pair_comb.append(pair)
+        res.append(res_bool)
+    return res
+
+if __name__ == '__main__':
+    print(uniquePairString(['BABA']))
