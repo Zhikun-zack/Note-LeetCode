@@ -1,0 +1,19 @@
+#find whether the final sum of dist and magic are positive and no negative value in the process
+def aladdin_and_carpet(dist, magic):
+    magic_left = 0
+    used_magic = 0
+    start_index = 0
+    n = len(dist)
+    
+    for i in range(n):
+        magic_left += magic[i] - dist[i]
+        if magic_left < 0:
+            start_index = i + 1
+            used_magic = magic_left
+            magic_left = 0
+    if (magic_left + used_magic) >= 0:
+        return start_index
+    else:
+        return -1
+if __name__ == "__main__":
+    print (aladdin_and_carpet([2,3,4,2], [3,2,5,4]))
