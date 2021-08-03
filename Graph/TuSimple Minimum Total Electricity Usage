@@ -1,0 +1,41 @@
+def minTotalUsage(N, M, P):
+    #generate a structure for storing graph value
+    from collections import defaultdict
+    relation_graph = defaultdict(list)
+    #key: less value, value: larger value
+    for relationship in P:
+        #index in relationship list is one bit larger 1->0, 2->1
+        le, lar = relationship[0]-1, relationship[1]-1
+        relation_graph[le].append(lar)
+    #a mark list for loop finding
+    is_visited = [False] * N
+    #Value of machine 
+    machine_value = [1] * N
+    for i in range(N):
+        #if there exist a cycle, a larger than b, b larger than c, c larger than a
+        if isCycle(is_visited, relation_graph, i, machine_value):
+            return -1
+    #result value
+    res = 0
+    for i in machine_value:
+        res += i
+    return res
+#i is the index of the current node
+def isCyclic(is_visited, relation_graph, i, machine_value):
+    #is the value has been visited
+    if is_visited[i]:
+        return True
+    #it has been visited now, so update the flag
+    is_visited[i] = True
+    res = False
+    #DFS, visit all vertic related with current node
+    for child in relation_graph[i]:
+        res = isCycic(is_visited, relation_graph, child, machine_value)
+        if res:
+            break
+        if machile_value[child] <= machile_value[i]:
+            machine_value[chile] = machine_value[i] + 1
+    is_visited[i] = False
+    return res
+if __name__ == "__main__":
+    print
