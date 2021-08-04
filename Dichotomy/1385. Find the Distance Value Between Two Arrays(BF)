@@ -1,0 +1,16 @@
+"""
+BF
+O(M*N)
+O(1)
+"""
+class Solution:
+    def findTheDistanceValue(self, arr1: List[int], arr2: List[int], d: int) -> int:
+        res = len(arr1)
+        
+        for i in arr1:
+            for j in arr2:
+                print(abs(i-j))
+                if abs(i - j) <= d:
+                    res -= 1
+                    break
+        return res
