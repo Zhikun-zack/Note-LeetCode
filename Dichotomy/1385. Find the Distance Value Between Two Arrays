@@ -1,0 +1,36 @@
+"""
+Dichotomy Binary search 
+O(nlog(m)+mlog(m)) sort the arr2
+O(1)
+"""
+class Solution:
+    def findTheDistanceValue(self, arr1: List[int], arr2: List[int], d: int) -> int:
+        arr2 = sorted(arr2)
+        res = 0
+        
+        for i in arr1:
+            index = self.binary_search(arr2, i)
+            print(index)
+            if index == 0:
+                if abs(arr2[index] - i) > d:
+                    res += 1
+            elif index == len(arr2):
+                if abs(arr2[len(arr2) - 1] - i) > d:
+                    res += 1
+            else:
+                if abs(arr2[index] - i) > d and abs(arr2[index-1] - i) > d:
+                    res += 1
+        return res
+        
+    def binary_search(self, arr2, num):
+        l = 0
+        h = len(arr2) - 1
+        while l<=h:
+            mid = l + (h-l) // 2
+            if arr2[mid] < num:
+                l = mid + 1 
+            elif arr2[mid] > num:
+                h = mid -1 
+            else:
+                return mid
+        return l
