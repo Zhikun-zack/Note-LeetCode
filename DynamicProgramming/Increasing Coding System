@@ -1,0 +1,23 @@
+def get_rank_for_coding_system(word):
+    l = len(word)
+    if l ==1: return ord(word[0] - 96)
+    dp = [[0 for __ in range(26)] for _ in range(l)]
+    for i in range(26):
+        dp[0][i] = i+1
+    for i in range(1, l):
+        for j in range(26-i):
+            if j == 0:
+                dp[i][j] = dp[i-1][26-i] + 1
+            else:
+                dp[i][j] = dp[i][j-1] + (dp[i-1][26-i]+1-dp[i-1][j])
+    res = 0
+    print(dp)
+    for i in range(l):
+        if i == 0:
+            res += dp[l-i-1][ord(word[i]) - 97]
+        else:
+            res += dp[l-i-1][ord(word[i]) - 97] - dp[l-i-1][ord(word[i-1]) - 96]
+    return res
+if __name__ == '__main__':
+    print(get_rank_for_coding_system("abc"))
+        
