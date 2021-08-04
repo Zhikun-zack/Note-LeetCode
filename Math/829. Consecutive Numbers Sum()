@@ -1,0 +1,28 @@
+'''
+start from a+1 length is k, to a+k
+we need to find the situation when (a+1) + (a+2) + ... + (a+k) == n
+so ((a+1) + (a+k)) * k/2 = n
+so (2a + k + 1) * k = n
+because a > 0 so k < (2a + k + 1) 
+so k < Sqrt(n)
+
+根据等差序列的性质:
+s=(a1+an)*n/2
+an=a1+n-1
+那么
+2s=(2a1+n-1)*n
+可以对2s进行因数分解，分解出来的2个因子a=n,b=(2a1+a-1)
+a的取值范围为1..sqrt(2s)
+(b-a+1)/2=a1，也即(b-a+1)/2为整数时，a1有合法的整数解，能找到连续的数列
+'''
+class Solution:
+    def consecutiveNumbersSum(self, n: int) -> int:
+        res = 0
+        n *= 2
+        for k in range(1, int(n**0.5) + 1):
+            b, r = divmod(n,k)
+            if r == 0 and (b - k + 1) % 2 == 0:
+                res += 1
+
+        return res
+            
