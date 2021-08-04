@@ -1,0 +1,36 @@
+"""
+See Leetcode 300 Longest Increasing Subsequence
+
+Using dp
+forward search get the LIS length
+backward search get the LIS length
+sum of this two value - len of list + 1 is the number of value that we will move at that position
+find the min value
+
+O(N^2)
+O(N)
+"""
+class Solution:
+    def minimumMountainRemovals(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 1: return 0
+        #forward LIS
+        dp_p = self.get_LIS(nums)
+        #Backward LIS
+        dp_n = self.get_LIS(nums[::-1])[::-1]
+        
+        min_res = float("inf")
+        for i in range(n):
+            #we need to make sure that the former or later of that position has at least one value larger than it
+            if dp_p[i] > 1 and dp_n[i] > 1:
+                min_res = min(min_res, n - (dp_p[i] + dp_n[i]) + 1)
+        return min_res
+    #same as Leetcode 300
+    def get_LIS(self, nums):
+        if (len(nums) == 1): return 1
+        dp = [1] * len(nums)
+        for i in range(len(nums)):
+            for j in range(i):
+                if nums[j] < nums[i]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        return dp
