@@ -1,0 +1,36 @@
+#O(nlogn)
+#O(1)
+"""
+We need to find the distance between max and min
+So All operations should do on min and max value 
+We can delete three min value and do nothing on max
+We can also delete two min value and delete one max
+and so on
+
+not using sort algorithm
+but create two lists and keep four smallest and four largest
+"""
+class Solution:
+    def minDifference(self, nums: List[int]) -> int:
+        n = len(nums)
+        
+        if(n <= 4): return 0
+        
+        max_value = [float("-inf")] * 4
+        min_value = [float("inf")] * 4
+        
+        for i in range(n):
+            index = 0
+            while index < 4 and nums[i] < max_value[index]:
+                index += 1
+            if index < 4:
+                #remove the last value and insert nums[i] into correct position shown by index value 
+                max_value[index:] = [nums[i]] + max_value[index: -1] #from index to -1, not include -1
+
+            index = 0
+            while index < 4 and nums[i] > min_value[index]:
+                index += 1
+            if index < 4:
+                min_value[index:] = [nums[i]] + min_value[index: -1]
+        res = min(max_value[i] - min_value[3-i]for i in range(4)) 
+        return res
