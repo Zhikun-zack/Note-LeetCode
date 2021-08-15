@@ -1,0 +1,22 @@
+#O(n^2)
+"""
+DP
+
+out of time limitation
+"""
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        n = len(nums)
+        
+        dp = [n] * n
+        for i in range(n):
+            if (i == 0):
+                dp[i] = 0
+            else:
+                j = 0
+                while j < i:
+                    if nums[j] >= i-j:
+                        dp[i] = min(dp[i], dp[j] + 1)
+                    j+=1
+        print(dp)
+        return dp[-1]        
