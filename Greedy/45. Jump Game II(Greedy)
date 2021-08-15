@@ -1,0 +1,26 @@
+#O(n)
+"""
+Greedy 
+
+Find the step which can bring us the longest move power
+"""
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        n = len(nums)
+        #final result
+        steps = 0
+        #the end of this jump, before this end, we only need to find the largest value of jump step but not count the step, only when larger than this end, will step ++
+        cur_jump_end = 0
+        #longest length of current jump
+        max_jump_len = 0
+        
+        for i in range(n-1):
+            #if i < cur_jump_end, we just need to find the largest value of (i + nums[i]) in the range (i, cur_jump_end)
+            max_jump_len = max(max_jump_len, i + nums[i])
+            
+            #if i >= cur_jump_end, we have to take another step 
+            if i >= cur_jump_end:
+                cur_jump_end = max_jump_len
+                steps+=1
+                            
+        return steps
