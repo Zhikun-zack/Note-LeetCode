@@ -1,0 +1,19 @@
+class Solution:
+    def maxEvents(self, events: List[List[int]]) -> int:
+        events.sort(reverse = True) #排序的作用是从后往前判断开始时间，并弹出它， 判断条件先event[0] 再 [1]
+        print(events)
+        h = [] #优先队列，也可以说是小顶堆
+        ans = 0
+        #i 是总共的天数，取值范围为【1， max(events【1】)】，max(events) 不好计算，所以选取1e5作为最大值，
+        for i in range(1,100001):  #直接用数据范围（当然也可以取events结束时间的最大值，还要再写循环不够简练）
+            while events and events[-1][0]==i: #排序的作用
+                #heapq 存放会议结束的时间
+                heapq.heappush(h,events.pop()[1]) #弹出
+            while h:
+                cur = heapq.heappop(h)
+                #如果会议结束的时间大于等于现在时间，意味着我们还有时间，还可以参加这个会议
+                if cur>=i:
+                    ans+=1 #一天只能参加一次， 加一以后跳出整个循环
+                    break
+            if not events and not h:break #既没有新源，也没有旧源，直接结束
+        return ans
