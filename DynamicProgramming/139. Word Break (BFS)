@@ -1,0 +1,30 @@
+#BFS 
+"""
+O(n^3)
+"""
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        #improve the speed
+        word_set = set(wordDict)
+        #storing the start index of word
+        q = deque()
+        #whether the start index has been visited
+        visited = set()
+        
+        q.append(0)
+        while q:
+            start = q.popleft()
+            if start in visited:
+                continue
+            #visit all possible situation start from start
+            for end in range(start+1, len(s)+1):
+                # print(s[start:end])
+                if s[start: end] in word_set:
+                    #sub string from start to end-1 
+                    # print(end)
+                    #if sub string is in word set, store the end as the next starter
+                    q.append(end)
+                    if end == len(s):
+                        return True
+                visited.add(start)
+        return False
