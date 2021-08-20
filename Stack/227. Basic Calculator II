@@ -1,0 +1,32 @@
+class Solution:
+    def calculate(self, s: str) -> int:
+        stack = []
+        #regard operator, num as a pair, first element in s will be + , number
+        #"3+2*2" => "+3", "+2", "*2"
+        pre_op = "+"
+        num = 0
+        
+        for i, each in enumerate(s):
+            #if element is digit not operator, update the num
+            if each.isdigit():
+                #if num has several digit
+                num = num*10 + int(each)
+            #if element is operator, this is a stop point, we need to care about the pair above it 
+            if i == len(s)-1 or each in "+-*/":
+                #if the operator ahead of each is +
+                if pre_op == "+":
+                    stack.append(num)
+                elif pre_op == "-":
+                    stack.append(-num)
+                elif pre_op == "*":
+                    stack.append(stack.pop() * num)
+                #in python floor division negative division: -3//2 == -2 instead of -1
+                elif pre_op == "/":
+                    pre_num = stack.pop()
+                    if (pre_num < 0):
+                        stack.append(int(pre_num/num))
+                    else:
+                        stack.append(pre_num // num)
+                pre_op = each
+                num = 0
+        return sum(stack)
