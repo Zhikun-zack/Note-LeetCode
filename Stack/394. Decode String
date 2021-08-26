@@ -1,0 +1,19 @@
+class Solution:
+    def decodeString(self, s: str) -> str:
+        stack, res, multi = [], "", 0
+        for c in s:
+            #if [ append number and string
+            if c == '[':
+                stack.append([multi, res])
+                res, multi = "", 0
+            #if ] pop number and update result
+            elif c == ']':
+                cur_multi, last_res = stack.pop()
+                res = last_res + cur_multi * res
+            #consider about the number
+            elif '0' <= c <= '9':
+                multi = multi * 10 + int(c)
+            #if c is char not other things
+            else:
+                res += c
+        return res
