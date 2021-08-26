@@ -1,0 +1,29 @@
+"""
+DFS (Top-Down DP)
+Base Information:
+    Immediate Neighborhood:
+        The immediate neighborhood of the origin, refers to the points of where the sum of coordinates is               less than or equal to 2. In order to reach an immediate neighbor point from the origin, we need to          do a bit of zigzag. Totally 2 steps will be take.
+    First Quadrant:
+        we only consider first quadrant here, other three will be changed to first by abs
+Time Complexity: O(∣x⋅y∣)
+Space Complexity: O(∣x⋅y∣):
+    We keep all intermediate results
+"""
+class Solution:
+    def minKnightMoves(self, x: int, y: int) -> int:
+        #with memorization
+        @lru_cache(maxsize=None)
+        def dfs(x, y):
+            #if we arrive at the original
+            if x + y == 0:
+                # base case: (0, 0)
+                return 0
+            #if visited immediate neighborhood
+            elif x + y == 2:
+                # base case: (1, 1), (0, 2), (2, 0)
+                return 2
+            else:
+                return min(dfs(abs(x - 1), abs(y - 2)), dfs(abs(x - 2), abs(y - 1))) + 1
+        #move all quadrant to first quadrant
+        #start from x, y, move until to 0, 0(Top down)
+        return dfs(abs(x), abs(y))
