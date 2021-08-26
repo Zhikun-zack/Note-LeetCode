@@ -1,0 +1,43 @@
+"""
+BFS
+Create a deque, import points into it and recursion
+
+Given the coordinate of the target as (x, y)(x,y), the number of cells covered by the circle that is centered at point (0, 0)(0,0) and reaches the target point is roughly O((max(|x|, |y|)^ 2)
+Time Complexity: O((max(|x|, |y|)^ 2)
+Space Com: O((max(|x|, |y|)^ 2)
+    At any given moment, the queue contains elements that are situated in at most two different layers (or          levels). In our case, the maximum number of elements at one layer would be 4⋅max(∣x∣,∣y∣), i.e. the             perimeter of the exploration square. As a result, the space complexity for the queue is                     O(max(∣x∣,∣y∣)).
+    As for the set, it will contain every elements that we visited, which is (max(∣x∣,∣y∣))^2
+"""
+class Solution:
+    def minKnightMoves(self, x: int, y: int) -> int:
+        # the offsets in the eight directions
+        offsets = [(1, 2), (2, 1), (2, -1), (1, -2),
+                   (-1, -2), (-2, -1), (-2, 1), (-1, 2)]
+        #x, y are the destination for the search 
+        def bfs(x, y):
+            #whether the points have been visited
+            visited = set()
+            #for BFS
+            queue = deque([(0, 0)])
+            steps = 0
+
+            while queue:
+                curr_level_cnt = len(queue)
+                # iterate through the current level
+                for i in range(curr_level_cnt):
+                    curr_x, curr_y = queue.popleft()
+                    #only in this situation will return value,
+                    #because problem guaranteed that the answer exist, no need to
+                    #set boundary
+                    if (curr_x, curr_y) == (x, y):
+                        return steps
+
+                    for offset_x, offset_y in offsets:
+                        next_x, next_y = curr_x + offset_x, curr_y + offset_y
+                        #only when this node has not been visited, will we import it
+                        if (next_x, next_y) not in visited:
+                            visited.add((next_x, next_y))
+                            queue.append((next_x, next_y))
+                # move on to the next level
+                steps += 1
+        return bfs(x, y)
