@@ -1,0 +1,33 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+"""O(N) O(N)"""
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        #using dfs, given all nodes par attribute for storing parent node
+        def dfs(node, parent_node):
+            if node:
+                #add new attribute to the node
+                node.par = parent_node
+                dfs(node.left, node)
+                dfs(node.right, node)
+        dfs(root, None)
+        #BFS, first param is the start node, second is the step we have move from the target
+        q = collections.deque([(target, 0)])
+        #because we will visit parent node, we need to make sure no revisit
+        seen = {target}
+        while q:
+            #if we have visit first k steps node, return all results lefted in queue
+            if q[0][1] == k:
+                return [node.val for node, d in q]
+            node, d = q.popleft()
+            #visit in three dir
+            for n in (node.left, node.right, node.par):
+                if n and n not in seen:
+                    seen.add(n)
+                    q.append((n, d+1))
+        #if find nothing, return []
+        return []
