@@ -1,0 +1,54 @@
+"""
+extract model of each string and compare
+O(n^2)
+O(n)
+"""
+class Solution:
+    def expressiveWords(self, s: str, words: List[str]) -> int:
+        if not s or not words:
+            return 0
+        #function for extract model
+        def getModel(word):
+            #no duplicated word
+            model = ''
+            #frequency of each letter in order 
+            modeltime = []
+            #element in modeltime list
+            count = 0
+            for i, v in enumerate(word):
+                #if model is empty
+                if not model:
+                    model += v
+                    count = 1
+                else:
+                    #if the letter is not the duplicated 
+                    if v != model[-1]:
+                        model += v
+                        #append the frequency count of former letter
+                        modeltime.append(count)
+                        #change back to 1
+                        count = 1
+                    else:
+                        count += 1
+            modeltime.append(count)
+            #take one string, return non duplicated string and string count 
+            return model, modeltime
+        
+        s_model, s_time = getModel(s)
+        res = 0
+        for word in words:
+            #get model of each word in words list
+            w_model, w_time = getModel(word)
+            #if they are not equal, means the letter is not equal, definitly will not work
+            if w_model == s_model:
+                for i in range(len(w_model)):
+                    #if string has less letter than word, not working
+                    if s_time[i] - w_time[i] < 0:
+                        break
+                    #if letter in string less than 2, but count still larger 
+                    #'l' in hello, helo 
+                    elif s_time[i] == 2 and s_time[i] > w_time[i]:
+                        break
+                else:
+                    res+=1
+        return res
