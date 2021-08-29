@@ -1,0 +1,31 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+"""
+Recursive(DFS)
+O(N) O(N)
+"""
+class Solution:
+    def __init__ (self):
+        #for storing final result
+        self.res = None
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        def recursive_node(cur_node):
+            if cur_node == None:
+                return False
+            #if left tree has target node
+            left = recursive_node(cur_node.left)
+            #if right has target node
+            right = recursive_node(cur_node.right)
+            #if it is the target node
+            mid = cur_node == p or cur_node == q
+            #if any of three is larger than two, then this is the node 
+            if left + right + mid >= 2:
+                self.res = cur_node
+            return mid or left or right
+        recursive_node(root)
+        return self.res
+            
