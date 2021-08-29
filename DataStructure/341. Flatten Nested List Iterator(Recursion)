@@ -1,0 +1,51 @@
+# """
+# This is the interface that allows for creating nested lists.
+# You should not implement it, or speculate about its implementation
+# """
+#class NestedInteger:
+#    def isInteger(self) -> bool:
+#        """
+#        @return True if this NestedInteger holds a single integer, rather than a nested list.
+#        """
+#
+#    def getInteger(self) -> int:
+#        """
+#        @return the single integer that this NestedInteger holds, if it holds a single integer
+#        Return None if this NestedInteger holds a nested list
+#        """
+#
+#    def getList(self) -> [NestedInteger]:
+#        """
+#        @return the nested list that this NestedInteger holds, if it holds a nested list
+#        Return None if this NestedInteger holds a single integer
+#        """
+"""Using Recursion
+O(N) O(Ngithu) for __init__ function
+Others will be O(1) O(1)
+Problems is it generate a new data structure instead of using the old one"""
+class NestedIterator:
+    def __init__(self, nestedList: [NestedInteger]):
+        #iterate N times, N is the number of integer in the nextedInteger list
+        def flatten(nestedList):
+            for i in nestedList:
+                if i.isInteger():
+                    self._integer.append(i.getInteger())
+                else:
+                    flatten(i.getList())
+        #flatten list
+        self._integer = []
+        #index of values in flatten list
+        self._position = -1
+        flatten(nestedList)
+    
+    def next(self) -> int:
+        self._position += 1
+        return self._integer[self._position]
+    
+    def hasNext(self) -> bool:
+        #if next index is less than len, which means still in the list, have next value
+        return self._position + 1 < len(self._integer)         
+
+# Your NestedIterator object will be instantiated and called as such:
+# i, v = NestedIterator(nestedList), []
+# while i.hasNext(): v.append(i.next())
