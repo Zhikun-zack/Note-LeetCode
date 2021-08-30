@@ -1,0 +1,30 @@
+"""Topological sort same as 210"""
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        #In degree of each node 
+        In_degree = [0] * numCourses
+        #key is prerequisite course
+        connect = collections.defaultdict(set)
+        #init connect and indegree
+        for a, b in prerequisites:
+            connect[b].add(a)
+            In_degree[a] += 1
+            
+        #BFS
+        q = collections.deque([])
+        
+        for i in range(numCourses):
+            if not In_degree[i]:
+                q.append(i)
+        
+        while q:
+            i = q.popleft()
+            #if you need to return the courses' order
+            #you can create a [] and input all course here
+            numCourses -= 1
+            for j in connect[i]:
+                In_degree[j] -= 1
+                if not In_degree[j]:
+                    q.append(j)
+                    
+        return numCourses == 0
