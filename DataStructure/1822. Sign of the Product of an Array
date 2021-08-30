@@ -1,0 +1,10 @@
+class Solution:
+    def arraySign(self, nums: List[int]) -> int:
+        n = len(nums)
+        res = 1
+        for i in range(n):
+            if nums[i] < 0:
+                res *= (-1)
+            elif nums[i] == 0:
+                return 0
+        return res
