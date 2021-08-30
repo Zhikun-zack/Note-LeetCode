@@ -1,0 +1,28 @@
+"""Topological Sort
+Generate a graph and using BFS search it
+In order to do order search ,you have to calculate the in degree of each node"""
+class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        In_degree = [0] * numCourses
+        connect = collections.defaultdict(set)
+        for a, b in prerequisites:
+            #storing course b is which courses prerequisites
+            connect[b].add(a)
+            #storing in degree of each node, b -> a
+            In_degree[a] += 1
+        
+        q = collections.deque([])
+        for i in range(numCourses):
+            #if i course indegree is 0, append this course 
+            if not In_degree[i]:
+                q.append(i)
+        res = []
+        while q:
+            i = q.popleft()
+            res.append(i)
+            for j in connect[i]:
+                #you have take the one of the prerequisite of it
+                In_degree[j] -= 1
+                if not In_degree[j]:
+                    q.append(j)
+        return res if len(res) == numCourses else []
