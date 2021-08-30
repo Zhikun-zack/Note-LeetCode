@@ -1,0 +1,12 @@
+"""
+DP, complete package
+Two for loops: one is for coins another is dp list
+O(MN) O(M)
+"""
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [0] + [float("inf")] * amount
+        for coin in coins:
+            for j in range(coin, amount+1):
+                dp[j] = min(dp[j], dp[j-coin] + 1)
+        return dp[-1] if dp[-1] != float("inf") else -1
