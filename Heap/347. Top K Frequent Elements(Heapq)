@@ -1,0 +1,10 @@
+"""heap qH"""
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        if k == len(nums):
+            return nums
+        count = Counter(nums)
+        #build a heap queue
+        heap = [(value, key) for key, value in count.items()]
+        #using heap queue nlargest function find the result
+        return [item[1] for item in heapq.nlargest(k, heap)]
