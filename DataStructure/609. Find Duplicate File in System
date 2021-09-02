@@ -1,0 +1,22 @@
+"""
+HashMap, split file path
+O(N*x) O(N*x) x are the number of file parsed
+"""
+class Solution:
+    def findDuplicate(self, paths: List[str]) -> List[List[str]]:
+        #key: content; value: path+name
+        hash_map = collections.defaultdict(list)
+        for path in paths:
+            #split by empty space, except first one, the other are files
+            #1.txt(abcd) 2.txt(efgh)
+            list_of_files = path.split(" ")[1:]
+            #first one is path:  root/a 1.txt(abcd)
+            path_of_files = path.split(" ")[0]
+            for list_of_file in list_of_files:
+                #1.txt, abcd)
+                file_name, file_content = list_of_file.split("(")
+                file_path_name = path_of_files + "/" + file_name
+                hash_map[file_content].append(file_path_name)
+        #when value has content, export it
+        return filter(lambda s: len(s) > 1, hash_map.values())
+                
