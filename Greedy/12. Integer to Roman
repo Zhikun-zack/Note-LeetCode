@@ -1,0 +1,15 @@
+"""Greedy Algorithm
+num = 58 = 50 + 5 + 1 + 1 + 1 = L + V + I + I + I
+O(1) O(1)"""
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        digits = [(1000, "M"), (900, "CM"), (500, "D"), (400, "CD"), (100, "C"), 
+                  (90, "XC"), (50, "L"), (40, "XL"), (10, "X"), (9, "IX"), 
+                  (5, "V"), (4, "IV"), (1, "I")]
+        res = ""
+        for value, sym in digits:
+            # We don't want to continue looping if we're done.
+            if num == 0: break
+            count, num = divmod(num, value)
+            res += count*sym
+        return res
