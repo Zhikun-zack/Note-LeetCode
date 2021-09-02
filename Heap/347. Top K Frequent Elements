@@ -1,0 +1,8 @@
+"""HashMap
+Count the frequency -> change to list -> sort it -> return valeu"""
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = Counter(nums)
+        list_count = list(count.items())
+        sorted_list_count = sorted(list_count, key = lambda x: x[1], reverse = True)
+        return [x[0] for x in sorted_list_count[:k]]
