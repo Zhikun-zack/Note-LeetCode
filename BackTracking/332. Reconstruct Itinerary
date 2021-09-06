@@ -1,0 +1,53 @@
+"""
+O(E^d) E is the number of origin, d is the max dest from an origin
+    This is the loose upper bound
+O(V + E) V is the ∣V∣ is the number of airports and |E| is the number of flights.
+    visited_map is V+E
+    recursion depth is E
+    total V+2E
+"""
+class Solution:
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        #construct a dictionary to represent graph
+        self.flight_tickets = collections.defaultdict(list)
+        
+        #Construction process
+        for ticket in tickets:
+            #ticket[0] is origin and ticket[1] is destination
+            self.flight_tickets[ticket[0]].append(ticket[1])
+        
+        #Whether the dest which start from certain origin has been visited
+        #key: origin; value: list of boolean index is equal to flight_tickets
+        self.flight_visited = {}
+        
+        #sort the dest list
+        #init flight_visited
+        for origin, dest_list in self.flight_tickets.items():
+            dest_list.sort()
+            self.flight_visited[origin] = [False]*len(dest_list)
+        
+        #if res is equal to len +1, which means we have find the final result
+        self.total_len = len(tickets)
+        self.res = []
+        #start from JFK
+        route = ["JFK"]
+        self.back_tracking("JFK", route)
+        
+        return self.res
+    def back_tracking(self, origin, route):
+        if(len(route) == self.total_len+1):
+            self.res = route
+            return True
+        
+        for i, nextDest in enumerate(self.flight_tickets[origin]):
+            if not self.flight_visited[origin][i]:
+                self.flight_visited[origin][i] = True
+                #if true means we can keep back tracking
+                #if false means that origin's all dest has been visited
+                #but we do not find the final result
+                ret = self.back_tracking(nextDest, route+[nextDest])
+                #change back for other back tracking
+                self.flight_visited[origin][i] = False
+                if ret:
+                    return True
+        return False
