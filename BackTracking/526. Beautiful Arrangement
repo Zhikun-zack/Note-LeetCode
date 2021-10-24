@@ -1,0 +1,33 @@
+class Solution:
+    def countArrangement(self, n: int) -> int:
+        #store all values which meet rules of i
+        #this is not the final result because a value may 
+        #appears many times, but the final res should have duplication
+        match = defaultdict(list)
+        
+        #n^2 find all values for i
+        for i in range(1, n+1):
+            for j in range(1, n+1):
+                if i % j == 0 or j % i == 0:
+                    match[i].append(j)
+        
+        #public res value
+        self.res = 0
+        visited = set()
+        
+        #index: find all combination of match[index] for index
+        def backtracking (index):
+            #if index == n+1 means we find one result
+            if index  == n+1:
+                self.res += 1
+                return 
+            
+            #remove duplication using visited set
+            for k in match[index]:
+                if k not in visited:
+                    visited.add(k)
+                    #visited next value
+                    backtracking(index+1)
+                    visited.discard(k)
+        backtracking(1)
+        return self.res
