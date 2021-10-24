@@ -1,0 +1,24 @@
+"""
+we need to find (a+b)%60 == 0 ==> (a%60 + b%60)%60 == 0
+which is equal to find 1): a%60 + b%60 == 0 and 2): a%60 + b%60 == 60
+
+create a hashmap; key is residue, value is amount"""
+class Solution:
+    def numPairsDivisibleBy60(self, time: List[int]) -> int:
+        
+        count = collections.defaultdict(int)
+        res = 0
+        
+        # all equation needs %60 so we calculate it first
+        for i in range(len(time)):
+            time[i] = time[i] % 60
+        
+        for j in time:
+            # j is module now
+            # when in a%60 + b%60 == 0, (60-j)%60 == 0
+            # when in a%60 + b%60 == 60, (60-j)%60 == (60-j)
+            residue = (60-j%60)%60
+            res += count[residue]
+            # key: module; value: count number of that module
+            count[j%60] += 1
+        return res
