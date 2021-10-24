@@ -1,0 +1,38 @@
+"""
+O(N) O(1)
+because contained value range from [1, n], so we can regard the value as index too
+then we can generate a linked list: 0 -> nums[0] (then regard nums[0] as index)-> nums[nums[0]] 
+    which is nums[1 -> nums[nums[1]]] (nums[3]) -> 
+If there exist a duplicated value, there must have two links points to one same value
+which means exist a loop in linked list
+the duplicated value is the entrance of that loop
+
+two steps:
+find loops;
+find the entrance of that loop(find the duplicated value);
+"""
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        slow, fast = 0, 0 
+        # prove exist a loop in linked list
+        # two pointers will meet at any place in the list, may not be the entrance
+        # so the value of slow is not the final value
+        while True:
+            # fast next value is nums[fast] and then is nums[nums[fast]]
+            # nums[nums[fast]] means we move two steps
+            fast = nums[nums[fast]]
+            # move one step
+            slow = nums[slow]
+            if fast == slow:
+                break
+                
+        # final result
+        # using loop to find a situation when start from two different pointers
+        # but point to the same value
+        res = 0
+        while True:
+            res = nums[res]
+            slow = nums[slow]
+            if res == slow:
+                return res
+            
