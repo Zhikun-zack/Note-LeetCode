@@ -1,0 +1,31 @@
+"""
+O(NlogN) O(1)
+Theory: put 10 apples into 9 containers, must exist one containers which has two apples
+
+Dichotomy:
+find the mid value in range
+count the number of value less than that mid value
+if the count number is larger than the midLen, duplicated value must in front part
+else must in latter part
+"""
+class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        rangeStart, rangeEnd = 1, len(nums)
+        while rangeStart < rangeEnd:
+            # floor divide, get the smaller value if is not integer
+            rangeMid = (rangeStart + rangeEnd) // 2
+            # amount number of value smaller than mid value
+            lessCount = 0
+            # loop through nums list to count
+            for num in nums:
+                if num <= rangeMid:
+                    lessCount += 1
+            midLen = rangeMid
+            # dichotomy
+            if lessCount > midLen:
+                rangeEnd = rangeMid
+            else:
+                rangeStart = rangeMid+1
+        # start is equal to end
+        return rangeStart
+            
