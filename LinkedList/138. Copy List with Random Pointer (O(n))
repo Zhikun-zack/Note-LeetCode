@@ -1,0 +1,39 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+"""
+O(N) O(N)
+if without random variable, we can just copy the list using one loop
+But with the random, we cannot do that in on loop
+If we copy one node, and the random node that it point to has not been created 
+We will meet error.
+So we have to solve this problem using two loops
+First loop create a hashmap to store all nodes
+Second loop is the copy process"""
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        if not head:
+            return None
+        # store all nodes
+        node_map = collections.defaultdict()
+        # start from head and store all nodes into hashmap
+        p = head
+        while p:
+            copy_node = Node(p.val)
+            node_map[p] = copy_node
+            p = p.next
+        # copy process, link all nodes in hashmap to a linked list
+        p = head
+        while p:
+            if p.next:
+                node_map[p].next = node_map[p.next]
+            if p.random:
+                node_map[p].random = node_map[p.random]
+            p = p.next
+        return node_map[head]
