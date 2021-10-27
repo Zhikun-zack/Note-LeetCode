@@ -1,0 +1,26 @@
+class Solution:
+    def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
+        # sort the array lexicographically
+        products.sort()
+        
+        # query string
+        query = ""
+        res = []
+        find_last = 0
+        
+        for char in searchWord:
+            query += char
+            # bisect will return the most left index of values meet situation
+            # find_last is the first index of last time search
+            # if one elements in products doesn't meet the situation last time
+            # it will not meet this time
+            # so the start index will still be the find_last instead from 0
+            # this will save time, be faster
+            find_index = bisect.bisect_left(products, query, find_last)
+            # if all three values start from find_index all have query as prefix
+            # append a list with three elements
+            # else append a list with less than three elements
+            res.append([s for s in products[find_index: find_index+3] if s.startswith(query)])
+            find_last = find_index
+        return res
+        
