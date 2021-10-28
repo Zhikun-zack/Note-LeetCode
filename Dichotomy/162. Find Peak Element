@@ -1,0 +1,17 @@
+"""find the peak is to find a direction to move
+if we know one value is larger than the next value
+which means we can move left find whether the value still increase
+Then we will not move right (binary search remove half)
+We just need to move to the left until find the peak"""
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        l, r = 0, len(nums) - 1
+        while l < r:
+            mid = (l + r)//2
+            # slop is decreasing, we need to move left 
+            # keep moving right will only find a buttom
+            if nums[mid] > nums[mid+1]:
+                r = mid
+            else:
+                l = mid + 1
+        return l
