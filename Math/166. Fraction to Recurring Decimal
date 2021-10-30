@@ -1,0 +1,35 @@
+"""compare the remainder, if exist duplicate, then exist repeating
+create a map store the remainder if remainder repeat, then value repeat
+remainder * 10 each time in the loop"""
+class Solution:
+    def fractionToDecimal(self, numerator: int, denominator: int) -> str:
+        if numerator % denominator == 0:
+            return str(numerator // denominator)
+        
+        s = ""
+        if numerator * denominator < 0:
+            s += "-"
+        
+        # integer part
+        numerator = abs(numerator)
+        denominator = abs(denominator)
+        integerPart = numerator // denominator
+        s += str(integerPart)
+        s += "."
+        
+        # decimal part
+        # indexMap: key: remainder; value: the position that this remainder's result insert
+        indexMap = {}
+        remainder = numerator % denominator
+        # if remainder is not equal to 0 and not appear before keep looping
+        while remainder and remainder not in indexMap:
+            indexMap[remainder] = len(s)
+            remainder *= 10
+            s += str(remainder // denominator)
+            remainder %= denominator
+        # remainder is not equal to 0, means must have repeating
+        if remainder:
+            insertIndex = indexMap[remainder]
+            s = s[:insertIndex] + "(" + s[insertIndex:]
+            s += ")"
+        return s
