@@ -1,0 +1,38 @@
+class Solution:
+    def isReflected(self, points: List[List[int]]) -> bool:
+        if len(points) ==1: return True
+        
+        pointdict = {}
+        
+        minx, maxx = points[0][0], points[0][0]
+        
+        for point in points:
+            x, y = point[0], point[1]
+            
+            if x > maxx:
+                maxx = x
+            elif x < minx:
+                minx = x
+
+            k = minx + maxx # reflection of i is k-i
+            # k is 2*minx + (maxx - minx)
+            # k - i is {2*minx + (maxx - minx)} - {minx + (i-minx)} = minx + (maxx-minx)-(i-minx)
+            # which is the reflection
+            
+            if x not in pointdict:
+                pointdict[x] = set()
+                pointdict[x].add(y)
+            else:
+                pointdict[x].add(y)
+                
+        
+        for x1 in pointdict:
+            if k - x1 not in pointdict:
+                return False
+            # y coornador may not be all the same but it should be the same for reflication points
+            if len(pointdict[x1]) != len(pointdict[k-x1]):
+                return False
+            for y1 in pointdict[x1]:
+                if y1 not in pointdict[k-x1]:
+                    return False
+        return True
