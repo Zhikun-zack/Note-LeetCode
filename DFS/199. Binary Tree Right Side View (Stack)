@@ -1,0 +1,28 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# O(N) O(N)
+# we can also create a dict, using DFS and preorder
+# root -> right -> left
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        res = dict()
+        max_depth = -1
+        
+        stack = [(root, 0)]
+        while stack:
+            node, depth = stack.pop()
+            
+            if node is not None:
+                max_depth = max(max_depth, depth)
+                
+                res.setdefault(depth, node.val)
+                
+                # first in last out, first input the node left
+                # but visit right first later
+                stack.append((node.left, depth+1))
+                stack.append((node.right, depth+1))
+        return [res[depth] for depth in range(max_depth+1)]
