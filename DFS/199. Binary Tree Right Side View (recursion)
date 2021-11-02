@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        self.res = []
+        
+        # dfs and preorder; root -> right -> left
+        def dfs(node, depth):
+            if node is None:
+                return
+            # if the res is the first node visited in its depth
+            if len(self.res) == depth:
+                self.res.append(node.val)
+            
+            dfs(node.right, depth+1)
+            dfs(node.left, depth+1)
+            
+        dfs(root, 0)
+        return self.res
