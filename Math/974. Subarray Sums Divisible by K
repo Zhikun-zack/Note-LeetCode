@@ -1,0 +1,33 @@
+"""
+Math Prefix
+Calculate Prefix of each position
+Sum of i to j will be equal to prefix[j] - prefix[i] 
+So sum(i, j) mod k == 0 is (prefix[j] - prefix[i]) mod k == 0
+Split it: prefix[j] mod k == prefix[j] mod k
+Create a hash map to store the number of range which sum mod k is key
+https://leetcode-cn.com/problems/subarray-sums-divisible-by-k/solution/he-ke-bei-k-zheng-chu-de-zi-shu-zu-by-leetcode-sol/
+O(N) O(N)
+"""
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        # hashmap: key: modulus; value: number of that modulus
+        record = {0: 1}
+        
+        # prefix
+        total = 0
+        # result
+        res = 0
+        
+        for num in nums:
+            # calculate the prefix of that position
+            total += num
+            # cal mode value of that prefix
+            mod = total % k
+            # find the number of prefix with the same mod
+            # else return 0
+            same = record.get(mod, 0)
+            # statistic
+            res += same
+            # old value +1 (this value)
+            record[mod] = same + 1
+        return res
