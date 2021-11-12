@@ -1,0 +1,29 @@
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        if not asteroids:
+            return []
+        # stack for storing asteroids 
+        a_stack = []
+        for a in asteroids:
+            # when stack is not empty and that asteroid is in diff dir
+            # and also the last value is larger than 0 !important
+            while a_stack and a < 0 < a_stack[-1]:
+                # right dir larger 
+                if -a < a_stack[-1]:
+                    # left dir disappear
+                    # do nothing, not append new value, go to next for loop
+                    break
+                # left dir larger
+                elif -a > a_stack[-1]:
+                    # right dir disappear
+                    # pop the last value and keep while loop to compare the 
+                    # second close one
+                    a_stack.pop()
+                    continue
+                # equal, both disapear
+                else:
+                    a_stack.pop()
+                    break
+            else:
+                a_stack.append(a)
+        return a_stack
