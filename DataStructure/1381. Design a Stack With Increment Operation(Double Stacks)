@@ -1,0 +1,34 @@
+"""Double stacks
+O(1) Space Com: O(N)"""
+class CustomStack:
+
+    def __init__(self, maxSize: int):
+        self.stack = []
+        self.carry = []
+        self.len = 0
+        self.max_size = maxSize
+    def push(self, x: int) -> None:
+        if self.len<self.max_size:
+            self.stack.append(x)
+            self.carry.append([self.len, 0])
+            self.len+=1
+
+    def pop(self) -> int:
+        if not self.len:
+            return -1
+        c = self.carry[self.len-1][1]
+        v = self.stack.pop()
+        self.carry.pop()
+        self.len-=1
+        # get the last elements in self.val; pop it
+        # then change the value of the second last
+        if self.len:
+            self.carry[-1][1] += c
+        return v+c
+
+    def increment(self, k: int, val: int) -> None:
+        # give val to the last pair in self.carry
+        if self.len and k>=self.len:
+            self.carry[-1][1]+=val
+        elif k<self.len:
+            self.carry[k-1][1]+=val
