@@ -1,0 +1,16 @@
+"""HashMap
+O(N) O(N)"""
+class Solution:
+    def findPairs(self, nums: List[int], k: int) -> int:
+        res = 0
+        
+        counter = collections.Counter(nums)
+        
+        for c in counter:
+            # k > 0 see whether exist the value 
+            if k > 0 and c+k in counter:
+                res += 1
+            # k == 0 see whether exist same value
+            elif k == 0 and counter[c] > 1:
+                res += 1
+        return res        
