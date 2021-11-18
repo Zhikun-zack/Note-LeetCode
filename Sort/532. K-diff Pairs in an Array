@@ -1,0 +1,24 @@
+"""Sort and double pointers
+O(NlogN) O(N)(sorted algorithm need O(N))"""
+class Solution:
+    def findPairs(self, nums: List[int], k: int) -> int:
+        nums = sorted(nums)
+        p1, p2 = 0, 0
+        res = 0
+        
+        while p1 < len(nums) and p2 < len(nums):
+            # diff less than k, move p2
+            if p1 == p2 or nums[p2] - nums[p1] < k:
+                p2 += 1
+            # diff larger than k, move p1
+            elif nums[p2] - nums[p1] > k:
+                p1 += 1
+            # diff equal to k, move p1 again and res plus 1
+            else:
+                p1 += 1
+                res += 1
+                # if the next element is equal to former one
+                # move to the next 
+                while p1 < len(nums) and nums[p1] == nums[p1-1]:
+                    p1 += 1
+        return res        
