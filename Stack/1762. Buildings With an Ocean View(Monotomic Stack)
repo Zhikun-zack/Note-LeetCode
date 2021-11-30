@@ -1,0 +1,16 @@
+"""Monotomic Stack (optimization of DP)
+O(N) O(1)
+Start from the last one, store the index of largest value
+No need to create an array to store the max height, just using a var"""
+class Solution:
+    def findBuildings(self, heights: List[int]) -> List[int]:
+        n = len(heights)
+        res = []
+        max_h = -1
+        
+        for cur_h in reversed(range(n)):
+            if max_h < heights[cur_h]:
+                res.append(cur_h)
+                max_h = heights[cur_h]
+        res.reverse()
+        return res
