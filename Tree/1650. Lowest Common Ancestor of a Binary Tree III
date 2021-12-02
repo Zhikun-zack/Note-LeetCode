@@ -1,0 +1,33 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+        self.parent = None
+"""
+"""Tree and Math
+distance from node p to common node is L1
+distance from node q to common node is L2
+distance from common node to final root is L3
+
+p -> common node -> root -> place p to q -> common node
+    distance is L1 + L3 + L2
+q -> common node -> root -> place q to p -> common node
+    distance is L2 + L3 + L1
+They are equal"""
+
+class Solution:
+    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+        nodeP, nodeQ = p, q
+        while p!=q:
+            if p.parent:
+                p = p.parent
+            else:
+                p = nodeQ
+            if q.parent:
+                q = q.parent
+            else:
+                q = nodeP
+        return p
