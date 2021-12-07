@@ -1,0 +1,34 @@
+"""O(N) O(N)
+Using recursion and DFS
+"""
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        d = 0
+        
+        """
+        @param: treenode
+        @return: the max path len of that node +1 (for the upper level node)
+        """
+        def find_max_dist(node):
+            if not node:
+                return 0
+            
+            # invoke d var defined outside
+            nonlocal d
+            
+            max_left = find_max_dist(node.left)
+            max_right = find_max_dist(node.right)
+            
+            d = max(d, max_left + max_right)
+            
+            return max(max_left, max_right) + 1
+            
+            
+        find_max_dist(root)
+        return d
