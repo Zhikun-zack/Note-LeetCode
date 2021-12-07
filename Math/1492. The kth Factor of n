@@ -1,0 +1,22 @@
+"""
+O(N^1/2)
+Math
+All factors are pair, except the square
+Only save half of the factor
+if k is in the former half of factor return it in iteration
+if k is the latter part return n // corresponding fator"""
+class Solution:
+    def kthFactor(self, n: int, k: int) -> int:
+        divisor, sqrt_n = [], int(n**0.5)
+        
+        for x in range(1, sqrt_n+1):
+            if n % x == 0:
+                k -= 1
+                divisor.append(x)
+                if k == 0:
+                    return x
+        
+        if(sqrt_n * sqrt_n == n):
+            k+=1
+        n_div = len(divisor)
+        return n // divisor[n_div- k] if k <= n_div else -1
