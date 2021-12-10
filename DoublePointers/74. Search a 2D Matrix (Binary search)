@@ -1,0 +1,22 @@
+"""O(log(mn)) O(1)
+double pointers
+"""
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        m = len(matrix)
+        if m == 0:
+            return False
+        n = len(matrix[0])
+        
+        left, right = 0, m*n - 1
+        while left <= right:
+            idx = left + (right - left) // 2
+            ele = matrix[idx // n][idx % n]
+            if target == ele:
+                return True
+            else: 
+                if target < ele:
+                    right = idx - 1
+                else:
+                    left = idx + 1
+        return False
