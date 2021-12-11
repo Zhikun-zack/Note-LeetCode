@@ -1,0 +1,26 @@
+class Solution:
+    def rotateTheBox(self, box: List[List[str]]) -> List[List[str]]:
+        m, n = len(box), len(box[0])
+
+        for i in range(m):
+            # 队首对应的位置
+            front_pos = n - 1
+            for j in range(n - 1, -1, -1):
+                if box[i][j] == "*":
+                    # 遇到障碍物，清空队列
+                    front_pos = j - 1
+                elif box[i][j] == "#":
+                    if front_pos > j:
+                        # 如果队列不为空，石头就会下落
+                        box[i][front_pos] = "#"
+                        box[i][j] = "."
+                        front_pos -= 1
+                    else:
+                        front_pos = j - 1
+
+        # 将矩阵顺时针旋转 90 度放入答案
+        ans = [[""] * m for _ in range(n)]
+        for i in range(m):
+            for j in range(n):
+                ans[j][m - i - 1] = box[i][j]
+        return ans
