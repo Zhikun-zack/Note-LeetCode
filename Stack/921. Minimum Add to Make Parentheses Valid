@@ -1,0 +1,22 @@
+"""Stack or Balance
+Using Stack O(N) O(N)
+Using Balance O(N) O(1)
+Balance is the same way as stack just 
+    no need to use extra space"""
+class Solution:
+    def minAddToMakeValid(self, s: str) -> int:
+        bal = 0
+        res = 0
+        
+        for sub in s:
+            # '(' +1, ')' -1
+            if sub == '(':
+                bal += 1
+            else:
+                bal -= 1
+            # make sure bal >= -1
+            # add "(" ahead of current position
+            if bal == -1:
+                res += 1
+                bal += 1
+        return res + bal
