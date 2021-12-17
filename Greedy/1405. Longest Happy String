@@ -1,0 +1,46 @@
+class Solution:
+    def longestDiverseString(self, a: int, b: int, c: int) -> str:
+        # queue, first in first out
+        heap = [[-a,"a"],[-b,"b"],[-c,"c"]]
+        heapq.heapify(heap)
+        
+        # res
+        s = ""
+        
+        while heap :
+            # Get the letter with highest frequency
+            x = heapq.heappop(heap)
+            if x[0] == 0 :
+                break
+            char = x[1]
+            # len of res larger than 2, may have three duplicate
+            if len(s) >= 2 :
+                # find whether have three duplicate
+                if s[-1] == char and s[-2] == char :
+                    # if have duplicate, pick up second large one
+                    if heap : 
+                        temp = heapq.heappop(heap)
+                        if temp[0] == 0:
+                            break
+                        else:
+                            heapq.heappush(heap,x)
+                            s += temp[1]
+                            temp[0] += 1
+                            if temp[0] != 0 :
+                                heapq.heappush(heap,temp)
+                    # heap is empty, no second large, return
+                    else:
+                        break
+                # no three duplicate, add new letter
+                else:
+                    s += char
+                    x[0] += 1
+                    if x[0] != 0 :
+                        heapq.heappush(heap,x)
+            # letter amount less than two, add
+            else :
+                s += char
+                x[0] += 1
+                if x[0] != 0 :
+                    heapq.heappush(heap,x)
+        return s
