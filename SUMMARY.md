@@ -2,8 +2,8 @@
 
 ## By Tag
 
-* [Page 1](README.md)
+* [DP](README.md)
 
 ## By Number
 
-* [Page 3](by-number/page-3.md)
+* [350-400](by-number/page-3.md)
