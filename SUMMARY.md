@@ -7,3 +7,4 @@
 ## By Number
 
 * [350-400](by-number/page-3.md)
+* [950-1000](by-number/950-1000.md)
