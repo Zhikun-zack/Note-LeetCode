@@ -6,7 +6,9 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ
 
 ## Type: 1.1
 
+### Problems
 
+LC 746&#x20;
 
 ## Type: 2.2
 
