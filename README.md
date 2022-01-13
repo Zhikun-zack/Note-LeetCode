@@ -6,9 +6,33 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ
 
 ## Type: 1.1
 
+### Description
+
+* Input: O(n)
+* dp\[i]: optimized solution for ith problem
+* dp\[i] dependents on its sub problems
+* T Com O(N)
+* S Com O(N) -> O(1)
+
 ### Problems
 
-LC 746&#x20;
+1. [**LC 746**](by-number/700-750.md#746-min-cost-climbing-stairs) **Min Cost Climbing Stairs**
+   * dp\[i] = min cost to climb to i stairs
+   * dp\[i] = min(dp\[i-1] + cost\[i-1] , dp\[i-2] + cost\[i-2])
+2. #### ****[**LC 1137**](by-number/1100-1150.md#1137-n-th-tribonacci-number) **Nth Tribonacci number**
+   * dp\[i] = ith Tribonacci number
+   * dp\[i] = dp\[i-1]+dp\[i-2]+dp\[i-3]
+   * Can using dp1 dp2 dp3 and res four vars to represent dp list
+3. ####
+4. ####
+
+
+
+
+
+####
+
+####
 
 ## Type: 2.2
 
@@ -41,14 +65,3 @@ for k in k:
             dp[k][i][j] = f(dp[k-1][i'][j'])
 return 
 ```
-
-
-
-
-
-
-
-
-
-
-
