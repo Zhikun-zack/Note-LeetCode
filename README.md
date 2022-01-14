@@ -23,7 +23,7 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad
    * dp\[i] = ith Tribonacci number
    * dp\[i] = dp\[i-1]+dp\[i-2]+dp\[i-3]
    * Can using dp1 dp2 dp3 and res four vars to represent dp list
-3. ####
+3. #### [LC 790 Domino and Tromino Tiling](by-number/750-800.md#790-domino-and-tromino-tiling)
 4. ####
 
 
