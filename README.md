@@ -4,6 +4,28 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad
 
 # DP
 
+* [x] [LC 63 Unique Paths II](by-number/50-100.md#63.-unique-paths-ii)
+* [x] [303 Range Sum Query - Immutable](by-number/300-350.md#303-range-sum-query-immutable-easy)
+* [x] [576 Out of Boundary Paths](by-number/550-600.md#576.-out-of-boundary-paths)
+* [x] [688 Knight Probability in Chessboard](by-number/650-700.md#688.-knight-probability-in-chessboard)
+* [x] [**746**](by-number/700-750.md#746-min-cost-climbing-stairs) **Min Cost Climbing Stairs**
+* #### [790 Domino and Tromino Tiling](by-number/750-800.md#790-domino-and-tromino-tiling)
+* #### [**1137**](by-number/1100-1150.md#1137-n-th-tribonacci-number) **Nth Tribonacci number**
+* [x] [1218 Longest Arithmetic Subsequence of Given Difference](by-number/1200-1250.md#1218-longest-arithmetic-subsequence-of-given-difference-medium)
+*
+
+| Number                                                                                     | Similiar Probs                                                                                                                                   | Description        |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------ |
+| [303 Range Sum Query - Immutable](by-number/300-350.md#303-range-sum-query-immutable-easy) | [1218 Longest Arithmetic Subsequence of Given Difference](by-number/1200-1250.md#1218-longest-arithmetic-subsequence-of-given-difference-medium) | ++++++++++++++++++ |
+|                                                                                            |                                                                                                                                                  |                    |
+|                                                                                            |                                                                                                                                                  |                    |
+|                                                                                            |                                                                                                                                                  |                    |
+|                                                                                            |                                                                                                                                                  |                    |
+|                                                                                            |                                                                                                                                                  |                    |
+|                                                                                            |                                                                                                                                                  |                    |
+|                                                                                            |                                                                                                                                                  |                    |
+|                                                                                            |                                                                                                                                                  |                    |
+
 ## Type: 1.1
 
 ### Description
