@@ -26,7 +26,7 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad
 |                                                                                            |                                                                                                                                                  |                    |
 |                                                                                            |                                                                                                                                                  |                    |
 
-## Type: 1.1
+## Type: 1
 
 ### Description
 
@@ -49,6 +49,16 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad
 4. ####
 
 
+
+## Type 2
+
+### Description
+
+* Input is O(nm)
+* DP is O(nm) can be optimized to O(n) or O(1)(Using the input array to store values)
+* T O(N^2) S O(n^2)，O(N) or O(1)
+
+### Problems
 
 
 
