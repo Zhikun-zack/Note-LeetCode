@@ -60,7 +60,7 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad
 
 ### Problems
 
-
+[LC 304 ](by-number/300-350.md#304-range-sum-query-2d-immutable)
 
 ####
 
