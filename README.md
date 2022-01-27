@@ -9,8 +9,8 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad
 * [x] [576 Out of Boundary Paths](by-number/550-600.md#576.-out-of-boundary-paths)
 * [x] [688 Knight Probability in Chessboard](by-number/650-700.md#688.-knight-probability-in-chessboard)
 * [x] [**746**](by-number/700-750.md#746-min-cost-climbing-stairs) **Min Cost Climbing Stairs**
-* #### [790 Domino and Tromino Tiling](by-number/750-800.md#790-domino-and-tromino-tiling)
-* #### [**1137**](by-number/1100-1150.md#1137-n-th-tribonacci-number) **Nth Tribonacci number**
+* [ ] [**790 Domino and Tromino Tiling**](by-number/750-800.md#790-domino-and-tromino-tiling)
+* [ ] [**1137**](by-number/1100-1150.md#1137-n-th-tribonacci-number) **Nth Tribonacci number**
 * [x] [1218 Longest Arithmetic Subsequence of Given Difference](by-number/1200-1250.md#1218-longest-arithmetic-subsequence-of-given-difference-medium)
 *
 
@@ -41,14 +41,12 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad
 1. [**LC 746**](by-number/700-750.md#746-min-cost-climbing-stairs) **Min Cost Climbing Stairs**
    * dp\[i] = min cost to climb to i stairs
    * dp\[i] = min(dp\[i-1] + cost\[i-1] , dp\[i-2] + cost\[i-2])
-2. #### ****[**LC 1137**](by-number/1100-1150.md#1137-n-th-tribonacci-number) **Nth Tribonacci number**
+2. **\*\*\*\***[**LC 1137**](by-number/1100-1150.md#1137-n-th-tribonacci-number) **Nth Tribonacci number**
    * dp\[i] = ith Tribonacci number
    * dp\[i] = dp\[i-1]+dp\[i-2]+dp\[i-3]
    * Can using dp1 dp2 dp3 and res four vars to represent dp list
-3. #### [LC 790 Domino and Tromino Tiling](by-number/750-800.md#790-domino-and-tromino-tiling)
-4. ####
-
-
+3. [**LC 790 Domino and Tromino Tiling**](by-number/750-800.md#790-domino-and-tromino-tiling)
+4.
 
 ## Type 2
 
@@ -60,7 +58,9 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad
 
 ### Problems
 
-[LC 304 ](by-number/300-350.md#304-range-sum-query-2d-immutable)
+[LC 304](by-number/300-350.md#304-range-sum-query-2d-immutable)
+
+[LC 1277](by-number/1200-1250.md#1277-count-square-submatrices-with-all-ones-m)
 
 ####
 
