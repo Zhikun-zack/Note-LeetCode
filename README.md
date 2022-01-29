@@ -4,6 +4,10 @@
 
 ### In Order Traversal&#x20;
 
+#### Problem
+
+* [LC 94](by-number/50-100.md#94-binary-tree-inorder-traversal)
+
 #### Solution
 
 1. Iteration
