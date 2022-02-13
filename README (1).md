@@ -1,48 +1,15 @@
-# Tree
+# Greedy
 
-### Traversal
+## Range Problem
 
-### In Order Traversal&#x20;
+Problems:
 
-#### Problem
+* [LC 406 Queue Reconstruction by Height](by-number/400-450.md#406-queue-reconstruction-by-height)
+* [LC 452 Minimum Number of Arrows to Burst Balloons](by-number/450-500.md#452-minimum-number-of-arrows-to-burst-balloons-m)
+* [LC 763 Partition Labels](by-number/750-800.md#763-partition-labels)
+* Cover Problem
+  * [LC 1024 Video Stitching](by-number/1000-1050.md#1024-video-stitching-m)
+  * [LC 1326 Minimum Number of Taps to Open to Water a Garden](by-number/1300-1350.md#1362-minimum-number-of-taps-to-open-to-water-a-garden-h)
+* [LC 871 Minimum Number of Refueling Stops](by-number/850-900.md#871-minimum-number-of-refueling-stops-h)
 
-* [LC 94](by-number/50-100.md#94-binary-tree-inorder-traversal)
-
-#### Solution
-
-1. Iteration
-
-Using one line to do iteration
-
-```
-//
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right) if root else []
-```
-
-
-
-### BFS
-
-Problem
-
-* [LC 103 ](by-number/100-150.md#103-binary-tree-zigzag-level-order-traversal)
-
-Solution
-
-
-
-### Binary Search Tree
-
-### Problem
-
-* [LC 230 ](by-number/200-250.md#230-kth-smallest-element-in-a-bst)
-* [LC 701](by-number/700-750.md#701-insert-into-a-binary-search-tree)
-
+## Distribute Problem

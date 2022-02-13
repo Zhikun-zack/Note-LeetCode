@@ -2,9 +2,10 @@
 
 ## By Tag
 
-* [Greedy](README.md)
-* [Tree](<README (1).md>)
-* [DP](<README (1) (1).md>)
+* [Math Problem](README.md)
+* [Greedy](<README (1).md>)
+* [Tree](<README (1) (1).md>)
+* [DP](<README (1) (1) (1).md>)
 
 ## By Number
 
