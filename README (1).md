@@ -13,3 +13,6 @@ Problems:
 * [LC 871 Minimum Number of Refueling Stops](by-number/850-900.md#871-minimum-number-of-refueling-stops-h)
 
 ## Distribute Problem
+
+* [LC 1029 Two City Scheduling](by-number/1000-1050.md#1029-two-city-scheduling-m)
+*
