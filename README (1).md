@@ -11,6 +11,7 @@ Problems:
   * [LC 1024 Video Stitching](by-number/1000-1050.md#1024-video-stitching-m)
   * [LC 1326 Minimum Number of Taps to Open to Water a Garden](by-number/1300-1350.md#1362-minimum-number-of-taps-to-open-to-water-a-garden-h)
 * [LC 871 Minimum Number of Refueling Stops](by-number/850-900.md#871-minimum-number-of-refueling-stops-h)
+* [LC 1578 Minimum Time to Make Rope Colorful](by-number/1550-1600.md#1578-minimum-time-to-make-rope-colorful-m)
 
 ## Distribute Problem
 
