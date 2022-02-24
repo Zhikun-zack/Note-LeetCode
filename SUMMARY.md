@@ -4,6 +4,7 @@
 
 * [Math Problem](README.md)
 * [Greedy](<README (1).md>)
+* [Two Pointers](by-tag/two-pointers.md)
 * [Tree](<README (1) (1).md>)
 * [DP](<README (1) (1) (1).md>)
 
@@ -18,6 +19,7 @@
 * [350-400](by-number/page-3.md)
 * [400-450](by-number/400-450.md)
 * [450-500](by-number/450-500.md)
+* [500-550](by-number/500-550.md)
 * [550-600](by-number/550-600.md)
 * [600-650](by-number/600-650.md)
 * [650-700](by-number/650-700.md)
