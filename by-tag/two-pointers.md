@@ -14,3 +14,4 @@ The most common way to use two pointers
 ### Problems
 
 * [#556-next-greater-element-iii-m](../by-number/550-600.md#556-next-greater-element-iii-m "mention")
+* [#986-interval-list-intersections-m](../by-number/950-1000.md#986-interval-list-intersections-m "mention")
