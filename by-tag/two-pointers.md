@@ -15,3 +15,10 @@ The most common way to use two pointers
 
 * [#556-next-greater-element-iii-m](../by-number/550-600.md#556-next-greater-element-iii-m "mention")
 * [#986-interval-list-intersections-m](../by-number/950-1000.md#986-interval-list-intersections-m "mention")
+
+## Sliding Window
+
+### Problems
+
+* [#658-find-k-closest-elements-m](../by-number/650-700.md#658-find-k-closest-elements-m "mention")
+
