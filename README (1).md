@@ -17,4 +17,4 @@ Problems:
 
 * [LC 179 Largest Number](by-number/150-200.md#179-largest-number-m)
 * [LC 1029 Two City Scheduling](by-number/1000-1050.md#1029-two-city-scheduling-m)
-*
+* [#881-boats-to-save-people-m](by-number/850-900.md#881-boats-to-save-people-m "mention")
