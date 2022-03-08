@@ -7,6 +7,7 @@
 * [Two Pointers](by-tag/two-pointers.md)
 * [Tree](<README (1) (1).md>)
 * [DP](<README (1) (1) (1).md>)
+* [Prefix](by-tag/prefix.md)
 
 ## By Number
 
@@ -33,3 +34,4 @@
 * [1200-1250](by-number/1200-1250.md)
 * [1300-1350](by-number/1300-1350.md)
 * [1550-1600](by-number/1550-1600.md)
+* [1700-1750](by-number/1700-1750.md)
