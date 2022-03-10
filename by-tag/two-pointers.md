@@ -30,7 +30,11 @@ The most common way to use two pointers
 ### Problems
 
 * [#658-find-k-closest-elements-m](../by-number/650-700.md#658-find-k-closest-elements-m "mention")
-* [#567-permutation-in-string-m](../by-number/550-600.md#567-permutation-in-string-m "mention")
+*   [#567-permutation-in-string-m](../by-number/550-600.md#567-permutation-in-string-m "mention")
+
+    [#438-find-all-anagrams-in-a-string-m](../by-number/400-450.md#438-find-all-anagrams-in-a-string-m "mention")
+* [#1423-maximum-points-you-can-obtain-from-cards-m](../by-number/1400-1450.md#1423-maximum-points-you-can-obtain-from-cards-m "mention")
+* [#1004-max-consecutive-ones-iii-m](../by-number/1000-1050.md#1004-max-consecutive-ones-iii-m "mention")
 
 ## Quick Slow Pointers
 
