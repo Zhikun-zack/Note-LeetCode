@@ -35,6 +35,8 @@ The most common way to use two pointers
     [#438-find-all-anagrams-in-a-string-m](../by-number/400-450.md#438-find-all-anagrams-in-a-string-m "mention")
 * [#1423-maximum-points-you-can-obtain-from-cards-m](../by-number/1400-1450.md#1423-maximum-points-you-can-obtain-from-cards-m "mention")
 * [#1004-max-consecutive-ones-iii-m](../by-number/1000-1050.md#1004-max-consecutive-ones-iii-m "mention")
+* [#1838-frequency-of-the-most-frequent-element-m](../by-number/1800-1850.md#1838-frequency-of-the-most-frequent-element-m "mention")
+* [#1248-count-number-of-nice-subarrays-m](../by-number/1200-1250.md#1248-count-number-of-nice-subarrays-m "mention")
 
 ## Quick Slow Pointers
 
