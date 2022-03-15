@@ -6,6 +6,7 @@
 * [Math Problem](<README (2).md>)
 * [Greedy](<README (1).md>)
 * [Two Pointers](by-tag/two-pointers.md)
+* [Binary Search](by-tag/binary-search.md)
 * [Tree](<README (1) (1).md>)
 * [DP](<README (1) (1) (1).md>)
 * [Prefix](by-tag/prefix.md)
