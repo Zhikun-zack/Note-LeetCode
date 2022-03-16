@@ -37,6 +37,7 @@ The most common way to use two pointers
 * [#1004-max-consecutive-ones-iii-m](../by-number/1000-1050.md#1004-max-consecutive-ones-iii-m "mention")
 * [#1838-frequency-of-the-most-frequent-element-m](../by-number/1800-1850.md#1838-frequency-of-the-most-frequent-element-m "mention")
 * [#1248-count-number-of-nice-subarrays-m](../by-number/1200-1250.md#1248-count-number-of-nice-subarrays-m "mention")
+* [#209-minimum-size-subarray-sum-m](../by-number/200-250.md#209-minimum-size-subarray-sum-m "mention")
 
 ## Quick Slow Pointers
 
