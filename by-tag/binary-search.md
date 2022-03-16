@@ -4,4 +4,6 @@
 *   [#875-koko-eating-bananas-m](../by-number/850-900.md#875-koko-eating-bananas-m "mention")
 
     [#1283-find-the-smallest-divisor-given-a-threshold-m](../by-number/1250-1300.md#1283-find-the-smallest-divisor-given-a-threshold-m "mention")
+
+    [#1891-cutting-ribbons-m](../by-number/1850-1900.md#1891-cutting-ribbons-m "mention")
 * [#240-search-a-2d-matrix-ii-m](../by-number/200-250.md#240-search-a-2d-matrix-ii-m "mention")
