@@ -8,6 +8,7 @@
 * [Two Pointers](by-tag/two-pointers.md)
 * [Binary Search](by-tag/binary-search.md)
 * [Tree](<README (1) (1).md>)
+* [HashMap](by-tag/hashmap.md)
 * [DP](<README (1) (1) (1).md>)
 * [Prefix](by-tag/prefix.md)
 
