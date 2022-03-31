@@ -15,3 +15,35 @@
 
     [#826-most-profit-assigning-work-m](../by-number/800-850.md#826-most-profit-assigning-work-m "mention")&#x20;
 
+    [#1498-number-of-subsequences-that-satisfy-the-given-sum-condition-m](../by-number/1450-1500.md#1498-number-of-subsequences-that-satisfy-the-given-sum-condition-m "mention")
+
+```
+nums = [3, 6, 6, 6, 6, 7, 9]
+bisect_left(nums, 6)  # result will be 1
+bisect_right(nums, 6) # result will be 4
+```
+
+## Boundary problem
+
+1.  l < r or l <= r
+
+    If `while l < r`:
+
+    Then after the loop, l = r, will return the first value larger or equal to the target value&#x20;
+
+    If `while l <= r` :
+
+    Then after the loop, l > r, then l is the first value larger or equal to the target value, and r will be the last value less than the target value.
+2.  `bisect_left` or `bisect_right`&#x20;
+
+    These two are equal to each other when the value is not in the list.
+
+    Biggest different will be when value is in the list and has duplicated value
+
+    e.g.
+
+    ```
+    nums = [3, 6, 6, 6, 6, 7, 9]
+    bisect_left(nums, 6)  # result will be 1
+    bisect_right(nums, 6) # result will be 4
+    ```
