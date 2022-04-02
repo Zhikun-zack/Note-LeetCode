@@ -17,6 +17,7 @@
 
     [#1498-number-of-subsequences-that-satisfy-the-given-sum-condition-m](../by-number/1450-1500.md#1498-number-of-subsequences-that-satisfy-the-given-sum-condition-m "mention")
 * [#1060-missing-element-in-sorted-array-m](../by-number/1050-1100.md#1060-missing-element-in-sorted-array-m "mention")
+* [#222-count-complete-tree-nodes-m](../by-number/200-250.md#222-count-complete-tree-nodes-m "mention")
 
 ```
 nums = [3, 6, 6, 6, 6, 7, 9]
