@@ -12,7 +12,7 @@ description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad
 * [ ] [**790 Domino and Tromino Tiling**](by-number/750-800.md#790-domino-and-tromino-tiling)
 * [ ] [**1137**](by-number/1100-1150.md#1137-n-th-tribonacci-number) **Nth Tribonacci number**
 * [x] [1218 Longest Arithmetic Subsequence of Given Difference](by-number/1200-1250.md#1218-longest-arithmetic-subsequence-of-given-difference-medium)
-*
+* [x] [#1027-longest-arithmetic-subsequence-m](by-number/1000-1050.md#1027-longest-arithmetic-subsequence-m "mention")
 
 | Number                                                                                     | Similiar Probs                                                                                                                                   | Description        |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------ |

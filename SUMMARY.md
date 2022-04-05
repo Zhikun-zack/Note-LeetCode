@@ -11,6 +11,7 @@
 * [HashMap](by-tag/hashmap.md)
 * [DP](<README (1) (1) (1).md>)
 * [Prefix](by-tag/prefix.md)
+* [Stack](by-tag/stack.md)
 
 ## By Number
 
