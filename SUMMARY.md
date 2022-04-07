@@ -12,6 +12,7 @@
 * [DP](<README (1) (1) (1).md>)
 * [Prefix](by-tag/prefix.md)
 * [Stack](by-tag/stack.md)
+* [Sort](by-tag/sort.md)
 
 ## By Number
 
