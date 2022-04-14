@@ -37,12 +37,26 @@ Problem
 
 Solution
 
+### DFS
+
+Problem
+
+*   Recursively
+
+    [#427-construct-quad-tree-m](by-number/400-450.md#427-construct-quad-tree-m "mention")
+
+    [#366-find-leaves-of-binary-tree-m](by-number/page-3.md#366-find-leaves-of-binary-tree-m "mention")
+
 
 
 ### Binary Search Tree
 
-### Problem
+#### Problem
 
 * [LC 230 ](by-number/200-250.md#230-kth-smallest-element-in-a-bst)
 * [LC 701](by-number/700-750.md#701-insert-into-a-binary-search-tree)
+
+
+
+###
 

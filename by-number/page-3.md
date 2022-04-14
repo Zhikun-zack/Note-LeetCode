@@ -1,8 +1,77 @@
 # 350-400
 
+* [x] 366 Find Leaves of Binary Tree
+*
 * [x] 368 Largest Divisible Subset
 *
 * [x] 378 Kth Smallest Element in a Sorted Matrix
+
+## 366 Find Leaves of Binary Tree M
+
+### D
+
+
+
+Given the `root` of a binary tree, collect a tree's nodes as if you were doing this:
+
+* Collect all the leaf nodes.
+* Remove all the leaf nodes.
+* Repeat until the tree is empty.
+
+&#x20;
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2021/03/16/remleaves-tree.jpg)
+
+```
+Input: root = [1,2,3,4,5]
+Output: [[4,5,3],[2],[1]]
+Explanation:
+[[3,5,4],[2],[1]] and [[3,4,5],[2],[1]] are also considered correct answers since per each level it does not matter the order on which elements are returned.
+```
+
+**Example 2:**
+
+```
+Input: root = [1]
+Output: [[1]]
+```
+
+&#x20;
+
+**Constraints:**
+
+* The number of nodes in the tree is in the range `[1, 100]`.
+* `-100 <= Node.val <= 100`
+
+### S
+
+height(root)=1+max(height(root.left), height(root.right))
+
+```
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
+        res = collections.defaultdict(list)
+        
+        def dfs(node,layer):
+            if not node:
+                return layer
+            l = dfs(node.left, layer)
+            r = dfs(node.right, layer)
+            layer = max(l, r)
+            res[layer].append(node.val)
+
+            return layer+1
+        dfs(root, 0)
+        return res.values()
+```
 
 ## 368. Largest Divisible Subset
 
