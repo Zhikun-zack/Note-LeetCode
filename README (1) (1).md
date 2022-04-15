@@ -58,6 +58,14 @@ Problem
 * [LC 701](by-number/700-750.md#701-insert-into-a-binary-search-tree)
 * Traversal&#x20;
   * [#1008-construct-binary-search-tree-from-preorder-traversal-m](by-number/1000-1050.md#1008-construct-binary-search-tree-from-preorder-traversal-m "mention")
+* Build a BST
+  * [#96-unique-binary-search-trees](by-number/50-100.md#96-unique-binary-search-trees "mention")
+
+
+
+### Prefix Tree (Trie)
+
+* [#208-implement-trie-prefix-tree-m](by-number/200-250.md#208-implement-trie-prefix-tree-m "mention")
 
 
 
