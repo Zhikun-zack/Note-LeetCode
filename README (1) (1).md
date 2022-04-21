@@ -48,6 +48,8 @@ Problem
 
     [#366-find-leaves-of-binary-tree-m](by-number/page-3.md#366-find-leaves-of-binary-tree-m "mention")
 
+    [#979-distribute-coins-in-binary-tree-m](by-number/950-1000.md#979-distribute-coins-in-binary-tree-m "mention")
+
 
 
 ### Binary Search Tree
