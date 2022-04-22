@@ -35,6 +35,7 @@ Problem
 
 * [LC 103 ](by-number/100-150.md#103-binary-tree-zigzag-level-order-traversal)
 * [#662-maximum-width-of-binary-tree-m](by-number/650-700.md#662-maximum-width-of-binary-tree-m "mention")
+* [#116-populating-next-right-pointers-in-each-node-m](by-number/100-150.md#116-populating-next-right-pointers-in-each-node-m "mention")
 
 Solution
 
@@ -49,6 +50,11 @@ Problem
     [#366-find-leaves-of-binary-tree-m](by-number/page-3.md#366-find-leaves-of-binary-tree-m "mention")
 
     [#979-distribute-coins-in-binary-tree-m](by-number/950-1000.md#979-distribute-coins-in-binary-tree-m "mention")
+
+    [#337-house-robber-iii-m](by-number/300-350.md#337-house-robber-iii-m "mention")
+*   DFS + helper structure
+
+    [#652-find-duplicate-subtrees-m](by-number/650-700.md#652-find-duplicate-subtrees-m "mention")
 
 
 
