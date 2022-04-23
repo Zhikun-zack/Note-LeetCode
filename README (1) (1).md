@@ -55,6 +55,9 @@ Problem
 *   DFS + helper structure
 
     [#652-find-duplicate-subtrees-m](by-number/650-700.md#652-find-duplicate-subtrees-m "mention")
+*   DFS, but not just record node's value
+
+    [#987-vertical-order-traversal-of-a-binary-tree-h](by-number/950-1000.md#987-vertical-order-traversal-of-a-binary-tree-h "mention")
 
 
 
@@ -81,5 +84,7 @@ Problem
 
 * [#101-symmetric-tree-e](by-number/100-150.md#101-symmetric-tree-e "mention")
 
-###
+## Priority Queue
+
+* [#703-kth-largest-element-in-a-stream-e](by-number/700-750.md#703-kth-largest-element-in-a-stream-e "mention")
 
