@@ -58,6 +58,9 @@ Problem
 *   DFS, but not just record node's value
 
     [#987-vertical-order-traversal-of-a-binary-tree-h](by-number/950-1000.md#987-vertical-order-traversal-of-a-binary-tree-h "mention")
+*   DFS, return some values in each dfs function
+
+    [#1110-delete-nodes-and-return-forest-m](by-number/1100-1150.md#1110-delete-nodes-and-return-forest-m "mention")
 
 
 
@@ -69,6 +72,9 @@ Problem
 * [LC 701](by-number/700-750.md#701-insert-into-a-binary-search-tree)
 * Traversal&#x20;
   * [#1008-construct-binary-search-tree-from-preorder-traversal-m](by-number/1000-1050.md#1008-construct-binary-search-tree-from-preorder-traversal-m "mention")
+  *   BFS inorder traversal
+
+      [#99-recover-binary-search-tree-m](by-number/50-100.md#99-recover-binary-search-tree-m "mention")&#x20;
 * Build a BST
   * [#96-unique-binary-search-trees](by-number/50-100.md#96-unique-binary-search-trees "mention")
 
