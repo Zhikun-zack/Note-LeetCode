@@ -52,6 +52,8 @@ Problem
     [#979-distribute-coins-in-binary-tree-m](by-number/950-1000.md#979-distribute-coins-in-binary-tree-m "mention")
 
     [#337-house-robber-iii-m](by-number/300-350.md#337-house-robber-iii-m "mention")
+
+    [#129-sum-root-to-leaf-numbers-m](by-number/100-150.md#129-sum-root-to-leaf-numbers-m "mention")
 *   DFS + helper structure
 
     [#652-find-duplicate-subtrees-m](by-number/650-700.md#652-find-duplicate-subtrees-m "mention")
@@ -75,6 +77,10 @@ Problem
   *   BFS inorder traversal
 
       [#99-recover-binary-search-tree-m](by-number/50-100.md#99-recover-binary-search-tree-m "mention")&#x20;
+
+      *   Find the successor and predecessor
+
+          [#450-delete-node-in-a-bst-m](by-number/400-450.md#450-delete-node-in-a-bst-m "mention")
 * Build a BST
   * [#96-unique-binary-search-trees](by-number/50-100.md#96-unique-binary-search-trees "mention")
 
