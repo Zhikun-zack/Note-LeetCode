@@ -81,6 +81,8 @@ Problem
       *   Find the successor and predecessor
 
           [#450-delete-node-in-a-bst-m](by-number/400-450.md#450-delete-node-in-a-bst-m "mention")
+* Recursion
+  * 109&#x20;
 * Build a BST
   * [#96-unique-binary-search-trees](by-number/50-100.md#96-unique-binary-search-trees "mention")
 
@@ -95,6 +97,8 @@ Problem
 ### Binary Tree
 
 * [#101-symmetric-tree-e](by-number/100-150.md#101-symmetric-tree-e "mention")
+* Recursion
+  * 894&#x20;
 
 ## Priority Queue
 
