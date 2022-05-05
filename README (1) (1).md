@@ -81,6 +81,8 @@ Problem
       *   Find the successor and predecessor
 
           [#450-delete-node-in-a-bst-m](by-number/400-450.md#450-delete-node-in-a-bst-m "mention")
+
+          [#510-inorder-successor-in-bst-ii-m](by-number/500-550.md#510-inorder-successor-in-bst-ii-m "mention")
 * Recursion
   * 109&#x20;
 * Build a BST
