@@ -29,6 +29,10 @@ class Solution:
 
 
 
+### Post-Order-traversal
+
+* [#333-largest-bst-subtree-m](by-number/300-350.md#333-largest-bst-subtree-m "mention")
+
 ### BFS
 
 Problem
@@ -54,6 +58,10 @@ Problem
     [#337-house-robber-iii-m](by-number/300-350.md#337-house-robber-iii-m "mention")
 
     [#129-sum-root-to-leaf-numbers-m](by-number/100-150.md#129-sum-root-to-leaf-numbers-m "mention")
+
+    Not DFS but like DFS recursive
+
+    * [#226-invert-binary-tree-e](by-number/200-250.md#226-invert-binary-tree-e "mention")
 *   DFS + helper structure
 
     [#652-find-duplicate-subtrees-m](by-number/650-700.md#652-find-duplicate-subtrees-m "mention")
@@ -63,6 +71,11 @@ Problem
 *   DFS, return some values in each dfs function
 
     [#1110-delete-nodes-and-return-forest-m](by-number/1100-1150.md#1110-delete-nodes-and-return-forest-m "mention")
+*   DFS with more parameters
+
+    [#1026-maximum-difference-between-node-and-ancestor-m](by-number/1000-1050.md#1026-maximum-difference-between-node-and-ancestor-m "mention")
+
+    [#1245-tree-diameter-m](by-number/1200-1250.md#1245-tree-diameter-m "mention")
 
 
 
