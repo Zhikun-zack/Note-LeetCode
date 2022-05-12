@@ -13,6 +13,7 @@
 * [Prefix](by-tag/prefix.md)
 * [Stack](by-tag/stack.md)
 * [Sort](by-tag/sort.md)
+* [String](by-tag/string.md)
 * [Other methods](by-tag/other-methods.md)
 
 ## By Number
