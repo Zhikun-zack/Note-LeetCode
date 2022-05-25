@@ -119,3 +119,6 @@ Problem
 
 * [#703-kth-largest-element-in-a-stream-e](by-number/700-750.md#703-kth-largest-element-in-a-stream-e "mention")
 
+## Trie
+
+* [#1166-design-file-system-m](by-number/1150-1200.md#1166-design-file-system-m "mention")
