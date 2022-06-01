@@ -9,6 +9,7 @@
 * [Binary Search](by-tag/binary-search.md)
 * [Tree](<README (1) (1).md>)
 * [HashMap](by-tag/hashmap.md)
+* [Linked List](by-tag/linked-list.md)
 * [DP](<README (1) (1) (1).md>)
 * [Prefix](by-tag/prefix.md)
 * [Stack](by-tag/stack.md)
