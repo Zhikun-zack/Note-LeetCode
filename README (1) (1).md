@@ -40,6 +40,7 @@ Problem
 * [LC 103 ](by-number/100-150.md#103-binary-tree-zigzag-level-order-traversal)
 * [#662-maximum-width-of-binary-tree-m](by-number/650-700.md#662-maximum-width-of-binary-tree-m "mention")
 * [#116-populating-next-right-pointers-in-each-node-m](by-number/100-150.md#116-populating-next-right-pointers-in-each-node-m "mention")
+* [#117-populating-next-right-pointers-in-each-node-ii-m](by-number/100-150.md#117-populating-next-right-pointers-in-each-node-ii-m "mention")
 
 Solution
 
