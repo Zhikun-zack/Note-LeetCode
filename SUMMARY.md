@@ -2,9 +2,10 @@
 
 ## By Tag
 
-* [Need Solve](README.md)
+* [ArrayList](README.md)
+* [Need Solve](<README (2).md>)
 * [Sliding window](by-tag/sliding-window.md)
-* [Math Problem](<README (2).md>)
+* [Math Problem](<README (2) (1).md>)
 * [Greedy](<README (1).md>)
 * [Two Pointers](by-tag/two-pointers.md)
 * [Binary Search](by-tag/binary-search.md)

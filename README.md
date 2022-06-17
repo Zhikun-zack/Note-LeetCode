@@ -1,9 +1,9 @@
-# Need Solve
+# ArrayList
 
-*   [ ] Why hashmap is slower than the other data structure when insert
+## ArrayList with pointer
 
-    [https://github.com/vavr-io/vavr/issues/571](https://github.com/vavr-io/vavr/issues/571)
-*   [ ] Morris Inorder Traversal
+* [#80-remove-duplicates-from-sorted-array-ii-m](by-number/50-100.md#80-remove-duplicates-from-sorted-array-ii-m "mention")
 
-    ****[**https://leetcode.com/problems/recover-binary-search-tree/solution/**](https://leetcode.com/problems/recover-binary-search-tree/solution/)****
-* [ ] **How hash set(map) solves collision**
+## Data Operation
+
+* [#41-first-missing-positive-h](by-number/0-50.md#41-first-missing-positive-h "mention")
