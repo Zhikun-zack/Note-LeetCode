@@ -11,4 +11,11 @@
     [#876-middle-of-the-linked-list](../by-number/850-900.md#876-middle-of-the-linked-list "mention")
 
     [#141-linked-list-cycle-e](../by-number/100-150.md#141-linked-list-cycle-e "mention")
-*
+
+## Reverse&#x20;
+
+* [#445-add-two-numbers-ii-m](../by-number/400-450.md#445-add-two-numbers-ii-m "mention")
+
+## Cycle
+
+* [#142-linked-list-cycle-ii-m](../by-number/100-150.md#142-linked-list-cycle-ii-m "mention")
