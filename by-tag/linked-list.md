@@ -15,6 +15,7 @@
 ## Reverse&#x20;
 
 * [#445-add-two-numbers-ii-m](../by-number/400-450.md#445-add-two-numbers-ii-m "mention")
+* [#25-reverse-nodes-in-k-group-h](../by-number/0-50.md#25-reverse-nodes-in-k-group-h "mention")
 
 ## Cycle
 
