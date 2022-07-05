@@ -17,6 +17,12 @@
 * [#445-add-two-numbers-ii-m](../by-number/400-450.md#445-add-two-numbers-ii-m "mention")
 * [#25-reverse-nodes-in-k-group-h](../by-number/0-50.md#25-reverse-nodes-in-k-group-h "mention")
 
+## Copy delete
+
+* Using two pointers or one pointer to decide whether delete or not
+  * [#82-remove-duplicates-from-sorted-list-ii-m](../by-number/50-100.md#82-remove-duplicates-from-sorted-list-ii-m "mention")
+  * [#83-remove-duplicates-from-sorted-list-e](../by-number/50-100.md#83-remove-duplicates-from-sorted-list-e "mention")
+
 ## Cycle
 
 * [#142-linked-list-cycle-ii-m](../by-number/100-150.md#142-linked-list-cycle-ii-m "mention")
