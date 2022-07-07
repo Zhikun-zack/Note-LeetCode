@@ -2,6 +2,8 @@
 
 ### Traversal
 
+In pre post order traversal are all DFS
+
 ### In Order Traversal&#x20;
 
 #### Problem
@@ -32,6 +34,11 @@ class Solution:
 ### Post-Order-traversal
 
 * [#333-largest-bst-subtree-m](by-number/300-350.md#333-largest-bst-subtree-m "mention")
+* [#145-binary-tree-postorder-traversal](by-number/100-150.md#145-binary-tree-postorder-traversal "mention")
+
+### Pre-Order-traversal
+
+* [#144-binary-tree-preorder-traversal-e](by-number/100-150.md#144-binary-tree-preorder-traversal-e "mention")
 
 ### BFS
 
