@@ -35,11 +35,13 @@ class Solution:
 
 * [#333-largest-bst-subtree-m](by-number/300-350.md#333-largest-bst-subtree-m "mention")
 * [#145-binary-tree-postorder-traversal](by-number/100-150.md#145-binary-tree-postorder-traversal "mention")
+* [#106-construct-binary-tree-from-inorder-and-postorder-traversal-m](by-number/100-150.md#106-construct-binary-tree-from-inorder-and-postorder-traversal-m "mention")
 
 ### Pre-Order-traversal
 
 * [#144-binary-tree-preorder-traversal-e](by-number/100-150.md#144-binary-tree-preorder-traversal-e "mention")
 * [#105-construct-binary-tree-from-preorder-and-inorder-traversal-m](by-number/100-150.md#105-construct-binary-tree-from-preorder-and-inorder-traversal-m "mention")
+*
 
 ### BFS
 
