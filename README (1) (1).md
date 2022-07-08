@@ -39,6 +39,7 @@ class Solution:
 ### Pre-Order-traversal
 
 * [#144-binary-tree-preorder-traversal-e](by-number/100-150.md#144-binary-tree-preorder-traversal-e "mention")
+* [#105-construct-binary-tree-from-preorder-and-inorder-traversal-m](by-number/100-150.md#105-construct-binary-tree-from-preorder-and-inorder-traversal-m "mention")
 
 ### BFS
 
@@ -48,6 +49,7 @@ Problem
 * [#662-maximum-width-of-binary-tree-m](by-number/650-700.md#662-maximum-width-of-binary-tree-m "mention")
 * [#116-populating-next-right-pointers-in-each-node-m](by-number/100-150.md#116-populating-next-right-pointers-in-each-node-m "mention")
 * [#117-populating-next-right-pointers-in-each-node-ii-m](by-number/100-150.md#117-populating-next-right-pointers-in-each-node-ii-m "mention")
+* [#107-binary-tree-level-order-traversal-ii-m](by-number/100-150.md#107-binary-tree-level-order-traversal-ii-m "mention")
 
 Solution
 
