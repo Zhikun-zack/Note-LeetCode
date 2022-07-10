@@ -1,99 +1,155 @@
----
-description: https://www.youtube.com/watch?v=eLlZEYzZVyQ  https://zxi.mytechroad.com/blog/
----
+# Tree
 
-# DP
+### Traversal
 
-* [x] [LC 63 Unique Paths II](by-number/50-100.md#63.-unique-paths-ii)
-* [x] [303 Range Sum Query - Immutable](by-number/300-350.md#303-range-sum-query-immutable-easy)
-* [x] [576 Out of Boundary Paths](by-number/550-600.md#576.-out-of-boundary-paths)
-* [x] [688 Knight Probability in Chessboard](by-number/650-700.md#688.-knight-probability-in-chessboard)
-* [x] [**746**](by-number/700-750.md#746-min-cost-climbing-stairs) **Min Cost Climbing Stairs**
-* [ ] [**790 Domino and Tromino Tiling**](by-number/750-800.md#790-domino-and-tromino-tiling)
-* [ ] [**1137**](by-number/1100-1150.md#1137-n-th-tribonacci-number) **Nth Tribonacci number**
-* [x] [1218 Longest Arithmetic Subsequence of Given Difference](by-number/1200-1250.md#1218-longest-arithmetic-subsequence-of-given-difference-medium)
-* [x] [#1027-longest-arithmetic-subsequence-m](by-number/1000-1050.md#1027-longest-arithmetic-subsequence-m "mention")
+In pre post order traversal are all DFS
 
-| Number                                                                                     | Similiar Probs                                                                                                                                   | Description        |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------ |
-| [303 Range Sum Query - Immutable](by-number/300-350.md#303-range-sum-query-immutable-easy) | [1218 Longest Arithmetic Subsequence of Given Difference](by-number/1200-1250.md#1218-longest-arithmetic-subsequence-of-given-difference-medium) | ++++++++++++++++++ |
-|                                                                                            |                                                                                                                                                  |                    |
-|                                                                                            |                                                                                                                                                  |                    |
-|                                                                                            |                                                                                                                                                  |                    |
-|                                                                                            |                                                                                                                                                  |                    |
-|                                                                                            |                                                                                                                                                  |                    |
-|                                                                                            |                                                                                                                                                  |                    |
-|                                                                                            |                                                                                                                                                  |                    |
-|                                                                                            |                                                                                                                                                  |                    |
+### In Order Traversal&#x20;
 
-## Type: 1
+#### Problem
 
-### Description
+* [LC 94](by-number/50-100.md#94-binary-tree-inorder-traversal)
 
-* Input: O(n)
-* dp\[i]: optimized solution for ith problem
-* dp\[i] dependents on its sub problems
-* T Com O(N)
-* S Com O(N) -> O(1)
+#### Solution
 
-### Problems
+1. Iteration
 
-1. [**LC 746**](by-number/700-750.md#746-min-cost-climbing-stairs) **Min Cost Climbing Stairs**
-   * dp\[i] = min cost to climb to i stairs
-   * dp\[i] = min(dp\[i-1] + cost\[i-1] , dp\[i-2] + cost\[i-2])
-2. **\*\*\*\***[**LC 1137**](by-number/1100-1150.md#1137-n-th-tribonacci-number) **Nth Tribonacci number**
-   * dp\[i] = ith Tribonacci number
-   * dp\[i] = dp\[i-1]+dp\[i-2]+dp\[i-3]
-   * Can using dp1 dp2 dp3 and res four vars to represent dp list
-3. [**LC 790 Domino and Tromino Tiling**](by-number/750-800.md#790-domino-and-tromino-tiling)
-4. [#152-maximum-product-subarray-m](by-number/150-200.md#152-maximum-product-subarray-m "mention")
-
-## Type 2
-
-### Description
-
-* Input is O(nm)
-* DP is O(nm) can be optimized to O(n) or O(1)(Using the input array to store values)
-* T O(N^2) S O(n^2)，O(N) or O(1)
-
-### Problems
-
-[LC 304](by-number/300-350.md#304-range-sum-query-2d-immutable)
-
-[LC 1277](by-number/1200-1250.md#1277-count-square-submatrices-with-all-ones-m)
-
-####
-
-####
-
-## Type: 2.2
-
-### Description:
-
-* Input: O(mn)
-* dp\[ k ]\[ i ]\[ j ] = solution of position (i, j) after k steps
-* dp\[ k ]\[ i ]\[ j ] = sum(dp\[k-1] \[i']\[j']) sum of values of all prev position
-* T Com: O(kmn)
-* S Com: O(kmn) -> O(nm)
-
-### Problems
-
-LC 62
-
-[LC 63 Unique Paths II](by-number/50-100.md#63.-unique-paths-ii)
-
-[LC 576 Out of Boundary Paths](by-number/550-600.md#576.-out-of-boundary-paths)
-
-[LC 688 Knight Probability in Chessboard](by-number/650-700.md#688.-knight-probability-in-chessboard)
-
-### Template
+Using one line to do iteration
 
 ```
-// Some code
-dp = [k][m][n]
-for k in k:
-    for i in m:
-        for j in n:
-            dp[k][i][j] = f(dp[k-1][i'][j'])
-return 
+//
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        return self.inorderTraversal(root.left) + [root.val] + self.inorderTraversal(root.right) if root else []
 ```
+
+
+
+### Post-Order-traversal
+
+* [#333-largest-bst-subtree-m](by-number/300-350.md#333-largest-bst-subtree-m "mention")
+* [#145-binary-tree-postorder-traversal](by-number/100-150.md#145-binary-tree-postorder-traversal "mention")
+* [#106-construct-binary-tree-from-inorder-and-postorder-traversal-m](by-number/100-150.md#106-construct-binary-tree-from-inorder-and-postorder-traversal-m "mention")
+
+### Pre-Order-traversal
+
+* [#144-binary-tree-preorder-traversal-e](by-number/100-150.md#144-binary-tree-preorder-traversal-e "mention")
+* [#105-construct-binary-tree-from-preorder-and-inorder-traversal-m](by-number/100-150.md#105-construct-binary-tree-from-preorder-and-inorder-traversal-m "mention")
+*
+
+### BFS
+
+Problem
+
+* [LC 103 ](by-number/100-150.md#103-binary-tree-zigzag-level-order-traversal)
+* [#662-maximum-width-of-binary-tree-m](by-number/650-700.md#662-maximum-width-of-binary-tree-m "mention")
+* [#116-populating-next-right-pointers-in-each-node-m](by-number/100-150.md#116-populating-next-right-pointers-in-each-node-m "mention")
+* [#117-populating-next-right-pointers-in-each-node-ii-m](by-number/100-150.md#117-populating-next-right-pointers-in-each-node-ii-m "mention")
+* [#107-binary-tree-level-order-traversal-ii-m](by-number/100-150.md#107-binary-tree-level-order-traversal-ii-m "mention")
+
+Solution
+
+### DFS
+
+Problem
+
+*   Recursively
+
+    [#427-construct-quad-tree-m](by-number/400-450.md#427-construct-quad-tree-m "mention")
+
+    [#366-find-leaves-of-binary-tree-m](by-number/page-3.md#366-find-leaves-of-binary-tree-m "mention")
+
+    [#979-distribute-coins-in-binary-tree-m](by-number/950-1000.md#979-distribute-coins-in-binary-tree-m "mention")
+
+    [#337-house-robber-iii-m](by-number/300-350.md#337-house-robber-iii-m "mention")
+
+    [#129-sum-root-to-leaf-numbers-m](by-number/100-150.md#129-sum-root-to-leaf-numbers-m "mention")
+
+    Not DFS but like DFS recursive
+
+    * [#226-invert-binary-tree-e](by-number/200-250.md#226-invert-binary-tree-e "mention")
+*   DFS + helper structure
+
+    [#652-find-duplicate-subtrees-m](by-number/650-700.md#652-find-duplicate-subtrees-m "mention")
+*   DFS, but not just record node's value
+
+    [#987-vertical-order-traversal-of-a-binary-tree-h](by-number/950-1000.md#987-vertical-order-traversal-of-a-binary-tree-h "mention")
+*   DFS, return some values in each dfs function
+
+    [#1110-delete-nodes-and-return-forest-m](by-number/1100-1150.md#1110-delete-nodes-and-return-forest-m "mention")
+*   DFS with more parameters
+
+    [#1026-maximum-difference-between-node-and-ancestor-m](by-number/1000-1050.md#1026-maximum-difference-between-node-and-ancestor-m "mention")
+
+    [#1245-tree-diameter-m](by-number/1200-1250.md#1245-tree-diameter-m "mention")
+
+
+
+### Binary Search Tree
+
+#### Problem
+
+* [LC 230 ](by-number/200-250.md#230-kth-smallest-element-in-a-bst)
+* [LC 701](by-number/700-750.md#701-insert-into-a-binary-search-tree)
+* Traversal&#x20;
+  * [#1008-construct-binary-search-tree-from-preorder-traversal-m](by-number/1000-1050.md#1008-construct-binary-search-tree-from-preorder-traversal-m "mention")
+  *   BFS inorder traversal
+
+      [#99-recover-binary-search-tree-m](by-number/50-100.md#99-recover-binary-search-tree-m "mention")&#x20;
+
+      *   Find the successor and predecessor
+
+          [#450-delete-node-in-a-bst-m](by-number/400-450.md#450-delete-node-in-a-bst-m "mention")
+
+          [#510-inorder-successor-in-bst-ii-m](by-number/500-550.md#510-inorder-successor-in-bst-ii-m "mention")
+* Recursion
+  * 109&#x20;
+* Build a BST
+  * [#96-unique-binary-search-trees](by-number/50-100.md#96-unique-binary-search-trees "mention")
+
+
+
+### Prefix Tree (Trie)
+
+* [#208-implement-trie-prefix-tree-m](by-number/200-250.md#208-implement-trie-prefix-tree-m "mention")
+
+
+
+### Binary Tree
+
+* [#101-symmetric-tree-e](by-number/100-150.md#101-symmetric-tree-e "mention")
+* Recursion
+  * 894&#x20;
+
+## Priority Queue
+
+* [#703-kth-largest-element-in-a-stream-e](by-number/700-750.md#703-kth-largest-element-in-a-stream-e "mention")
+
+## Trie
+
+* [#1166-design-file-system-m](by-number/1150-1200.md#1166-design-file-system-m "mention")
+
+## Serialization And Deserialization
+
+* [#428-serialize-and-deserialize-n-ary-tree-h](by-number/400-450.md#428-serialize-and-deserialize-n-ary-tree-h "mention")
+* [#889-construct-binary-tree-from-preorder-and-postorder-traversal-m](by-number/850-900.md#889-construct-binary-tree-from-preorder-and-postorder-traversal-m "mention")
+* [#95-unique-binary-search-trees-ii-m](by-number/50-100.md#95-unique-binary-search-trees-ii-m "mention")
+* [#108-convert-sorted-array-to-binary-search-tree-e](by-number/100-150.md#108-convert-sorted-array-to-binary-search-tree-e "mention")
+
+## LCA
+
+* [#235-lowest-common-ancestor-of-a-binary-search-tree-e](by-number/200-250.md#235-lowest-common-ancestor-of-a-binary-search-tree-e "mention")
+* [#1123-lowest-common-ancestor-of-deepest-leaves-m](by-number/1100-1150.md#1123-lowest-common-ancestor-of-deepest-leaves-m "mention")
+  * [#865-smallest-subtree-with-all-the-deepest-nodes-m](by-number/850-900.md#865-smallest-subtree-with-all-the-deepest-nodes-m "mention")
+* [#1676-lowest-common-ancestor-of-a-binary-tree-iv](by-number/1650-1700.md#1676-lowest-common-ancestor-of-a-binary-tree-iv "mention")
+
+## Tree Path
+
+* [#257-binary-tree-paths-e](by-number/250-300.md#257-binary-tree-paths-e "mention")
+* [#687-longest-univalue-path-m](by-number/650-700.md#687-longest-univalue-path-m "mention")

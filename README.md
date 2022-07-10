@@ -1,9 +1,15 @@
-# ArrayList
+# Need Solve
 
-## ArrayList with pointer
+*   [ ] Why hashmap is slower than the other data structure when insert
 
-* [#80-remove-duplicates-from-sorted-array-ii-m](by-number/50-100.md#80-remove-duplicates-from-sorted-array-ii-m "mention")
+    [https://github.com/vavr-io/vavr/issues/571](https://github.com/vavr-io/vavr/issues/571)
+*   [ ] Morris Inorder Traversal
 
-## Data Operation
+    ****[**https://leetcode.com/problems/recover-binary-search-tree/solution/**](https://leetcode.com/problems/recover-binary-search-tree/solution/)****
+* [ ] **How hash set(map) solves collision**
+*   [ ] **Why BST are able to constructed by only postorder or preorder traversal**
 
-* [#41-first-missing-positive-h](by-number/0-50.md#41-first-missing-positive-h "mention")
+    ****[**https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/solution/**](https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/solution/)****
+*   [ ] how many trees do we have to construct.
+
+    [https://leetcode.com/problems/unique-binary-search-trees/solution/](https://leetcode.com/problems/unique-binary-search-trees/solution/)

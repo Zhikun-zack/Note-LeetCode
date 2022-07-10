@@ -2,17 +2,17 @@
 
 ## By Tag
 
-* [ArrayList](README.md)
-* [Need Solve](<README (2).md>)
+* [Need Solve](README.md)
+* [ArrayList](<README (1).md>)
 * [Sliding window](by-tag/sliding-window.md)
 * [Math Problem](<README (2) (1).md>)
-* [Greedy](<README (1).md>)
+* [Greedy](<README (1) (1).md>)
 * [Two Pointers](by-tag/two-pointers.md)
 * [Binary Search](by-tag/binary-search.md)
-* [Tree](<README (1) (1).md>)
+* [Tree](<README (1) (1) (1).md>)
 * [HashMap](by-tag/hashmap.md)
 * [Linked List](by-tag/linked-list.md)
-* [DP](<README (1) (1) (1).md>)
+* [DP](<README (1) (1) (1) (1).md>)
 * [Prefix](by-tag/prefix.md)
 * [Stack](by-tag/stack.md)
 * [Sort](by-tag/sort.md)
