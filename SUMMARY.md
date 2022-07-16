@@ -17,6 +17,7 @@
 * [Stack](by-tag/stack.md)
 * [Sort](by-tag/sort.md)
 * [String](by-tag/string.md)
+* [Graph](by-tag/graph.md)
 * [Other methods](by-tag/other-methods.md)
 
 ## By Number

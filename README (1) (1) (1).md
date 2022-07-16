@@ -153,3 +153,15 @@ Problem
 
 * [#257-binary-tree-paths-e](by-number/250-300.md#257-binary-tree-paths-e "mention")
 * [#687-longest-univalue-path-m](by-number/650-700.md#687-longest-univalue-path-m "mention")
+* Using recursion, each recursion function return some values:
+  * [#1372-longest-zigzag-path-in-a-binary-tree](by-number/1350-1400.md#1372-longest-zigzag-path-in-a-binary-tree "mention")
+  * [#124-binary-tree-maximum-path-sum-h](by-number/100-150.md#124-binary-tree-maximum-path-sum-h "mention")
+  * [#549-binary-tree-longest-consecutive-sequence-ii-m](by-number/500-550.md#549-binary-tree-longest-consecutive-sequence-ii-m "mention")
+  * [#1120-maximum-average-subtree-m](by-number/1100-1150.md#1120-maximum-average-subtree-m "mention")
+
+## Others
+
+* Recursion (top down or bottom up)
+  * [#110-balanced-binary-tree-e](by-number/100-150.md#110-balanced-binary-tree-e "mention")
+  * [#617-merge-two-binary-trees](by-number/600-650.md#617-merge-two-binary-trees "mention")
+
